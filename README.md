@@ -1,4 +1,4 @@
-A project of PaySlipGenerator, an app for employees enabling them the access to their pay slips being a part of the University of Lodz Web Applications course
+![image](https://github.com/user-attachments/assets/960e1432-e5d0-415e-8553-09071e4a48b5)A project of PaySlipGenerator, an app for employees enabling them the access to their pay slips being a part of the University of Lodz Web Applications course
 
 # PaySlipGenerator - employees' pay slips management system
 
@@ -6,43 +6,152 @@ A project of PaySlipGenerator, an app for employees enabling them the access to 
 
 ## USER GUIDE
 
-The datebase is a must-have to use the app. The database is managed using MySQL Workbench. To ensure the application functions correctly, you need to download this environment, establish a connection, and configure the hibernate.cfg.xml file (e.g., port, login, password) according to your needs. By default, the application's database is empty. Upon running the Main class from the service package, which uses the static method setDataInDb() from the PaySlipGeneratorService class, it will be filled in with the following tables and employees of the IT company:
+### The database
 
-### The structure
+The database is a must-have to use the app. The database is managed using MySQL Workbench. To ensure the application functions correctly, you need to download this environment, establish a connection, and configure the hibernate.cfg.xml file (e.g., port, login, password) according to your needs. By default, the application's database is empty. Upon running the Main class from the service package, which uses the static method setDataInDb() from the PaySlipGeneratorService class, it will be filled in with the following tables and employees of the IT company:
+
+#### The structure
 
 ![image](https://github.com/user-attachments/assets/810b3393-bb29-4eb8-a73d-6ef2b6d9905d)
 
-### The cpp_developers table
+#### The cpp_developers table
 
 ![image](https://github.com/user-attachments/assets/2ca341c5-66e9-4f5a-9b2d-758ca45d2b35)
 
-### The csharp_developers table
+#### The csharp_developers table
 
 ![image](https://github.com/user-attachments/assets/f0de4d6d-2075-40aa-9909-9ffb8f288e0f)
 
-### The database_analysts table
+#### The database_analysts table
 
 ![image](https://github.com/user-attachments/assets/e081b51c-a025-4679-86c8-11505aca50b0)
 
-### The frontend_developers table
+#### The frontend_developers table
 
 ![image](https://github.com/user-attachments/assets/caf58f9b-bdbd-4bad-90b8-42c52de83a1e)
 
-### The java_developers table
+#### The java_developers table
 
 ![image](https://github.com/user-attachments/assets/e4f9e599-2e7a-4ca7-8c46-826b3a6daa83)
 
-### The python_developers table
+#### The python_developers table
 
 ![image](https://github.com/user-attachments/assets/35063589-995a-46ef-a43d-23ef32ea9b36)
 
-### The hibernate_sequence table
+#### The hibernate_sequence table
 
 ![image](https://github.com/user-attachments/assets/f250351c-b8be-4cd3-a732-14fed1471f4a)
 
 The database is then updated with additional employees when registering a new developer or analyst through the page http://localhost:8080/signup. Below new python developer was registered:
 
 ![image](https://github.com/user-attachments/assets/8a73365e-19a6-4366-a8fd-2015b6fb8603)
+
+### User Interface of the Application
+
+#### The homepage provides the option to log in or register an employee of the IT company:
+
+![image](https://github.com/user-attachments/assets/c0f93c6e-3a8b-4087-b84d-4dc5909e2f61)
+
+#### As a result of selecting the Sing in option, the user is redirected to the following page:
+
+![image](https://github.com/user-attachments/assets/bbc184c7-704f-4b7c-95fa-0f4824b632e2)
+
+#### When incorrect employee data is entered (employee not found in the database) and the user clicks "Sign in," they are redirected to the following page with a login error message:
+
+![image](https://github.com/user-attachments/assets/926ae4a4-35ad-4761-80e7-4d3e57a71f02)
+
+#### Sign in clicked, incorrect employee data entenred:
+
+![image](https://github.com/user-attachments/assets/6a92cdcb-bb7b-477f-97ee-c46427679364)
+
+#### After clicking "Try Again," the user is redirected back to the login page. Once they enter the correct data (employee exists in the database), they are redirected to the page displaying their pay slip:
+
+![image](https://github.com/user-attachments/assets/898648d5-cb1a-43f0-af84-c4ddbebe37aa)
+
+#### Sign in clicked, correct employee data entenred:
+
+![image](https://github.com/user-attachments/assets/98b28a98-2648-4e07-90a6-b1f77dd9fae7)
+
+#### After clicking the icon in the top right corner, the user is logged out and redirected to the home page:
+
+![image](https://github.com/user-attachments/assets/da7606e3-3300-4010-80bf-238ef805108a)
+
+#### s a result of selecting the registration option, the user is redirected to the following page where they can choose the employee's specialization:
+
+![image](https://github.com/user-attachments/assets/e4f0399b-4e95-4aa4-a1dc-cfb5f49f3c34)
+
+#### After selecting one of the options and clicking OK, the user is redirected to the registration page:
+
+![image](https://github.com/user-attachments/assets/1b9236c9-9f23-42da-b130-a423c005d48d)
+
+#### Position selected
+
+![image](https://github.com/user-attachments/assets/1b53c9e5-605f-4a00-8001-e3caf8580aad)
+
+#### OK clicked:
+
+![image](https://github.com/user-attachments/assets/c32d62fd-3318-4ec3-a9d1-d3fc1861699c)
+
+#### Password mismatch results in the registration being blocked:
+
+![image](https://github.com/user-attachments/assets/3265acc2-f8c0-4c1c-ae9c-66cf6f5cb9cc)
+
+#### The page also allows selecting the experience level of the registering employee:
+
+![image](https://github.com/user-attachments/assets/477640c8-c114-4375-9ff4-fb8714f33208)
+
+#### If the login is not unique (i.e., an employee with the same login already exists in the database), the user is redirected to a page with a message about the incorrect login provided during registration:
+
+![image](https://github.com/user-attachments/assets/3b770045-1a5b-4746-bba3-0bef78788a5b)
+
+#### Sing up clicked
+
+![image](https://github.com/user-attachments/assets/c05f7987-a1eb-4ab6-9ec4-9db232bf9954)
+
+#### After clicking "Try Again," the user is redirected back to the employee registration page:
+
+![image](https://github.com/user-attachments/assets/83415112-5a78-49bc-84cd-33a38d45425f)
+
+#### Position chosen:
+
+![image](https://github.com/user-attachments/assets/97fe2ac8-b50e-4a47-806e-69268d057068)
+
+#### OK clicked:
+
+![image](https://github.com/user-attachments/assets/cc2b6fc5-722f-4aaa-8050-31549ec8ff4b)
+
+#### After providing acceptable data and clicking "Sign up," the registration is confirmed:
+
+![image](https://github.com/user-attachments/assets/a10da5d8-a588-4e03-8d59-152fabd12099)
+
+#### Sing up clicked:
+
+![image](https://github.com/user-attachments/assets/faab9e0e-bc05-44f4-8705-059ed39e2d76)
+
+#### After clicking "Sign in," the user is redirected to the login page:
+
+![image](https://github.com/user-attachments/assets/16be6ec8-1627-4cca-9ad9-b75b438e667c)
+
+#### After clicking "Sign in," the user is logged in and redirected to the page displaying their pay slip:
+
+![image](https://github.com/user-attachments/assets/2036f57b-787c-4be7-80aa-b33635a7fca3)
+
+#### If the user clicks the padlock icon on one's payslip page, one will be redirected to the application's main page:
+
+![image](https://github.com/user-attachments/assets/63794599-c88b-4e6d-aca6-80be3c126b65)
+
+#### The padlock icon clicked:
+
+![image](https://github.com/user-attachments/assets/08368aeb-603c-4112-8230-4f6f218c7c0f)
+
+#### If the user clicks the home icon on the login page or any other page, one will be redirected to the application's main page:
+
+![image](https://github.com/user-attachments/assets/60c9578a-a2a9-48d1-898b-68da6fbf8120)
+
+#### The home icon clicked:
+
+![image](https://github.com/user-attachments/assets/08368aeb-603c-4112-8230-4f6f218c7c0f)
+
 
 ## 1. Project Objectives
 
