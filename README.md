@@ -33,23 +33,25 @@ src
 └── main
     ├── java
     │   └── com.example.payslipgenerator
-    │       ├── employees
+    |       ├── controller
+    |            ├── LoginController
+    |            ├── PaySlipGeneratorController
+    |            └── RegisterController
+    │       ├── model
     │       │   ├── CppDeveloper
     │       │   ├── CSharpDeveloper
     │       │   ├── DatabaseAnalyst
-    │       │   ├── DataToDbHandler
     │       │   ├── Employee
     │       │   ├── Experience
     │       │   ├── FrontEndDeveloper
     │       │   ├── JavaDeveloper
     │       │   └── PythonDeveloper
+    |       ├── repository
+    |       |   └── DataToDbHandler
     │       ├── service
     │       │   ├── Main
     │       │   └── PaySlipGeneratorService
-    │       ├── LoginController
     │       ├── PaySlipGeneratorApplication
-    │       ├── PaySlipGeneratorController
-    │       └── RegisterController
     ├── resources
     │   ├── static
     │   ├── templates
@@ -1920,7 +1922,7 @@ spring.mvc.view.suffix=.jsp
 These descriptions should help in understanding the configuration files and their roles within the application. Let me know if there’s anything more you need!
 
 
-### 3.3 Spring Classes
+### 3.3 Controllers
 
 #### 3.3.1 `RegisterController`
 
@@ -2195,39 +2197,7 @@ public class PaySlipGeneratorController {
 **Functions:**
 - Each method handles a GET request for a specific URL and returns the name of the view to be displayed.
 
-#### 3.3.3 `PaySlipGeneratorApplication`
-
-```java
-package com.example.payslipgenerator;
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-@SpringBootApplication
-public class PaySlipGeneratorApplication {
-
-    public static void main(String[] args) {
-        SpringApplication.run(PaySlipGeneratorApplication.class, args);
-    }
-
-}
-```
-
-**Description:**
-- The `PaySlipGeneratorApplication` class is the main class of the application.
-- Annotated with `@SpringBootApplication`, which combines multiple annotations including `@Configuration`, `@EnableAutoConfiguration`, and `@ComponentScan`, enabling automatic configuration of the Spring Boot application.
-- The `main` method is the entry point of the application. It starts the Spring Boot application, initializing the application context and running the server.
-
-**Annotations:**
-- `@SpringBootApplication`: Indicates that the class is a Spring Boot configuration class.
-
-**Methods:**
-1. `main`: The main method of the application that starts the Spring Boot application.
-
-**Functions:**
-- The `main` method initializes the Spring Boot application, starting the application context and the server.
-
-#### 3.3.4 `LoginController`
+#### 3.3.3 `LoginController`
 
 ```java
 package com.example.payslipgenerator;
@@ -2547,7 +2517,7 @@ public class PaySlipGeneratorService {
    - Uses Hibernate queries to check if there is an existing user with the given login for various types of employees.
    - Returns `true` if the login is unique; otherwise, returns `false`.
 
-### 3.5 Entities, Interfaces, and Enums
+### 3.5 Classes / Entities, and Enums
 
 #### 3.5.1 `Employee`
 
@@ -2605,23 +2575,7 @@ public abstract class Employee {
 - **Empty Constructor `Employee()`:** Default no-argument constructor.
 - **public abstract String[] generatePaySlip():** An abstract method to be implemented in subclasses. It generates a pay slip for a given employee.
 
-#### 3.5.2 `DataToDbHandler` (interface)
-
-```java
-package com.example.payslipgenerator.employees;
-
-public interface DataToDbHandler {
-
-    void addDataToDb(String name, String surname, String login, String password, String toolName, String experience);
-
-}
-```
-
-**Description:**
-- **interface DataToDbHandler:** An interface declaring methods that must be implemented by classes that implement this interface.
-- **void addDataToDb(String name, String surname, String login, String password, String toolName, String experience):** Method responsible for adding data to the database. Parameters include employee information such as name, surname, login, password, tool (e.g., code editor), and experience. Implementations of this interface will have their own logic for adding data to the database depending on the type of employee.
-
-#### 3.5.3 `Experience` (enum)
+#### 3.5.2 `Experience` (enum)
 
 ```java
 package com.example.payslipgenerator.employees;
@@ -2636,7 +2590,7 @@ public enum Experience {
 **Description:**
 - **enum Experience:** An enumeration representing the level of experience of an employee. It has three values: JUNIOR, MID, and SENIOR, describing different levels of experience in the context of generating pay slips. Depending on whether the employee is a beginner, mid-level, or experienced, their level of experience is marked as JUNIOR, MID, or SENIOR.
 
-#### 3.5.4 `PythonDeveloper`
+#### 3.5.3 `PythonDeveloper`
 
 ```java
 package com.example.payslipgenerator.employees;
@@ -2735,7 +2689,7 @@ public class PythonDeveloper extends Employee implements DataToDbHandler {
 - **Method `generatePaySlip()`:** Implements the method from `Employee`. Returns an array containing details of the Python developer's pay slip, such as name, surname, position, experience level, and salary.
 - **Method `addDataToDb()`:** Implements the method from `DataToDbHandler`, which adds data of a Python developer to the database. Creates a new `PythonDeveloper` object with the provided data and saves it to the database.
 
-#### 3.5.5 `JavaDeveloper`
+#### 3.5.4 `JavaDeveloper`
 
 ```java
 package com.example.payslipgenerator.employees;
@@ -2833,7 +2787,7 @@ public class JavaDeveloper extends Employee implements DataToDbHandler {
 - **Method `generatePaySlip()`:** Implements the method from `Employee`. Returns an array with pay slip details including name, surname, position, experience level, and salary.
 - **Method `addDataToDb()`:** Implements `DataToDbHandler` method for adding a Java developer’s data to the database. Creates and saves a new `JavaDeveloper` object.
 
-#### 3.5.6 `FrontEndDeveloper`
+#### 3.5.5 `FrontEndDeveloper`
 
 ```java
 package com.example.payslipgenerator.employees;
@@ -2931,7 +2885,7 @@ public class FrontEndDeveloper extends Employee implements DataToDbHandler {
 - **Method `generatePaySlip()`:** Implements `Employee`'s method. Returns an array with the front-end developer's pay slip details.
 - **Method `addDataToDb()`:** Implements `DataToDbHandler`'s method for adding a front-end developer’s data to the database.
 
-#### 3.5.7 `DatabaseAnalyst`
+#### 3.5.6 `DatabaseAnalyst`
 
 ```java
 package com.example.payslipgenerator.employees;
@@ -3029,7 +2983,7 @@ public class DatabaseAnalyst extends Employee implements DataToDbHandler {
 - **Method `generatePaySlip()`:** Implements the method from `Employee`. Returns pay slip details.
 - **Method `addDataToDb()`:** Implements `DataToDbHandler`'s method for adding data of a database analyst to the database.
 
-#### 3.5.8 `CSharpDeveloper`
+#### 3.5.7 `CSharpDeveloper`
 
 ```java
 package com.example.payslipgenerator.employees;
@@ -3127,7 +3081,7 @@ public class CSharpDeveloper extends Employee implements DataToDbHandler {
 - **Method `generatePaySlip()`:** Returns the C# developer's pay slip details.
 - **Method `addDataToDb()`:** Adds C# developer data to the database using `DataToDbHandler`.
 
-#### 3.5.9 `CppDeveloper`
+#### 3.5.8 `CppDeveloper`
 
 ```java
 package com.example.payslipgenerator.employees;
@@ -3224,3 +3178,55 @@ public class CppDeveloper extends Employee implements DataToDbHandler {
   - **public CppDeveloper():** Default constructor.
 - **Method `generatePaySlip()`:** Returns C++ developer's pay slip details.
 - **Method `addDataToDb()`:** Adds C++ developer data to the database.
+
+### 3.6 DB
+
+#### 3.5.2 `DataToDbHandler` (interface)
+
+```java
+package com.example.payslipgenerator.employees;
+
+public interface DataToDbHandler {
+
+    void addDataToDb(String name, String surname, String login, String password, String toolName, String experience);
+
+}
+```
+
+**Description:**
+- **interface DataToDbHandler:** An interface declaring methods that must be implemented by classes that implement this interface.
+- **void addDataToDb(String name, String surname, String login, String password, String toolName, String experience):** Method responsible for adding data to the database. Parameters include employee information such as name, surname, login, password, tool (e.g., code editor), and experience. Implementations of this interface will have their own logic for adding data to the database depending on the type of employee.
+
+### 3.7 The app class
+
+#### 3.3.3 `PaySlipGeneratorApplication`
+
+```java
+package com.example.payslipgenerator;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class PaySlipGeneratorApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(PaySlipGeneratorApplication.class, args);
+    }
+
+}
+```
+
+**Description:**
+- The `PaySlipGeneratorApplication` class is the main class of the application.
+- Annotated with `@SpringBootApplication`, which combines multiple annotations including `@Configuration`, `@EnableAutoConfiguration`, and `@ComponentScan`, enabling automatic configuration of the Spring Boot application.
+- The `main` method is the entry point of the application. It starts the Spring Boot application, initializing the application context and running the server.
+
+**Annotations:**
+- `@SpringBootApplication`: Indicates that the class is a Spring Boot configuration class.
+
+**Methods:**
+1. `main`: The main method of the application that starts the Spring Boot application.
+
+**Functions:**
+- The `main` method initializes the Spring Boot application, starting the application context and the server.
