@@ -48,7 +48,7 @@ The database is then updated with additional employees when registering a new de
 
 ### User Interface of the Application
 
-#### The homepage provides the option to log in or register an employee of the IT company:
+#### The homepage provides the option to Sing in and Sing up an employee of the IT company:
 
 ![image](https://github.com/user-attachments/assets/c0f93c6e-3a8b-4087-b84d-4dc5909e2f61)
 
@@ -64,7 +64,7 @@ The database is then updated with additional employees when registering a new de
 
 ![image](https://github.com/user-attachments/assets/6a92cdcb-bb7b-477f-97ee-c46427679364)
 
-#### After clicking "Try Again," the user is redirected back to the login page. Once they enter the correct data (employee exists in the database), they are redirected to the page displaying their pay slip:
+#### After clicking "Try Again," the user is redirected back to the signing in page. Once one enters the correct data (employee exists in the database), one is redirected to the page displaying one's pay slip:
 
 ![image](https://github.com/user-attachments/assets/898648d5-cb1a-43f0-af84-c4ddbebe37aa)
 
@@ -76,7 +76,7 @@ The database is then updated with additional employees when registering a new de
 
 ![image](https://github.com/user-attachments/assets/da7606e3-3300-4010-80bf-238ef805108a)
 
-#### s a result of selecting the registration option, the user is redirected to the following page where they can choose the employee's specialization:
+#### As a result of selecting the Sign up option, the user is redirected to the following page where one can choose the employee's specialization:
 
 ![image](https://github.com/user-attachments/assets/e4f0399b-4e95-4aa4-a1dc-cfb5f49f3c34)
 
@@ -84,7 +84,7 @@ The database is then updated with additional employees when registering a new de
 
 ![image](https://github.com/user-attachments/assets/1b9236c9-9f23-42da-b130-a423c005d48d)
 
-#### Position selected
+#### Position selected:
 
 ![image](https://github.com/user-attachments/assets/1b53c9e5-605f-4a00-8001-e3caf8580aad)
 
@@ -132,9 +132,13 @@ The database is then updated with additional employees when registering a new de
 
 ![image](https://github.com/user-attachments/assets/16be6ec8-1627-4cca-9ad9-b75b438e667c)
 
-#### After clicking "Sign in," the user is logged in and redirected to the page displaying their pay slip:
+#### After clicking "Sign in," the user is logged in and redirected to the page displaying one's pay slip:
 
 ![image](https://github.com/user-attachments/assets/2036f57b-787c-4be7-80aa-b33635a7fca3)
+
+#### If the user clicks the home icon on any page where it is visible, one will be redirected to the application's main page:
+
+![image](https://github.com/user-attachments/assets/f62f26f2-6524-451c-9485-4d0702e5a1c1)
 
 #### The home icon clicked:
 
