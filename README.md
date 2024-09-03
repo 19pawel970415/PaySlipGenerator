@@ -2547,20 +2547,680 @@ public class PaySlipGeneratorService {
    - Uses Hibernate queries to check if there is an existing user with the given login for various types of employees.
    - Returns `true` if the login is unique; otherwise, returns `false`.
 
+### 3.5 Entities, Interfaces, and Enums
 
-
-```java
-
-```
+#### 3.5.1 `Employee`
 
 ```java
+package com.example.payslipgenerator.employees;
 
+import lombok.Data;
+
+import javax.persistence.*;
+
+@Entity
+@Data
+@Table(name = "employees")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class Employee {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
+
+    @Column(name = "name")
+    private String name;
+    @Column(name = "surname")
+    private String surname;
+    @Column(name = "login")
+    private String login;
+    @Column(name = "password")
+    private String password;
+
+    public Employee(Long id, String name, String surname, String login, String password) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.login = login;
+        this.password = password;
+    }
+
+    public Employee() {
+
+    }
+
+    public abstract String[] generatePaySlip();
+}
 ```
+
+**Description:**
+- **@Entity:** Marks the class as an entity, enabling mapping of its fields to database columns.
+- **@Data:** A Lombok annotation that generates `toString()`, `equals()`, `hashCode()`, getters, and setters for the class fields.
+- **@Table(name = "employees"):** Specifies the name of the database table to which this entity is mapped.
+- **@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS):** Specifies the inheritance strategy where each subclass has its own table in the database.
+- **@Id:** Marks the field as the identifier (primary key) of the entity.
+- **@GeneratedValue(strategy = GenerationType.SEQUENCE):** Specifies that the identifier value will be automatically generated using a sequence.
+- **@Column(name = "name"), @Column(name = "surname"), @Column(name = "login"), @Column(name = "password"):** Specify the column names in the database to which the corresponding class fields are mapped.
+- **abstract class Employee:** An abstract class serving as the superclass for all types of employees.
+- **Constructor `Employee(Long id, String name, String surname, String login, String password)`:** Initializes an `Employee` object with the provided values.
+- **Empty Constructor `Employee()`:** Default no-argument constructor.
+- **public abstract String[] generatePaySlip():** An abstract method to be implemented in subclasses. It generates a pay slip for a given employee.
+
+#### 3.5.2 `DataToDbHandler` (interface)
 
 ```java
+package com.example.payslipgenerator.employees;
 
+public interface DataToDbHandler {
+
+    void addDataToDb(String name, String surname, String login, String password, String toolName, String experience);
+
+}
 ```
+
+**Description:**
+- **interface DataToDbHandler:** An interface declaring methods that must be implemented by classes that implement this interface.
+- **void addDataToDb(String name, String surname, String login, String password, String toolName, String experience):** Method responsible for adding data to the database. Parameters include employee information such as name, surname, login, password, tool (e.g., code editor), and experience. Implementations of this interface will have their own logic for adding data to the database depending on the type of employee.
+
+#### 3.5.3 `Experience` (enum)
 
 ```java
+package com.example.payslipgenerator.employees;
 
+public enum Experience {
+    JUNIOR,
+    MID,
+    SENIOR
+}
 ```
+
+**Description:**
+- **enum Experience:** An enumeration representing the level of experience of an employee. It has three values: JUNIOR, MID, and SENIOR, describing different levels of experience in the context of generating pay slips. Depending on whether the employee is a beginner, mid-level, or experienced, their level of experience is marked as JUNIOR, MID, or SENIOR.
+
+#### 3.5.4 `PythonDeveloper`
+
+```java
+package com.example.payslipgenerator.employees;
+
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Table;
+
+@Entity
+@Getter
+@Setter
+@Table(name = "python_developers")
+public class PythonDeveloper extends Employee implements DataToDbHandler {
+    private String toolName;
+
+    @Enumerated(EnumType.STRING)
+    private Experience experience;
+    private double baseSalary = 6500;
+
+    public PythonDeveloper(Long id, String name, String surname, String login, String password, String toolName, Experience experience) {
+        super(id, name, surname, login, password);
+        this.toolName = toolName;
+        this.experience = experience;
+        switch (experience) {
+            case JUNIOR:
+                this.baseSalary = baseSalary;
+                break;
+            case MID:
+                this.baseSalary = baseSalary * 1.5;
+                break;
+            case SENIOR:
+                this.baseSalary = baseSalary * 2;
+                break;
+            default:
+                this.baseSalary = baseSalary;
+        }
+    }
+
+    public PythonDeveloper() {
+        super(null, null, null, null, null);
+    }
+
+    @Override
+    public String[] generatePaySlip() {
+        String[] paySlip = new String[5];
+        paySlip[0] = getName();
+        paySlip[1] = getSurname();
+        paySlip[2] = "Python Developer";
+        paySlip[3] = String.valueOf(getExperience());
+        paySlip[4] = String.valueOf(getBaseSalary());
+        return paySlip;
+    }
+
+    @Override
+    public void addDataToDb(String name, String surname, String login, String password, String toolName, String experience) {
+        SessionFactory sessionFactory = new Configuration()
+                .configure()
+                .buildSessionFactory();
+        try (Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
+
+            PythonDeveloper pythonDeveloper = new PythonDeveloper(null, name, surname, login, password, toolName, Experience.valueOf(experience.toUpperCase()));
+            session.save(pythonDeveloper);
+
+            transaction.commit();
+            session.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sessionFactory.close();
+        }
+    }
+
+}
+```
+
+**Description:**
+- **class PythonDeveloper extends Employee implements DataToDbHandler:** Represents a Python developer. Extends the `Employee` class and implements the `DataToDbHandler` interface, which means it must implement the `addDataToDb` method from `DataToDbHandler`.
+- **@Entity:** Annotation indicating that this class is a JPA entity, meaning objects of this class will be mapped to records in a database table.
+- **@Table(name = "python_developers"):** Specifies the name of the database table to which objects of this class will be mapped.
+- **@Getter and @Setter:** Lombok annotations generating getters and setters for the class fields.
+- **private String toolName:** Field storing the name of the tool used by the Python developer.
+- **@Enumerated(EnumType.STRING) private Experience experience;:** Field representing the experience level of the Python developer, which is an `Experience` enumeration type.
+- **private double baseSalary = 6500;** Field storing the base salary of the Python developer, set at 6500.
+- **Constructors:**
+  - **public PythonDeveloper(Long id, String name, String surname, String login, String password, String toolName, Experience experience):** Initializes a `PythonDeveloper` object with details such as id, name, surname, login, password, tool name, and experience level. Salary is calculated based on the base salary and multiplier.
+  - **public PythonDeveloper():** Default constructor.
+- **Method `generatePaySlip()`:** Implements the method from `Employee`. Returns an array containing details of the Python developer's pay slip, such as name, surname, position, experience level, and salary.
+- **Method `addDataToDb()`:** Implements the method from `DataToDbHandler`, which adds data of a Python developer to the database. Creates a new `PythonDeveloper` object with the provided data and saves it to the database.
+
+#### 3.5.5 `JavaDeveloper`
+
+```java
+package com.example.payslipgenerator.employees;
+
+import lombok.*;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Table;
+
+@Entity
+@Getter
+@Setter
+@Table(name = "java_developers")
+public class JavaDeveloper extends Employee implements DataToDbHandler {
+    private String toolName;
+
+    @Enumerated(EnumType.STRING)
+    private Experience experience;
+    private double baseSalary = 6000;
+
+    public JavaDeveloper(Long id, String name, String surname, String login, String password, String toolname, Experience experience) {
+        super(id, name, surname, login, password);
+        this.toolName = toolName;
+        this.experience = experience;
+        switch (this.experience) {
+            case JUNIOR:
+                this.baseSalary = baseSalary;
+                break;
+            case MID:
+                this.baseSalary = baseSalary * 1.5;
+                break;
+            case SENIOR:
+                this.baseSalary = baseSalary * 2;
+                break;
+            default:
+                this.baseSalary = baseSalary;
+        }
+    }
+
+    public JavaDeveloper() {
+        super(null, null, null, null, null);
+    }
+
+
+    @Override
+    public String[] generatePaySlip() {
+        String[] paySlip = new String[5];
+        paySlip[0] = getName();
+        paySlip[1] = getSurname();
+        paySlip[2] = "Java Developer";
+        paySlip[3] = String.valueOf(getExperience());
+        paySlip[4] = String.valueOf(getBaseSalary());
+        return paySlip;
+    }
+
+    @Override
+    public void addDataToDb(String name, String surname, String login, String password, String toolName, String experience) {
+        SessionFactory sessionFactory = new Configuration()
+                .configure()
+                .buildSessionFactory();
+        try (Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
+
+            JavaDeveloper javaDeveloper = new JavaDeveloper(null, name, surname, login, password, toolName, Experience.valueOf(experience.toUpperCase()));
+            session.save(javaDeveloper);
+
+            transaction.commit();
+            session.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sessionFactory.close();
+        }
+    }
+}
+```
+
+**Description:**
+- **class JavaDeveloper extends Employee implements DataToDbHandler:** Represents a Java developer. Extends the `Employee` class and implements the `DataToDbHandler` interface, requiring the implementation of the `addDataToDb` method.
+- **@Entity:** Annotation indicating that this class is a JPA entity, mapping objects of this class to database table records.
+- **@Table(name = "java_developers"):** Specifies the name of the database table for this class.
+- **@Getter and @Setter:** Lombok annotations generating getters and setters.
+- **private String toolName:** Field storing the tool name used by the Java developer.
+- **@Enumerated(EnumType.STRING) private Experience experience;:** Field representing the experience level of the Java developer, using the `Experience` enum.
+- **private double baseSalary = 6000;** Base salary of the Java developer, set at 6000.
+- **Constructors:**
+  - **public JavaDeveloper(Long id, String name, String surname, String login, String password, String toolName, Experience experience):** Initializes a `JavaDeveloper` object with id, name, surname, login, password, tool name, and experience. Salary is computed based on the base salary and multiplier.
+  - **public JavaDeveloper():** Default constructor.
+- **Method `generatePaySlip()`:** Implements the method from `Employee`. Returns an array with pay slip details including name, surname, position, experience level, and salary.
+- **Method `addDataToDb()`:** Implements `DataToDbHandler` method for adding a Java developer’s data to the database. Creates and saves a new `JavaDeveloper` object.
+
+#### 3.5.6 `FrontEndDeveloper`
+
+```java
+package com.example.payslipgenerator.employees;
+
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Table;
+
+@Entity
+@Getter
+@Setter
+@Table(name = "frontend_developers")
+public class FrontEndDeveloper extends Employee implements DataToDbHandler {
+    private String toolName;
+
+    @Enumerated(EnumType.STRING)
+    private Experience experience;
+    private double baseSalary = 3500;
+
+    public FrontEndDeveloper(Long id, String name, String surname, String login, String password, String toolName, Experience experience) {
+        super(id, name, surname, login, password);
+        this.toolName = toolName;
+        this.experience = experience;
+        switch (experience) {
+            case JUNIOR:
+                this.baseSalary = baseSalary;
+                break;
+            case MID:
+                this.baseSalary = baseSalary * 1.5;
+                break;
+            case SENIOR:
+                this.baseSalary = baseSalary * 2;
+                break;
+            default:
+                this.baseSalary = baseSalary;
+        }
+    }
+
+    public FrontEndDeveloper() {
+        super(null, null, null, null, null);
+    }
+
+    @Override
+    public String[] generatePaySlip() {
+        String[] paySlip = new String[5];
+        paySlip[0] = getName();
+        paySlip[1] = getSurname();
+        paySlip[2] = "Front-end Developer";
+        paySlip[3] = String.valueOf(getExperience());
+        paySlip[4] = String.valueOf(getBaseSalary());
+        return paySlip;
+    }
+
+    @Override
+    public void addDataToDb(String name, String surname, String login, String password, String toolName, String experience) {
+        SessionFactory sessionFactory = new Configuration()
+                .configure()
+                .buildSessionFactory();
+        try (Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
+
+            FrontEndDeveloper frontEndDeveloper = new FrontEndDeveloper(null, name, surname, login, password, toolName, Experience.valueOf(experience.toUpperCase()));
+            session.save(frontEndDeveloper);
+
+            transaction.commit();
+            session.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sessionFactory.close();
+        }
+    }
+}
+```
+
+**Description:**
+- **class FrontEndDeveloper extends Employee implements DataToDbHandler:** Represents a Front-end developer. Extends `Employee` and implements `DataToDbHandler`, thus requiring the `addDataToDb` method implementation.
+- **@Entity:** Marks this class as a JPA entity.
+- **@Table(name = "frontend_developers"):** Specifies the name of the database table for front-end developers.
+- **@Getter and @Setter:** Lombok annotations for automatic getters and setters.
+- **private String toolName:** Field for the tool used by the front-end developer.
+- **@Enumerated(EnumType.STRING) private Experience experience;:** Represents the experience level of the front-end developer.
+- **private double baseSalary = 3500;** Base salary of the front-end developer, set at 3500.
+- **Constructors:**
+  - **public FrontEndDeveloper(Long id, String name, String surname, String login, String password, String toolName, Experience experience):** Initializes a `FrontEndDeveloper` with id, name, surname, login, password, tool name, and experience level.
+  - **public FrontEndDeveloper():** Default constructor.
+- **Method `generatePaySlip()`:** Implements `Employee`'s method. Returns an array with the front-end developer's pay slip details.
+- **Method `addDataToDb()`:** Implements `DataToDbHandler`'s method for adding a front-end developer’s data to the database.
+
+#### 3.5.7 `DatabaseAnalyst`
+
+```java
+package com.example.payslipgenerator.employees;
+
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Table;
+
+@Entity
+@Getter
+@Setter
+@Table(name = "database_analysts")
+public class DatabaseAnalyst extends Employee implements DataToDbHandler {
+    private String toolName;
+
+    @Enumerated(EnumType.STRING)
+    private Experience experience;
+    private double baseSalary = 5000;
+
+    public DatabaseAnalyst(Long id, String name, String surname, String login, String password, String toolName, Experience experience) {
+        super(id, name, surname, login, password);
+        this.toolName = toolName;
+        this.experience = experience;
+        switch (experience) {
+            case JUNIOR:
+                this.baseSalary = baseSalary;
+                break;
+            case MID:
+                this.baseSalary = baseSalary * 1.5;
+                break;
+            case SENIOR:
+                this.baseSalary = baseSalary * 2;
+                break;
+            default:
+                this.baseSalary = baseSalary;
+        }
+    }
+
+    public DatabaseAnalyst() {
+        super(null, null, null, null, null);
+    }
+
+    @Override
+    public String[] generatePaySlip() {
+        String[] paySlip = new String[5];
+        paySlip[0] = getName();
+        paySlip[1] = getSurname();
+        paySlip[2] = "Database Analyst";
+        paySlip[3] = String.valueOf(getExperience());
+        paySlip[4] = String.valueOf(getBaseSalary());
+        return paySlip;
+    }
+
+    @Override
+    public void addDataToDb(String name, String surname, String login, String password, String toolName, String experience) {
+        SessionFactory sessionFactory = new Configuration()
+                .configure()
+                .buildSessionFactory();
+        try (Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
+
+            DatabaseAnalyst databaseAnalyst = new DatabaseAnalyst(null, name, surname, login, password, toolName, Experience.valueOf(experience.toUpperCase()));
+            session.save(databaseAnalyst);
+
+            transaction.commit();
+            session.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sessionFactory.close();
+        }
+    }
+}
+```
+
+**Description:**
+- **class DatabaseAnalyst extends Employee implements DataToDbHandler:** Represents a Database Analyst. Extends `Employee` and implements `DataToDbHandler`.
+- **@Entity:** Annotation for JPA entity mapping.
+- **@Table(name = "database_analysts"):** Specifies the name of the database table for database analysts.
+- **@Getter and @Setter:** Lombok annotations for getters and setters.
+- **private String toolName:** Field for the tool used by the database analyst.
+- **@Enumerated(EnumType.STRING) private Experience experience;:** Experience level of the database analyst.
+- **private double baseSalary = 5000;** Base salary set at 5000.
+- **Constructors:**
+  - **public DatabaseAnalyst(Long id, String name, String surname, String login, String password, String toolName, Experience experience):** Initializes `DatabaseAnalyst` with provided data.
+  - **public DatabaseAnalyst():** Default constructor.
+- **Method `generatePaySlip()`:** Implements the method from `Employee`. Returns pay slip details.
+- **Method `addDataToDb()`:** Implements `DataToDbHandler`'s method for adding data of a database analyst to the database.
+
+#### 3.5.8 `CSharpDeveloper`
+
+```java
+package com.example.payslipgenerator.employees;
+
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Table;
+
+@Entity
+@Getter
+@Setter
+@Table(name = "csharp_developers")
+public class CSharpDeveloper extends Employee implements DataToDbHandler {
+    private String toolName;
+
+    @Enumerated(EnumType.STRING)
+    private Experience experience;
+    private double baseSalary = 4500;
+
+    public CSharpDeveloper(Long id, String name, String surname, String login, String password, String toolName, Experience experience) {
+        super(id, name, surname, login, password);
+        this.toolName = toolName;
+        this.experience = experience;
+        switch (experience) {
+            case JUNIOR:
+                this.baseSalary = baseSalary;
+                break;
+            case MID:
+                this.baseSalary = baseSalary * 1.5;
+                break;
+            case SENIOR:
+                this.baseSalary = baseSalary * 2;
+                break;
+            default:
+                this.baseSalary = baseSalary;
+        }
+    }
+
+    public CSharpDeveloper() {
+        super(null, null, null, null, null);
+    }
+
+    @Override
+    public String[] generatePaySlip() {
+        String[] paySlip = new String[5];
+        paySlip[0] = getName();
+        paySlip[1] = getSurname();
+        paySlip[2] = "C# Developer";
+        paySlip[3] = String.valueOf(getExperience());
+        paySlip[4] = String.valueOf(getBaseSalary());
+        return paySlip;
+    }
+
+    @Override
+    public void addDataToDb(String name, String surname, String login, String password, String toolName, String experience) {
+        SessionFactory sessionFactory = new Configuration()
+                .configure()
+                .buildSessionFactory();
+        try (Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
+
+            CSharpDeveloper cSharpDeveloper = new CSharpDeveloper(null, name, surname, login, password, toolName, Experience.valueOf(experience.toUpperCase()));
+            session.save(cSharpDeveloper);
+
+            transaction.commit();
+            session.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sessionFactory.close();
+        }
+    }
+}
+```
+
+**Description:**
+- **class CSharpDeveloper extends Employee implements DataToDbHandler:** Represents a C# developer. Extends `Employee` and implements `DataToDbHandler`.
+- **@Entity:** Marks this class as a JPA entity.
+- **@Table(name = "csharp_developers"):** Specifies the database table name for C# developers.
+- **@Getter and @Setter:** Lombok annotations for automatic getters and setters.
+- **private String toolName:** Field for the tool used by the C# developer.
+- **@Enumerated(EnumType.STRING) private Experience experience;:** Experience level of the C# developer.
+- **private double baseSalary = 4500;** Base salary set at 4500.
+- **Constructors:**
+  - **public CSharpDeveloper(Long id, String name, String surname, String login, String password, String toolName, Experience experience):** Initializes `CSharpDeveloper` with the given parameters.
+  - **public CSharpDeveloper():** Default constructor.
+- **Method `generatePaySlip()`:** Returns the C# developer's pay slip details.
+- **Method `addDataToDb()`:** Adds C# developer data to the database using `DataToDbHandler`.
+
+#### 3.5.9 `CppDeveloper`
+
+```java
+package com.example.payslipgenerator.employees;
+
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Table;
+
+@Entity
+@Getter
+@Setter
+@Table(name = "cpp_developers")
+public class CppDeveloper extends Employee implements DataToDbHandler {
+    private String toolName;
+
+    @Enumerated(EnumType.STRING)
+    private Experience experience;
+    private double baseSalary = 4000;
+
+    public CppDeveloper(Long id, String name, String surname, String login, String password, String toolName, Experience experience) {
+        super(id, name, surname, login, password);
+        this.toolName = toolName;
+        this.experience = experience;
+        switch (experience) {
+            case JUNIOR:
+                this.baseSalary = baseSalary;
+                break;
+            case MID:
+                this.baseSalary = baseSalary * 1.5;
+                break;
+            case SENIOR:
+                this.baseSalary = baseSalary * 2;
+                break;
+            default:
+                this.baseSalary = baseSalary;
+        }
+    }
+
+    public CppDeveloper() {
+        super(null, null, null, null, null);
+    }
+
+    @Override
+    public String[] generatePaySlip() {
+        String[] paySlip = new String[5];
+        paySlip[0] = getName();
+        paySlip[1] = getSurname();
+        paySlip[2] = "C++ Developer";
+        paySlip[3] = String.valueOf(getExperience());
+        paySlip[4] = String.valueOf(getBaseSalary());
+        return paySlip;
+    }
+
+    @Override
+    public void addDataToDb(String name, String surname, String login, String password, String toolName, String experience) {
+        SessionFactory sessionFactory = new Configuration()
+                .configure()
+                .buildSessionFactory();
+        try (Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
+
+            CppDeveloper cppDeveloper = new CppDeveloper(null, name, surname, login, password, toolName, Experience.valueOf(experience.toUpperCase()));
+            session.save(cppDeveloper);
+
+            transaction.commit();
+            session.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sessionFactory.close();
+        }
+    }
+}
+```
+
+**Description:**
+- **class CppDeveloper extends Employee implements DataToDbHandler:** Represents a C++ developer. Extends `Employee` and implements `DataToDbHandler`.
+- **@Entity:** Annotation indicating this class is a JPA entity.
+- **@Table(name = "cpp_developers"):** Database table name for C++ developers.
+- **@Getter and @Setter:** Lombok annotations for automatic getters and setters.
+- **private String toolName:** Tool used by the C++ developer.
+- **@Enumerated(EnumType.STRING) private Experience experience;:** Represents the experience level of the C++ developer.
+- **private double baseSalary = 4000;** Base salary set at 4000.
+- **Constructors:**
+  - **public CppDeveloper(Long id, String name, String surname, String login, String password, String toolName, Experience experience):** Initializes `CppDeveloper` with the provided details.
+  - **public CppDeveloper():** Default constructor.
+- **Method `generatePaySlip()`:** Returns C++ developer's pay slip details.
+- **Method `addDataToDb()`:** Adds C++ developer data to the database.
