@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/960e1432-e5d0-415e-8553-09071e4a48b5)A project of PaySlipGenerator, an app for employees enabling them the access to their pay slips being a part of the University of Lodz Web Applications course
+A project of PaySlipGenerator, an app for employees enabling them the access to their pay slips being a part of the University of Lodz Web Applications course
 
 # PaySlipGenerator - employees' pay slips management system
 
@@ -8,7 +8,7 @@
 
 ### The database
 
-The database is a must-have to use the app. The database is managed using MySQL Workbench. To ensure the application functions correctly, you need to download this environment, establish a connection, and configure the hibernate.cfg.xml file (e.g., port, login, password) according to your needs. By default, the application's database is empty. Upon running the Main class from the service package, which uses the static method setDataInDb() from the PaySlipGeneratorService class, it will be filled in with the following tables and employees of the IT company:
+The database is a must-have to use the app. The database is managed using MySQL Workbench. To ensure the application functions correctly, you need to download this environment from https://dev.mysql.com/downloads/workbench/, establish a connection, and configure the hibernate.cfg.xml file (e.g., port, login, password) according to your needs. By default, the application's database is empty. Upon running the Main class from the service package, which uses the static method setDataInDb() from the PaySlipGeneratorService class, it will be filled in with the following tables and employees of the IT company:
 
 #### The structure
 
