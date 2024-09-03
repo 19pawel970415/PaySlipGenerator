@@ -45,7 +45,7 @@ In summary, the purpose of this project is to automate the process of generating
    
 8. **JavaScript**: JavaScript is used to enhance the interactivity and functionality of the web pages. It handles client-side scripting for form validation, dynamic content updates, and user interactions. JavaScript improves the user experience by allowing for real-time feedback and updates without requiring a page reload. The .js files of the project are:
    - password validation .js file (registerSpecificDev.js)
-   - position choice .js files (signup.js)
+   - position choice .js file (signup.js)
 
 ### 1.3 Requirements
 
