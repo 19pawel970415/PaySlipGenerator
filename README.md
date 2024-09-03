@@ -120,9 +120,9 @@ src
 
 This project structure organizes the code and resources in a clear manner, facilitating management and development of the application.
 
-## Functionalities
+## Frontend
 
-### 3.1 Frontend
+### 3.1 .jsp files
 
 #### 3.1.1 `index.jsp`
 
@@ -879,6 +879,53 @@ This project structure organizes the code and resources in a clear manner, facil
 - **`<script src="/resources/static/js/signup.js"></script>`:** Links to an external JavaScript file (`signup.js`) located in the `/resources/static/js/` directory. This script likely contains the `redirect()` and `choosePosition()` functions and any other logic related to the registration form.
 - **`</body>`:** Ends the body section, concluding the main content of the page.
 - **`</html>`:** Ends the HTML document, marking the end of the content.
+
+### .jspf files
+
+#### 3.1.14 home_icon.jspf
+
+```jspf
+<a href="index" class="home-icon">&#127968;</a>
+```
+
+**Description:**
+- **`<a href="index" class="home-icon">&#127968;</a>`**: An HTML anchor tag used to create a hyperlink.
+  - **`<href="index">`**: Specifies the URL of the page to navigate to when the link is clicked. In this case, it points to "index", which is a relative path to the homepage or main page of the website.
+  - **`<class="home-icon">`**: Assigns a CSS class named home-icon to the link. This class is used for styling purposes, such as adjusting the size, color, or positioning of the link.
+  - **`<&#127968;>`**: Represents the house emoji (🏠) using an HTML entity. This emoji serves as a visual indicator for users to return to the homepage.
+
+#### 3.1.14 register_form_content.jspf
+
+```jspf
+<input type="text" name="name" placeholder="Name" required><br>
+<input type="text" name="surname" placeholder="Surname" required><br>
+<input type="text" name="login" placeholder="Login" required><br>
+<input type="password" name="password" id="password" placeholder="Password" required><br>
+<input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required onkeyup="validatePassword()"><br>
+<input type="text" name="toolName" placeholder="Tool Name" required><br>
+<select name="experience" required>
+    <option value="" disabled selected>Select Experience</option>
+    <option value="JUNIOR">Junior</option>
+    <option value="MID">Mid</option>
+    <option value="SENIOR">Senior</option>
+</select><br>
+<input type="submit" value="Sign up">
+```
+
+**Description:**
+- **`<input type="text" name="name" placeholder="Name" required><br>`**: A text input field for entering the user's name. The `required` attribute ensures that the field must be filled out before the form can be submitted. The `<br>` tag inserts a line break for layout purposes.
+- **`<input type="text" name="surname" placeholder="Surname" required><br>`**: A text input field for entering the user's surname. The `required` attribute makes this field mandatory, and the `<br>` tag separates it from the next field.
+- **`<input type="text" name="login" placeholder="Login" required><br>`**: A text input field for entering the user's login ID. It is required for form submission, with a `<br>` tag for layout.
+- **`<input type="password" name="password" id="password" placeholder="Password" required><br>`**: A password input field for entering the user's password. The `required` attribute ensures that this field must be completed. The `<br>` tag adds spacing before the next field.
+- **`<input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required onkeyup="validatePassword()"><br>`**: A password input field for confirming the user's password. The `required` attribute is used here as well, and the `onkeyup` event triggers the `validatePassword()` JavaScript function to check that the passwords match as the user types. The `<br>` tag provides a line break.
+- **`<input type="text" name="toolName" placeholder="Tool Name" required><br>`**: A text input field for entering the name of a tool relevant to the user's role. It is marked as required, and a `<br>` tag is used for spacing.
+- **`<select name="experience" required>`**: A dropdown menu for selecting the user's level of experience.
+  - **`<option value="" disabled selected>Select Experience</option>`**: The default option that prompts the user to select an experience level. It is disabled and selected by default, so it cannot be chosen.
+  - **`<option value="JUNIOR">Junior</option>`**: An option for selecting "Junior" level experience.
+  - **`<option value="MID">Mid</option>`**: An option for selecting "Mid" level experience.
+  - **`<option value="SENIOR">Senior</option>`**: An option for selecting "Senior" level experience.
+- **`</select><br>`**: Closes the dropdown menu and includes a `<br>` tag for layout.
+- **`<input type="submit" value="Sign up">`**: A submit button that sends the form data to the server. The button's label is "Sign up."
 
 ### 3.2 Configuration Files
 
