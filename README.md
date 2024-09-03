@@ -3181,7 +3181,7 @@ public class CppDeveloper extends Employee implements DataToDbHandler {
 
 ### 3.6 DB
 
-#### 3.5.2 `DataToDbHandler` (interface)
+#### 3.6.1 `DataToDbHandler` (interface)
 
 ```java
 package com.example.payslipgenerator.employees;
@@ -3199,7 +3199,7 @@ public interface DataToDbHandler {
 
 ### 3.7 The app class
 
-#### 3.3.3 `PaySlipGeneratorApplication`
+#### 3.7.1 `PaySlipGeneratorApplication`
 
 ```java
 package com.example.payslipgenerator;
