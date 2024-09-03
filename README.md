@@ -136,18 +136,6 @@ The database is then updated with additional employees when registering a new de
 
 ![image](https://github.com/user-attachments/assets/2036f57b-787c-4be7-80aa-b33635a7fca3)
 
-#### If the user clicks the padlock icon on one's payslip page, one will be redirected to the application's main page:
-
-![image](https://github.com/user-attachments/assets/63794599-c88b-4e6d-aca6-80be3c126b65)
-
-#### The padlock icon clicked:
-
-![image](https://github.com/user-attachments/assets/08368aeb-603c-4112-8230-4f6f218c7c0f)
-
-#### If the user clicks the home icon on the login page or any other page, one will be redirected to the application's main page:
-
-![image](https://github.com/user-attachments/assets/60c9578a-a2a9-48d1-898b-68da6fbf8120)
-
 #### The home icon clicked:
 
 ![image](https://github.com/user-attachments/assets/08368aeb-603c-4112-8230-4f6f218c7c0f)
