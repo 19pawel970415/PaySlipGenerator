@@ -2261,9 +2261,9 @@ public class CppDeveloper extends Employee implements DataToDbHandler {
 - **Method `generatePaySlip()`:** Returns C++ developer's pay slip details.
 - **Method `addDataToDb()`:** Adds C++ developer data to the database.
 
-## 8 DB
+## 8. DB
 
-### .java files
+### 8.1 .java files
 
 #### 8.1.1 `DataToDbHandler` (interface)
 
