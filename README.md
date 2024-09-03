@@ -6,7 +6,7 @@ A project of PaySlipGenerator, an app for employees enabling them the access to 
 
 ## USER GUIDE
 
-The datebase is need to use the app. The database is managed using MySQL Workbench. To ensure the application functions correctly, you need to download this environment, establish a connection, and configure the hibernate.cfg.xml file (e.g., port, login, password) according to your needs. By default, the application's database is empty. Upon running the Main class from the service package, which uses the static method setDataInDb() from the PaySlipGeneratorService class, it will be filled in with the following tables and employees of the IT company:
+The datebase is a must-have to use the app. The database is managed using MySQL Workbench. To ensure the application functions correctly, you need to download this environment, establish a connection, and configure the hibernate.cfg.xml file (e.g., port, login, password) according to your needs. By default, the application's database is empty. Upon running the Main class from the service package, which uses the static method setDataInDb() from the PaySlipGeneratorService class, it will be filled in with the following tables and employees of the IT company:
 
 ### The structure
 
