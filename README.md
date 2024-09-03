@@ -4,7 +4,7 @@ A project of PaySlipGenerator, an app for employees enabling them the access to 
 
 **Author:** Paweł Żurawski
 
-## Project Objectives
+## 1. Project Objectives
 
 The goal of this project is to generate pay slips for various types of employees within a company. The system uses classes to represent different employee types, such as Java developers, C# developers, C++ developers, front-end developers, database analysts, etc. Each of these employee types has specific characteristics, such as tools used (e.g., IntelliJ, Visual Studio), experience level (junior, mid, senior), and base salary.
 
@@ -12,7 +12,7 @@ The project implements functions to generate pay slips based on these specific d
 
 In summary, the purpose of this project is to automate the process of generating pay slips for various employee types within a company and to manage employee data in a database.
 
-### Requirements
+### 1.1 Requirements
 
 1. **Automation of Pay Slip Generation**: The client expects the project to enable automatic generation of pay slip reports for each employee based on their login. This will allow the company to process employee payments quickly and efficiently.
 
@@ -24,9 +24,9 @@ In summary, the purpose of this project is to automate the process of generating
 
 5. **User-Friendliness**: The project should be easy to use and intuitive for end-users, allowing for quick generation of pay slip reports and management of employee data without requiring deep technical understanding.
 
-## Architecture
+## 2. Architecture
 
-### Main Project Structure
+### 2.1 Main Project Structure
 
 ```
 src
@@ -92,7 +92,7 @@ src
                     └── signup.js            
 ```
 
-### Detailed Structure
+### 2.2 Detailed Structure
 
 1. **java**: The main directory containing the source code of the application written in Java.
    - **com.example.payslipgenerator**: The primary package of the application.
@@ -120,9 +120,9 @@ src
 
 This project structure organizes the code and resources in a clear manner, facilitating management and development of the application.
 
-## Frontend
+## 3. Frontend
 
-### 3.1 .jsp files
+### 3.1 .jsp and .jspf files
 
 #### 3.1.1 `index.jsp`
 
@@ -880,8 +880,6 @@ This project structure organizes the code and resources in a clear manner, facil
 - **`</body>`:** Ends the body section, concluding the main content of the page.
 - **`</html>`:** Ends the HTML document, marking the end of the content.
 
-### .jspf files
-
 #### 3.1.14 home_icon.jspf
 
 ```jspf
@@ -927,9 +925,11 @@ This project structure organizes the code and resources in a clear manner, facil
 - **`</select><br>`**: Closes the dropdown menu and includes a `<br>` tag for layout.
 - **`<input type="submit" value="Sign up">`**: A submit button that sends the form data to the server. The button's label is "Sign up."
 
-### 3.2 Configuration Files
+## 4. Configuration Files
 
-#### 3.2.1 `hibernate.cfg.xml`
+### 4.1 xml and properties files
+
+#### 4.1.1 `hibernate.cfg.xml`
 
 ```xml
 <?xml version='1.0' encoding='utf-8'?>
@@ -984,7 +984,7 @@ This project structure organizes the code and resources in a clear manner, facil
 - `</session-factory>`: Ends the session factory definition. All properties and mappings are now defined.
 - `</hibernate-configuration>`: Ends the Hibernate configuration section. All configuration settings are closed.
 
-#### 3.2.2 `application.properties`
+#### 4.1.2 `application.properties`
 
 ```properties
 spring.mvc.view.prefix=/WEB-INF/views/
@@ -998,9 +998,11 @@ spring.mvc.view.suffix=.jsp
 These descriptions should help in understanding the configuration files and their roles within the application. Let me know if there’s anything more you need!
 
 
-### 3.3 Controllers
+## 5. Controllers
 
-#### 3.3.1 `RegisterController`
+### 5.1 .java files
+
+#### 5.1.1 `RegisterController`
 
 ```java
 package com.example.payslipgenerator;
@@ -1167,7 +1169,7 @@ public class RegisterController {
 - Adds employee data to the database.
 - Redirects users to the appropriate pages based on the success or failure of registration.
 
-#### 3.3.2 `PaySlipGeneratorController`
+#### 5.1.2 `PaySlipGeneratorController`
 
 ```java
 package com.example.payslipgenerator;
@@ -1273,7 +1275,7 @@ public class PaySlipGeneratorController {
 **Functions:**
 - Each method handles a GET request for a specific URL and returns the name of the view to be displayed.
 
-#### 3.3.3 `LoginController`
+#### 5.1.3 `LoginController`
 
 ```java
 package com.example.payslipgenerator;
@@ -1321,9 +1323,11 @@ public class LoginController {
    - If login is successful, adds the `username` attribute to the model and redirects the user to the `/loggedIn` page.
    - Otherwise, redirects the user to the `/notSignedIn` page.
 
-### 3.4 Service Classes
+## 6. Service Classes
 
-#### 3.4.1 `Main`
+### 6.1 .java files
+
+#### 6.1.1 `Main`
 
 ```java
 package com.example.payslipgenerator.service;
@@ -1352,7 +1356,7 @@ public class Main {
    - Takes an array of `String[]` arguments, which is not used in this application.
    - Calls the `setDataInDb()` method from the `PaySlipGeneratorService` class to initialize data in the database.
 
-#### 3.4.2 `PaySlipGeneratorService`
+#### 6.1.2 `PaySlipGeneratorService`
 
 ```java
 package com.example.payslipgenerator.service;
@@ -1593,9 +1597,11 @@ public class PaySlipGeneratorService {
    - Uses Hibernate queries to check if there is an existing user with the given login for various types of employees.
    - Returns `true` if the login is unique; otherwise, returns `false`.
 
-### 3.5 Classes / Entities, and Enums
+## 7. Classes / Entities, and Enums
 
-#### 3.5.1 `Employee`
+### .java files
+
+#### 7.1.1 `Employee`
 
 ```java
 package com.example.payslipgenerator.employees;
@@ -1651,7 +1657,7 @@ public abstract class Employee {
 - **Empty Constructor `Employee()`:** Default no-argument constructor.
 - **public abstract String[] generatePaySlip():** An abstract method to be implemented in subclasses. It generates a pay slip for a given employee.
 
-#### 3.5.2 `Experience` (enum)
+#### 7.1.2 `Experience` (enum)
 
 ```java
 package com.example.payslipgenerator.employees;
@@ -1666,7 +1672,7 @@ public enum Experience {
 **Description:**
 - **enum Experience:** An enumeration representing the level of experience of an employee. It has three values: JUNIOR, MID, and SENIOR, describing different levels of experience in the context of generating pay slips. Depending on whether the employee is a beginner, mid-level, or experienced, their level of experience is marked as JUNIOR, MID, or SENIOR.
 
-#### 3.5.3 `PythonDeveloper`
+#### 7.1.3 `PythonDeveloper`
 
 ```java
 package com.example.payslipgenerator.employees;
@@ -1765,7 +1771,7 @@ public class PythonDeveloper extends Employee implements DataToDbHandler {
 - **Method `generatePaySlip()`:** Implements the method from `Employee`. Returns an array containing details of the Python developer's pay slip, such as name, surname, position, experience level, and salary.
 - **Method `addDataToDb()`:** Implements the method from `DataToDbHandler`, which adds data of a Python developer to the database. Creates a new `PythonDeveloper` object with the provided data and saves it to the database.
 
-#### 3.5.4 `JavaDeveloper`
+#### 7.1.4 `JavaDeveloper`
 
 ```java
 package com.example.payslipgenerator.employees;
@@ -1863,7 +1869,7 @@ public class JavaDeveloper extends Employee implements DataToDbHandler {
 - **Method `generatePaySlip()`:** Implements the method from `Employee`. Returns an array with pay slip details including name, surname, position, experience level, and salary.
 - **Method `addDataToDb()`:** Implements `DataToDbHandler` method for adding a Java developer’s data to the database. Creates and saves a new `JavaDeveloper` object.
 
-#### 3.5.5 `FrontEndDeveloper`
+#### 7.1.5 `FrontEndDeveloper`
 
 ```java
 package com.example.payslipgenerator.employees;
@@ -1961,7 +1967,7 @@ public class FrontEndDeveloper extends Employee implements DataToDbHandler {
 - **Method `generatePaySlip()`:** Implements `Employee`'s method. Returns an array with the front-end developer's pay slip details.
 - **Method `addDataToDb()`:** Implements `DataToDbHandler`'s method for adding a front-end developer’s data to the database.
 
-#### 3.5.6 `DatabaseAnalyst`
+#### 7.1.6 `DatabaseAnalyst`
 
 ```java
 package com.example.payslipgenerator.employees;
@@ -2059,7 +2065,7 @@ public class DatabaseAnalyst extends Employee implements DataToDbHandler {
 - **Method `generatePaySlip()`:** Implements the method from `Employee`. Returns pay slip details.
 - **Method `addDataToDb()`:** Implements `DataToDbHandler`'s method for adding data of a database analyst to the database.
 
-#### 3.5.7 `CSharpDeveloper`
+#### 7.1.7 `CSharpDeveloper`
 
 ```java
 package com.example.payslipgenerator.employees;
@@ -2157,7 +2163,7 @@ public class CSharpDeveloper extends Employee implements DataToDbHandler {
 - **Method `generatePaySlip()`:** Returns the C# developer's pay slip details.
 - **Method `addDataToDb()`:** Adds C# developer data to the database using `DataToDbHandler`.
 
-#### 3.5.8 `CppDeveloper`
+#### 7.1.8 `CppDeveloper`
 
 ```java
 package com.example.payslipgenerator.employees;
@@ -2255,9 +2261,11 @@ public class CppDeveloper extends Employee implements DataToDbHandler {
 - **Method `generatePaySlip()`:** Returns C++ developer's pay slip details.
 - **Method `addDataToDb()`:** Adds C++ developer data to the database.
 
-### 3.6 DB
+## 8 DB
 
-#### 3.6.1 `DataToDbHandler` (interface)
+### .java files
+
+#### 8.1.1 `DataToDbHandler` (interface)
 
 ```java
 package com.example.payslipgenerator.employees;
@@ -2273,9 +2281,11 @@ public interface DataToDbHandler {
 - **interface DataToDbHandler:** An interface declaring methods that must be implemented by classes that implement this interface.
 - **void addDataToDb(String name, String surname, String login, String password, String toolName, String experience):** Method responsible for adding data to the database. Parameters include employee information such as name, surname, login, password, tool (e.g., code editor), and experience. Implementations of this interface will have their own logic for adding data to the database depending on the type of employee.
 
-### 3.7 The app class
+## 9. The app class
 
-#### 3.7.1 `PaySlipGeneratorApplication`
+### 9.1 .java files
+
+#### 9.1.1 `PaySlipGeneratorApplication`
 
 ```java
 package com.example.payslipgenerator;
