@@ -3342,3 +3342,7 @@ public class PaySlipGeneratorApplication {
 
 **Functions:**
 - The `main` method initializes the Spring Boot application, starting the application context and the server.
+
+## 10. Further development
+
+The project can be further developed. On the frontend, the styles of individual pages can be refined, more elements might be added to the .jsp files, and more attractive solutions could be implemented in the .css files. The employee profile could also be made more user-friendly by adding options for account modification. Additionally, features such as adding new types of employees or calculating the sum or average for a particular employee could be incorporated. Finally, an interaction feature for employees may be added. To summarize, the project has potential for future development being now a basic Spring application.
