@@ -892,7 +892,7 @@ This project structure organizes the code and resources in a clear manner, facil
   - **`<class="home-icon">`**: Assigns a CSS class named home-icon to the link. This class is used for styling purposes, such as adjusting the size, color, or positioning of the link.
   - **`<&#127968;>`**: Represents the house emoji (🏠) using an HTML entity. This emoji serves as a visual indicator for users to return to the homepage.
 
-#### 3.1.14 register_form_content.jspf
+#### 3.1.15 register_form_content.jspf
 
 ```jspf
 <input type="text" name="name" placeholder="Name" required><br>
@@ -924,6 +924,997 @@ This project structure organizes the code and resources in a clear manner, facil
   - **`<option value="SENIOR">Senior</option>`**: An option for selecting "Senior" level experience.
 - **`</select><br>`**: Closes the dropdown menu and includes a `<br>` tag for layout.
 - **`<input type="submit" value="Sign up">`**: A submit button that sends the form data to the server. The button's label is "Sign up."
+
+#### 3.1.16 styles.css
+
+```css
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.container {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    margin: 0 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+.btn:hover {
+    background-color: #45a049;
+}
+```
+
+**Description:**
+- **`body { margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f0f0f0; }`**: The CSS rules applied to the `<body>` element, which is the root of the document.
+  - **`margin: 0;`**: Removes any default margin around the body to eliminate unwanted spacing.
+  - **`padding: 0;`**: Removes any default padding inside the body to ensure content starts from the edge.
+  - **`font-family: Arial, sans-serif;`**: Sets the font of the entire document to Arial, with a fallback to a generic sans-serif font.
+  - **`background-color: #f0f0f0;`**: Applies a light grey background color to the entire page.
+
+- **`.container { text-align: center; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }`**: A class used for centering content within the page.
+  - **`text-align: center;`**: Centers the text within the container.
+  - **`position: absolute;`**: Positions the container absolutely within the page, allowing it to be moved independently of the normal document flow.
+  - **`top: 50%; left: 50%;`**: Positions the top left corner of the container at the center of the page.
+  - **`transform: translate(-50%, -50%);`**: Shifts the container itself back by 50% of its height and width, fully centering it in the viewport.
+
+- **`.title { font-size: 2.5rem; margin-bottom: 20px; color: #333; }`**: A class for styling the main title of the page.
+  - **`font-size: 2.5rem;`**: Sets the font size to 2.5 times the root element’s font size, making it larger and more prominent.
+  - **`margin-bottom: 20px;`**: Adds a 20px space below the title to separate it from the following content.
+  - **`color: #333;`**: Sets the text color to a dark grey, which is softer than pure black.
+
+- **`.btn { display: inline-block; padding: 10px 20px; background-color: #4CAF50; color: white; text-decoration: none; font-size: 1.2rem; margin: 0 10px; border-radius: 5px; transition: background-color 0.3s; border: none; cursor: pointer; outline: none; }`**: A class for styling buttons on the page.
+  - **`display: inline-block;`**: Makes the button behave like an inline element but allows block-level styling.
+  - **`padding: 10px 20px;`**: Adds padding inside the button, making it larger and easier to click.
+  - **`background-color: #4CAF50;`**: Sets the background color of the button to a green shade.
+  - **`color: white;`**: Makes the button text white for better contrast.
+  - **`text-decoration: none;`**: Removes any underline from the button text.
+  - **`font-size: 1.2rem;`**: Increases the font size of the button text to make it more readable.
+  - **`margin: 0 10px;`**: Adds a horizontal margin of 10px to space out buttons if there are multiple.
+  - **`border-radius: 5px;`**: Rounds the corners of the button for a softer look.
+  - **`transition: background-color 0.3s;`**: Smoothly transitions the background color when the button is hovered over.
+  - **`border: none;`**: Removes the default border around the button.
+  - **`cursor: pointer;`**: Changes the cursor to a pointer when hovering over the button, indicating it’s clickable.
+  - **`outline: none;`**: Removes the outline that typically appears when the button is focused.
+
+- **`.btn:hover { background-color: #45a049; }`**: A hover state style for the `.btn` class.
+  - **`background-color: #45a049;`**: Darkens the button’s background color when the user hovers over it, providing visual feedback.
+
+#### 3.1.17 stylesLoggedin.css
+
+```css
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    text-align: center;
+    position: relative;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.error-message {
+    color: red;
+    margin-bottom: 20px;
+}
+
+table {
+    margin: auto;
+    border-collapse: collapse;
+    width: 50%;
+    border: 2px solid #000;
+    border-radius: 10px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+    border-right: 1px solid #fff;
+}
+
+td {
+    background-color: #f2f2f2;
+}
+
+.try-again-btn {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.try-again-btn:hover {
+    background-color: #45a049;
+}
+
+.logout-icon {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 40px;
+    color: #333;
+    text-decoration: none;
+}
+
+.logout-icon:hover {
+    color: #f00;
+}
+```
+
+**Description:**
+- **`body { font-family: Arial, sans-serif; background-color: #f0f0f0; text-align: center; position: relative; }`**: The CSS rules applied to the `<body>` element.
+  - **`font-family: Arial, sans-serif;`**: Sets the default font for the page to Arial, with a fallback to a sans-serif font.
+  - **`background-color: #f0f0f0;`**: Applies a light grey background color to the entire page.
+  - **`text-align: center;`**: Centers all text content within the body.
+  - **`position: relative;`**: Allows for positioning of child elements relative to the body.
+
+- **`.container { margin-top: 50px; }`**: A class used to add spacing at the top of the container.
+  - **`margin-top: 50px;`**: Adds 50 pixels of space above the container.
+
+- **`h1 { color: #333; margin-bottom: 20px; }`**: Styles applied to `<h1>` elements, typically used for headings.
+  - **`color: #333;`**: Sets the text color to a dark grey.
+  - **`margin-bottom: 20px;`**: Adds 20 pixels of space below the heading.
+
+- **`.error-message { color: red; margin-bottom: 20px; }`**: A class for styling error messages.
+  - **`color: red;`**: Sets the text color to red, typically used for error messages.
+  - **`margin-bottom: 20px;`**: Adds 20 pixels of space below the error message.
+
+- **`table { margin: auto; border-collapse: collapse; width: 50%; border: 2px solid #000; border-radius: 10px; }`**: Styles applied to tables.
+  - **`margin: auto;`**: Centers the table within its container.
+  - **`border-collapse: collapse;`**: Ensures that borders of adjacent cells merge into a single border.
+  - **`width: 50%;`**: Sets the table’s width to 50% of its container.
+  - **`border: 2px solid #000;`**: Applies a 2-pixel black border around the table.
+  - **`border-radius: 10px;`**: Rounds the corners of the table with a radius of 10 pixels.
+
+- **`th, td { padding: 10px; text-align: left; border-bottom: 1px solid #ddd; }`**: Shared styles for table headers (`<th>`) and cells (`<td>`).
+  - **`padding: 10px;`**: Adds 10 pixels of padding inside table cells.
+  - **`text-align: left;`**: Aligns the content of table cells to the left.
+  - **`border-bottom: 1px solid #ddd;`**: Adds a light grey border below each row.
+
+- **`th { background-color: #4CAF50; color: white; border-right: 1px solid #fff; }`**: Specific styles for table header cells (`<th>`).
+  - **`background-color: #4CAF50;`**: Sets the background color of header cells to a green shade.
+  - **`color: white;`**: Changes the text color to white for better contrast.
+  - **`border-right: 1px solid #fff;`**: Adds a white border to the right side of each header cell.
+
+- **`td { background-color: #f2f2f2; }`**: Specific styles for table data cells (`<td>`).
+  - **`background-color: #f2f2f2;`**: Sets the background color of table cells to a light grey.
+
+- **`.try-again-btn { padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; text-decoration: none; font-size: 1.2rem; }`**: A class for styling the "Try Again" button.
+  - **`padding: 10px 20px;`**: Adds padding inside the button for a comfortable click area.
+  - **`background-color: #4CAF50;`**: Sets the background color to green.
+  - **`color: white;`**: Makes the button text white for contrast.
+  - **`border: none;`**: Removes any default border around the button.
+  - **`border-radius: 5px;`**: Rounds the corners of the button.
+  - **`cursor: pointer;`**: Changes the cursor to a pointer when hovering over the button.
+  - **`text-decoration: none;`**: Removes any text underline from the button text.
+  - **`font-size: 1.2rem;`**: Increases the font size of the button text for better readability.
+
+- **`.try-again-btn:hover { background-color: #45a049; }`**: Hover state for the `.try-again-btn` class.
+  - **`background-color: #45a049;`**: Darkens the button's background color on hover to indicate interactivity.
+
+- **`.logout-icon { position: absolute; top: 10px; right: 20px; font-size: 40px; color: #333; text-decoration: none; }`**: A class for styling the logout icon.
+  - **`position: absolute;`**: Positions the icon absolutely within its container.
+  - **`top: 10px; right: 20px;`**: Places the icon 10 pixels from the top and 20 pixels from the right edge of the container.
+  - **`font-size: 40px;`**: Sets the font size to 40 pixels, making the icon large and noticeable.
+  - **`color: #333;`**: Colors the icon in dark grey.
+  - **`text-decoration: none;`**: Removes any underline from the icon.
+
+- **`.logout-icon:hover { color: #f00; }`**: Hover state for the `.logout-icon` class.
+  - **`color: #f00;`**: Changes the icon color to red on hover, indicating that it is clickable and associated with an action (logging out).
+
+
+#### 3.1.18 stylesNotSignin.css
+
+```css
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+}
+
+.container {
+    width: 50%;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+p {
+    color: red;
+    margin-bottom: 20px;
+}
+
+.try-again-btn {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.try-again-btn:hover {
+    background-color: #45a049;
+}
+
+.home-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 40px;
+    color: #333;
+    text-decoration: none;
+}
+
+.home-icon:hover {
+    color: #f00;
+}
+```
+
+**Description:**
+- **`body { font-family: Arial, sans-serif; background-color: #f0f0f0; text-align: center; display: flex; justify-content: center; align-items: center; height: 100vh; position: relative; }`**: The CSS rules applied to the `<body>` element.
+  - **`font-family: Arial, sans-serif;`**: Sets the default font for the page to Arial, with a fallback to a sans-serif font.
+  - **`background-color: #f0f0f0;`**: Applies a light grey background color to the entire page.
+  - **`text-align: center;`**: Centers all text content within the body.
+  - **`display: flex; justify-content: center; align-items: center;`**: Uses Flexbox to center the container both vertically and horizontally within the viewport.
+  - **`height: 100vh;`**: Sets the height of the body to 100% of the viewport height.
+  - **`position: relative;`**: Allows for positioning of child elements relative to the body.
+
+- **`.container { width: 50%; }`**: A class used to define the width of the container.
+  - **`width: 50%;`**: Sets the container’s width to 50% of its parent element (the body).
+
+- **`h1 { color: #333; text-align: center; margin-bottom: 20px; }`**: Styles applied to `<h1>` elements, typically used for headings.
+  - **`color: #333;`**: Sets the text color to a dark grey.
+  - **`text-align: center;`**: Centers the heading text.
+  - **`margin-bottom: 20px;`**: Adds 20 pixels of space below the heading.
+
+- **`p { color: red; margin-bottom: 20px; }`**: Styles applied to `<p>` elements, typically used for displaying error messages.
+  - **`color: red;`**: Sets the text color to red, typically used for error messages.
+  - **`margin-bottom: 20px;`**: Adds 20 pixels of space below the paragraph.
+
+- **`.try-again-btn { padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; text-decoration: none; font-size: 1.2rem; }`**: A class for styling the "Try Again" button.
+  - **`padding: 10px 20px;`**: Adds padding inside the button for a comfortable click area.
+  - **`background-color: #4CAF50;`**: Sets the background color to green.
+  - **`color: white;`**: Makes the button text white for contrast.
+  - **`border: none;`**: Removes any default border around the button.
+  - **`border-radius: 5px;`**: Rounds the corners of the button.
+  - **`cursor: pointer;`**: Changes the cursor to a pointer when hovering over the button.
+  - **`text-decoration: none;`**: Removes any text underline from the button text.
+  - **`font-size: 1.2rem;`**: Increases the font size of the button text for better readability.
+
+- **`.try-again-btn:hover { background-color: #45a049; }`**: Hover state for the `.try-again-btn` class.
+  - **`background-color: #45a049;`**: Darkens the button's background color on hover to indicate interactivity.
+
+- **`.home-icon { position: absolute; top: 10px; right: 10px; font-size: 40px; color: #333; text-decoration: none; }`**: A class for styling the home icon.
+  - **`position: absolute;`**: Positions the icon absolutely within its container.
+  - **`top: 10px; right: 10px;`**: Places the icon 10 pixels from the top and right edges of the container.
+  - **`font-size: 40px;`**: Sets the font size to 40 pixels, making the icon large and noticeable.
+  - **`color: #333;`**: Colors the icon in dark grey.
+  - **`text-decoration: none;`**: Removes any underline from the icon.
+
+- **`.home-icon:hover { color: #f00; }`**: Hover state for the `.home-icon` class.
+  - **`color: #f00;`**: Changes the icon color to red on hover, indicating that it is clickable and associated with an action (going back to the home page).
+
+
+#### 3.1.19 stylesRegistrationFailure.css
+
+```css
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+}
+
+.container {
+    width: 50%;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+p {
+    color: red;
+    margin-bottom: 20px;
+}
+
+.try-again-btn {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.try-again-btn:hover {
+    background-color: #45a049;
+}
+
+.home-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 40px;
+    color: #333;
+    text-decoration: none;
+}
+
+.home-icon:hover {
+    color: #f00;
+}
+```
+
+**Description:**
+- **`body { font-family: Arial, sans-serif; background-color: #f0f0f0; text-align: center; display: flex; justify-content: center; align-items: center; height: 100vh; position: relative; }`**: The CSS rules applied to the `<body>` element.
+  - **`font-family: Arial, sans-serif;`**: Sets the default font for the page to Arial, with a fallback to a sans-serif font.
+  - **`background-color: #f0f0f0;`**: Applies a light grey background color to the entire page.
+  - **`text-align: center;`**: Centers all text content within the body.
+  - **`display: flex; justify-content: center; align-items: center;`**: Uses Flexbox to center the content both vertically and horizontally within the viewport.
+  - **`height: 100vh;`**: Sets the height of the body to 100% of the viewport height, ensuring the content is centered vertically.
+  - **`position: relative;`**: Allows for positioning of child elements relative to the body.
+
+- **`.container { width: 50%; }`**: A class used to define the width of the container.
+  - **`width: 50%;`**: Sets the container’s width to 50% of its parent element (the body), making it responsive to different screen sizes.
+
+- **`h1 { color: #333; text-align: center; margin-bottom: 20px; }`**: Styles applied to `<h1>` elements, typically used for headings.
+  - **`color: #333;`**: Sets the text color to a dark grey, ensuring good contrast with the background.
+  - **`text-align: center;`**: Centers the heading text horizontally within the container.
+  - **`margin-bottom: 20px;`**: Adds 20 pixels of space below the heading, separating it from subsequent content.
+
+- **`p { color: red; margin-bottom: 20px; }`**: Styles applied to `<p>` elements, typically used for displaying error messages.
+  - **`color: red;`**: Sets the text color to red, commonly used to indicate errors or important alerts.
+  - **`margin-bottom: 20px;`**: Adds 20 pixels of space below the paragraph, separating it from other elements.
+
+- **`.try-again-btn { padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; text-decoration: none; font-size: 1.2rem; }`**: A class for styling the "Try Again" button.
+  - **`padding: 10px 20px;`**: Adds padding inside the button for a comfortable click area and better visual appearance.
+  - **`background-color: #4CAF50;`**: Sets the background color to a shade of green.
+  - **`color: white;`**: Makes the button text white, providing good contrast against the green background.
+  - **`border: none;`**: Removes any default border around the button for a cleaner look.
+  - **`border-radius: 5px;`**: Rounds the corners of the button slightly, giving it a softer appearance.
+  - **`cursor: pointer;`**: Changes the cursor to a pointer when hovering over the button, indicating that it is clickable.
+  - **`text-decoration: none;`**: Removes any underline from the button text.
+  - **`font-size: 1.2rem;`**: Sets the font size of the button text to 1.2 rem, making it more prominent.
+
+- **`.try-again-btn:hover { background-color: #45a049; }`**: Hover state for the `.try-again-btn` class.
+  - **`background-color: #45a049;`**: Changes the background color to a darker shade of green when the button is hovered over, providing visual feedback.
+
+- **`.home-icon { position: absolute; top: 10px; right: 10px; font-size: 40px; color: #333; text-decoration: none; }`**: A class for styling the home icon, typically used for navigation.
+  - **`position: absolute;`**: Positions the icon absolutely within its container, allowing it to be placed anywhere on the page.
+  - **`top: 10px; right: 10px;`**: Places the icon 10 pixels from the top and right edges of the container.
+  - **`font-size: 40px;`**: Sets the font size to 40 pixels, making the icon large and noticeable.
+  - **`color: #333;`**: Colors the icon in dark grey, ensuring it stands out against the background.
+  - **`text-decoration: none;`**: Removes any underline from the icon, making it appear cleaner.
+
+- **`.home-icon:hover { color: #f00; }`**: Hover state for the `.home-icon` class.
+  - **`color: #f00;`**: Changes the icon color to red when hovered over, indicating that it is interactive and associated with an action (e.g., returning to the homepage).
+
+
+#### 3.1.20 stylesRegistrationSuccess.css
+
+```css
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+}
+
+.container {
+    width: 50%;
+}
+
+p {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.home-link {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.home-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 40px;
+    color: #333;
+    text-decoration: none;
+}
+
+.home-link:hover {
+    background-color: #45a049;
+}
+```
+
+**Description:**
+- **`body { font-family: Arial, sans-serif; background-color: #f0f0f0; text-align: center; display: flex; justify-content: center; align-items: center; height: 100vh; position: relative; }`**: The CSS rules applied to the `<body>` element.
+  - **`font-family: Arial, sans-serif;`**: Sets the default font for the page to Arial, with a fallback to a sans-serif font.
+  - **`background-color: #f0f0f0;`**: Applies a light grey background color to the entire page.
+  - **`text-align: center;`**: Centers all text content within the body.
+  - **`display: flex; justify-content: center; align-items: center;`**: Uses Flexbox to center the content both vertically and horizontally within the viewport.
+  - **`height: 100vh;`**: Sets the height of the body to 100% of the viewport height, ensuring the content is centered vertically.
+  - **`position: relative;`**: Allows for positioning of child elements relative to the body.
+
+- **`.container { width: 50%; }`**: A class used to define the width of the container.
+  - **`width: 50%;`**: Sets the container’s width to 50% of its parent element (the body), making it responsive to different screen sizes.
+
+- **`p { color: #333; margin-bottom: 20px; }`**: Styles applied to `<p>` elements, typically used for displaying general text content.
+  - **`color: #333;`**: Sets the text color to dark grey, ensuring readability against the background.
+  - **`margin-bottom: 20px;`**: Adds 20 pixels of space below the paragraph, separating it from other elements.
+
+- **`.home-link { padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; text-decoration: none; font-size: 1.2rem; }`**: A class for styling a button or link that returns the user to the homepage.
+  - **`padding: 10px 20px;`**: Adds padding inside the button for a comfortable click area and better visual appearance.
+  - **`background-color: #4CAF50;`**: Sets the background color to a shade of green.
+  - **`color: white;`**: Makes the button text white, providing good contrast against the green background.
+  - **`border: none;`**: Removes any default border around the button for a cleaner look.
+  - **`border-radius: 5px;`**: Rounds the corners of the button slightly, giving it a softer appearance.
+  - **`cursor: pointer;`**: Changes the cursor to a pointer when hovering over the button, indicating that it is clickable.
+  - **`text-decoration: none;`**: Removes any underline from the link text, making it appear as a button.
+  - **`font-size: 1.2rem;`**: Sets the font size of the button text to 1.2 rem, making it more prominent.
+
+- **`.home-link:hover { background-color: #45a049; }`**: Hover state for the `.home-link` class.
+  - **`background-color: #45a049;`**: Changes the background color to a darker shade of green when the link is hovered over, providing visual feedback.
+
+- **`.home-icon { position: absolute; top: 10px; right: 10px; font-size: 40px; color: #333; text-decoration: none; }`**: A class for styling the home icon, typically used for navigation.
+  - **`position: absolute;`**: Positions the icon absolutely within its container, allowing it to be placed anywhere on the page.
+  - **`top: 10px; right: 10px;`**: Places the icon 10 pixels from the top and right edges of the container.
+  - **`font-size: 40px;`**: Sets the font size to 40 pixels, making the icon large and noticeable.
+  - **`color: #333;`**: Colors the icon in dark grey, ensuring it stands out against the background.
+  - **`text-decoration: none;`**: Removes any underline from the icon, making it appear cleaner.
+
+
+#### 3.1.21 stylesSignin.css
+
+```css
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 50%;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+.form-container {
+    width: 300px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+.home-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 40px;
+    color: #333;
+    text-decoration: none;
+}
+
+.home-icon:hover {
+    color: #f00;
+}
+```
+
+### CSS Styles Description
+
+This section provides detailed descriptions of the CSS styles used to design the form and layout of the webpage.
+
+**Description:**
+- **`body { font-family: Arial, sans-serif; background-color: #f0f0f0; text-align: center; display: flex; justify-content: center; align-items: center; height: 100vh; }`**: Styles applied to the `<body>` element to set the overall page layout and appearance.
+  - **`font-family: Arial, sans-serif;`**: Sets the default font for the page to Arial, with a fallback to a sans-serif font.
+  - **`background-color: #f0f0f0;`**: Applies a light grey background color across the entire page.
+  - **`text-align: center;`**: Centers all text content horizontally within the body.
+  - **`display: flex; justify-content: center; align-items: center;`**: Uses Flexbox to center the content both horizontally and vertically within the viewport.
+  - **`height: 100vh;`**: Ensures the body takes up the full height of the viewport, allowing the content to be centered vertically.
+
+- **`.container { width: 50%; }`**: Defines the width of the main container.
+  - **`width: 50%;`**: Sets the container's width to 50% of the body’s width, making it responsive to different screen sizes.
+
+- **`h1 { color: #333; text-align: center; }`**: Styles the `<h1>` element, typically used for the page title.
+  - **`color: #333;`**: Colors the text dark grey for readability against the background.
+  - **`text-align: center;`**: Centers the text within its container.
+
+- **`.form-container { width: 300px; margin: 0 auto; background-color: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }`**: Styles applied to the form container.
+  - **`width: 300px;`**: Sets a fixed width of 300 pixels for the form container.
+  - **`margin: 0 auto;`**: Centers the form horizontally within the container.
+  - **`background-color: #fff;`**: Sets the background color of the form container to white.
+  - **`padding: 20px;`**: Adds padding inside the form container for better spacing.
+  - **`border-radius: 5px;`**: Rounds the corners of the form container slightly.
+  - **`box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);`**: Adds a subtle shadow around the form container to create a slight 3D effect.
+
+- **`input[type="text"], input[type="password"] { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }`**: Styles for text and password input fields.
+  - **`width: 100%;`**: Makes the input fields take up the full width of their container.
+  - **`padding: 10px;`**: Adds padding inside the input fields for better usability.
+  - **`margin: 10px 0;`**: Adds space above and below the input fields to separate them from other elements.
+  - **`border: 1px solid #ccc;`**: Sets a light grey border around the input fields.
+  - **`border-radius: 5px;`**: Rounds the corners of the input fields slightly.
+  - **`box-sizing: border-box;`**: Ensures padding and border are included in the total width and height of the input fields.
+
+- **`input[type="submit"] { width: 100%; padding: 10px; background-color: #4CAF50; color: #fff; border: none; border-radius: 5px; cursor: pointer; }`**: Styles for the submit button.
+  - **`width: 100%;`**: Makes the button take up the full width of its container.
+  - **`padding: 10px;`**: Adds padding inside the button for a larger click area.
+  - **`background-color: #4CAF50;`**: Sets the button’s background color to a shade of green.
+  - **`color: #fff;`**: Makes the button text white, providing contrast against the green background.
+  - **`border: none;`**: Removes the default border from the button for a cleaner look.
+  - **`border-radius: 5px;`**: Rounds the corners of the button slightly.
+  - **`cursor: pointer;`**: Changes the cursor to a pointer when hovering over the button, indicating it is clickable.
+
+- **`input[type="submit"]:hover { background-color: #45a049; }`**: Hover state for the submit button.
+  - **`background-color: #45a049;`**: Darkens the background color of the button when hovered over, providing visual feedback.
+
+- **`.home-icon { position: absolute; top: 10px; right: 10px; font-size: 40px; color: #333; text-decoration: none; }`**: Styles for the home icon, typically used for navigation.
+  - **`position: absolute;`**: Positions the icon absolutely within its container.
+  - **`top: 10px; right: 10px;`**: Places the icon 10 pixels from the top and right edges of the container.
+  - **`font-size: 40px;`**: Sets the font size to 40 pixels, making the icon large and noticeable.
+  - **`color: #333;`**: Colors the icon dark grey for visibility against the background.
+  - **`text-decoration: none;`**: Removes any underline from the icon, giving it a clean appearance.
+
+- **`.home-icon:hover { color: #f00; }`**: Hover state for the home icon.
+  - **`color: #f00;`**: Changes the icon’s color to red when hovered over, indicating it is interactive.
+
+
+#### 3.1.22 stylesSignup.css
+
+```css
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+}
+
+.container {
+    width: 50%;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-container {
+    width: 300px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+input[type="submit"],
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover,
+button:hover {
+    background-color: #45a049;
+}
+
+.home-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 40px;
+    color: #333;
+    text-decoration: none;
+}
+
+.home-icon:hover {
+    color: #f00;
+}
+```
+
+**Description:**
+
+- **`body { font-family: Arial, sans-serif; background-color: #f0f0f0; text-align: center; display: flex; justify-content: center; align-items: center; height: 100vh; position: relative; }`**:
+  - Sets the overall styling for the page. The font is set to Arial with a fallback to sans-serif. The background color is a light grey (`#f0f0f0`). 
+  - The body is centered using flexbox, ensuring that content is vertically and horizontally aligned in the viewport. 
+  - The `height` is set to 100vh, meaning the body takes up the full height of the viewport. The `position` is set to `relative` to allow for absolutely positioned elements within it.
+
+- **`.container { width: 50%; }`**: 
+  - Defines a container with a width of 50% of the available space. This class is used to center content horizontally within the body, providing a consistent layout for elements.
+
+- **`h1 { color: #333; text-align: center; margin-bottom: 20px; }`**: 
+  - Styles the primary header (`<h1>`). The color is set to a dark grey (`#333`), and the text is centered. A bottom margin of 20px is added to create space between the header and subsequent elements.
+
+- **`.form-container { width: 300px; margin: 0 auto; background-color: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }`**: 
+  - Provides styling for the form container. It has a fixed width of 300px and is centered within its parent container (`margin: 0 auto`).
+  - The background color is set to white (`#fff`), with 20px of padding to provide space inside the container. The border radius is 5px, giving it slightly rounded corners.
+  - A subtle shadow (`0 0 10px rgba(0, 0, 0, 0.1)`) is applied to create a soft elevation effect, making the form stand out against the background.
+
+- **`input[type="text"], input[type="password"], select { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }`**: 
+  - Styles text input fields, password fields, and select dropdowns uniformly.
+  - These elements take up 100% of the width of their container, with 10px of padding for better readability. 
+  - They have a light grey border (`1px solid #ccc`) and rounded corners (`5px`) for a clean and consistent appearance. The `box-sizing: border-box` ensures that padding and border are included in the total width and height.
+
+- **`input[type="submit"], button { width: 100%; padding: 10px; background-color: #4CAF50; color: #fff; border: none; border-radius: 5px; cursor: pointer; }`**: 
+  - Styles submit buttons and any buttons used in the form.
+  - These elements are full-width with 10px of padding. They have a background color of green (`#4CAF50`) and white text. The border is removed (`border: none`) and corners are rounded (`5px`) for a modern look. The `cursor: pointer` ensures the cursor changes to a pointer when hovering over these elements.
+
+- **`input[type="submit"]:hover, button:hover { background-color: #45a049; }`**: 
+  - Defines a hover effect for buttons, changing the background color to a slightly darker green (`#45a049`) when hovered over, providing visual feedback to users.
+
+- **`.home-icon { position: absolute; top: 10px; right: 10px; font-size: 40px; color: #333; text-decoration: none; }`**: 
+  - Styles an icon (likely an anchor tag with a home icon) that is positioned absolutely at the top right of the page.
+  - The font size is set to 40px, with a default color of dark grey (`#333`). The `text-decoration: none` removes the underline from the link.
+
+- **`.home-icon:hover { color: #f00; }`**: 
+  - On hover, the icon’s color changes to red (`#f00`) to indicate interactivity, drawing attention to the clickable element.
+
+#### 3.1.23 stylesSignupSpecificDev.css
+
+```css
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+}
+
+.container {
+    width: 50%;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-container {
+    width: 300px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+.home-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 40px;
+    color: #333;
+    text-decoration: none;
+}
+
+.home-icon:hover {
+    color: #f00;
+}
+
+.password-error {
+    border: 1px solid red !important;
+}
+```
+
+**Description:**
+
+- **`body { font-family: Arial, sans-serif; background-color: #f0f0f0; text-align: center; display: flex; justify-content: center; align-items: center; height: 100vh; position: relative; }`**: 
+  - Sets the styling for the body of the page. Uses Arial font with a fallback to sans-serif. The background color is a light grey (`#f0f0f0`). 
+  - The body is centered using flexbox, ensuring that content is aligned both vertically and horizontally in the viewport. 
+  - The `height` is set to 100vh (viewport height), and `position: relative` is used to allow absolute positioning of child elements.
+
+- **`.container { width: 50%; }`**: 
+  - Defines a container that takes up 50% of the width of its parent element. This is typically used to center content horizontally on the page.
+
+- **`h1 { color: #333; text-align: center; margin-bottom: 20px; }`**: 
+  - Styles the main header (`<h1>`). The text color is dark grey (`#333`), centered on the page, and a margin of 20px is added below to separate it from other content.
+
+- **`.form-container { width: 300px; margin: 0 auto; background-color: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }`**: 
+  - Styles the container for the form. It has a fixed width of 300px and is centered horizontally within its parent (`margin: 0 auto`).
+  - The background color is white (`#fff`), with 20px of padding for spacing inside the container. The container has rounded corners (`5px`) and a subtle shadow (`0 0 10px rgba(0, 0, 0, 0.1)`) for a slight elevation effect.
+
+- **`input[type="text"], input[type="password"], select { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }`**: 
+  - Styles text input fields, password fields, and select dropdowns uniformly.
+  - These elements are set to take up 100% of the container's width with 10px padding for better usability. They have a light grey border (`1px solid #ccc`) and rounded corners (`5px`). The `box-sizing: border-box` ensures that padding and border are included in the element's total width and height.
+
+- **`input[type="submit"] { width: 100%; padding: 10px; background-color: #4CAF50; color: #fff; border: none; border-radius: 5px; cursor: pointer; }`**: 
+  - Styles the submit button with a full width (`100%`) and padding of 10px. The background color is green (`#4CAF50`) with white text. It has no border (`border: none`) and rounded corners (`5px`). The `cursor: pointer` changes the cursor to a pointer on hover to indicate that the button is clickable.
+
+- **`input[type="submit"]:hover { background-color: #45a049; }`**: 
+  - Changes the background color of the submit button to a slightly darker green (`#45a049`) when hovered over, providing visual feedback.
+
+- **`.home-icon { position: absolute; top: 10px; right: 10px; font-size: 40px; color: #333; text-decoration: none; }`**: 
+  - Styles an icon (likely an anchor tag with a home icon) positioned absolutely at the top right of the page. It has a font size of 40px and a dark grey color (`#333`). `text-decoration: none` removes any underlines from the link.
+
+- **`.home-icon:hover { color: #f00; }`**: 
+  - Changes the color of the home icon to red (`#f00`) when hovered over, indicating interactivity.
+
+- **`.password-error { border: 1px solid red !important; }`**: 
+  - Applies a red border (`1px solid red`) to elements with the `password-error` class. The `!important` declaration ensures this style overrides other conflicting styles, typically used to highlight fields with errors.
+
+
+#### 3.1.24 registerSpecificDev.js
+
+```js
+function validatePassword() {
+    var password = document.getElementById("password");
+    var confirm_password = document.getElementById("confirm_password");
+
+    if (password.value !== confirm_password.value) {
+        confirm_password.classList.add("password-error");
+        return false;
+    } else {
+        confirm_password.classList.remove("password-error");
+        return true;
+    }
+}
+```
+
+**Description:**
+
+- **`function validatePassword() { ... }`**: 
+  - This JavaScript function validates that the password and confirm password fields match in a form. 
+
+  - **`var password = document.getElementById("password");`**:
+    - Retrieves the password input field element by its ID (`"password"`) and stores it in the variable `password`.
+
+  - **`var confirm_password = document.getElementById("confirm_password");`**:
+    - Retrieves the confirm password input field element by its ID (`"confirm_password"`) and stores it in the variable `confirm_password`.
+
+  - **`if (password.value !== confirm_password.value) { ... }`**:
+    - Checks if the values of the password and confirm password fields are not equal.
+
+    - **`confirm_password.classList.add("password-error");`**:
+      - If the values do not match, it adds the class `"password-error"` to the confirm password field. This class typically applies a red border or other styling to indicate an error.
+
+    - **`return false;`**:
+      - Returns `false` to prevent the form from being submitted if the passwords do not match.
+
+  - **`else { ... }`**:
+    - Executes if the password and confirm password values are equal.
+
+    - **`confirm_password.classList.remove("password-error");`**:
+      - Removes the `"password-error"` class from the confirm password field, indicating that the error has been resolved.
+
+    - **`return true;`**:
+      - Returns `true` to allow the form to be submitted since the passwords match.
+
+This function is used in a form submission event to ensure that users have correctly entered and confirmed their password before proceeding.
+
+#### 3.1.25 signup.js
+
+```js
+function choosePosition() {
+    var positionSelect = document.getElementById("position");
+    var selectedValue = positionSelect.value;
+    var redirectUrl;
+
+    switch(selectedValue) {
+        case "java_developer":
+            redirectUrl = "register_java";
+            break;
+        case "python_developer":
+            redirectUrl = "register_python";
+            break;
+        case "csharp_developer":
+            redirectUrl = "register_csharp";
+            break;
+        case "cpp_developer":
+            redirectUrl = "register_cpp";
+            break;
+        case "frontend_developer":
+            redirectUrl = "register_frontend";
+            break;
+        case "database_analyst":
+            redirectUrl = "register_database";
+            break;
+        default:
+            break;
+    }
+
+    if (redirectUrl) {
+        window.location.href = redirectUrl;
+    }
+}
+```
+
+**Description:**
+
+- **`function choosePosition() { ... }`**: 
+  - This JavaScript function redirects the user to a specific registration page based on the selected value from a dropdown menu.
+
+  - **`var positionSelect = document.getElementById("position");`**:
+    - Retrieves the dropdown menu element by its ID (`"position"`) and stores it in the variable `positionSelect`.
+
+  - **`var selectedValue = positionSelect.value;`**:
+    - Gets the currently selected value from the dropdown menu and stores it in the variable `selectedValue`.
+
+  - **`var redirectUrl;`**:
+    - Declares a variable `redirectUrl` to hold the URL to which the user will be redirected.
+
+  - **`switch(selectedValue) { ... }`**:
+    - A switch statement is used to determine the URL based on the selected value.
+
+    - **`case "java_developer":`**:
+      - If the selected value is `"java_developer"`, sets `redirectUrl` to `"register_java"`.
+
+    - **`case "python_developer":`**:
+      - If the selected value is `"python_developer"`, sets `redirectUrl` to `"register_python"`.
+
+    - **`case "csharp_developer":`**:
+      - If the selected value is `"csharp_developer"`, sets `redirectUrl` to `"register_csharp"`.
+
+    - **`case "cpp_developer":`**:
+      - If the selected value is `"cpp_developer"`, sets `redirectUrl` to `"register_cpp"`.
+
+    - **`case "frontend_developer":`**:
+      - If the selected value is `"frontend_developer"`, sets `redirectUrl` to `"register_frontend"`.
+
+    - **`case "database_analyst":`**:
+      - If the selected value is `"database_analyst"`, sets `redirectUrl` to `"register_database"`.
+
+    - **`default:`**:
+      - The `default` case does nothing, which means if none of the specified cases match, `redirectUrl` remains undefined.
+
+  - **`if (redirectUrl) { ... }`**:
+    - Checks if `redirectUrl` has been set.
+
+    - **`window.location.href = redirectUrl;`**:
+      - If `redirectUrl` is defined, it redirects the browser to the specified URL.
+
+This function is used when a user selects an option from a dropdown menu to navigate to a specific registration page corresponding to the selected position.
 
 ## 4. Configuration Files
 
