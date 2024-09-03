@@ -8,27 +8,41 @@ A project of PaySlipGenerator, an app for employees enabling them the access to 
 
 The datebase is need to use the app. The database is managed using MySQL Workbench. To ensure the application functions correctly, you need to download this environment, establish a connection, and configure the hibernate.cfg.xml file (e.g., port, login, password) according to your needs. By default, the application's database is empty. Upon running the Main class from the service package, which uses the static method setDataInDb() from the PaySlipGeneratorService class, it will be filled in with the following tables and employees of the IT company:
 
+### The structure
+
 ![image](https://github.com/user-attachments/assets/810b3393-bb29-4eb8-a73d-6ef2b6d9905d)
+
+### The cpp_developers table
 
 ![image](https://github.com/user-attachments/assets/2ca341c5-66e9-4f5a-9b2d-758ca45d2b35)
 
+### The csharp_developers table
+
 ![image](https://github.com/user-attachments/assets/f0de4d6d-2075-40aa-9909-9ffb8f288e0f)
+
+### The database_analysts table
 
 ![image](https://github.com/user-attachments/assets/e081b51c-a025-4679-86c8-11505aca50b0)
 
+### The frontend_developers table
+
 ![image](https://github.com/user-attachments/assets/caf58f9b-bdbd-4bad-90b8-42c52de83a1e)
+
+### The java_developers table
 
 ![image](https://github.com/user-attachments/assets/e4f9e599-2e7a-4ca7-8c46-826b3a6daa83)
 
+### The python_developers table
+
 ![image](https://github.com/user-attachments/assets/35063589-995a-46ef-a43d-23ef32ea9b36)
+
+### The hibernate_sequence table
 
 ![image](https://github.com/user-attachments/assets/f250351c-b8be-4cd3-a732-14fed1471f4a)
 
-The database is then updated with additional employees when registering a new developer or analyst through the page http://localhost:8080/signup.
+The database is then updated with additional employees when registering a new developer or analyst through the page http://localhost:8080/signup. Below new python developer was registered:
 
-![Uploading image.png…]()
-
-
+![image](https://github.com/user-attachments/assets/8a73365e-19a6-4366-a8fd-2015b6fb8603)
 
 ## 1. Project Objectives
 
