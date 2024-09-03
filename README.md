@@ -359,7 +359,7 @@ This project structure organizes the code and resources in a clear manner, facil
 - **`<link rel="stylesheet" href="/resources/static/css/stylesSignupSpecificDev.css">`:** Links to an external CSS file (`stylesSignupSpecificDev.css`) located in the `/resources/static/css/` directory, which contains styles specific to the registration page for C++ Developers.
 - **`</head>`:** Closes the head section of the HTML document.
 - **`<body>`:** Begins the body section of the HTML document, where the visible content is placed.
-- **`<%@ include file="../dynamic/home_icon.jspf" %>`:** Includes the content of the `home_icon.jspf` file from the `../dynamic/` directory, typically providing a home icon or navigation element.
+- **`<%@ include file="../dynamic/home_icon.jspf" %>`:** Includes the content of the `home_icon.jspf` file from the `../dynamic/` directory, providing a home icon or navigation element.
 - **`<div class="container">`:** A container `div` with the `container` class used to center and structure the content on the page.
 - **`<h1>Registration Page for C++ Developer</h1>`:** Displays the main heading "Registration Page for C++ Developer," indicating the purpose of the page.
 - **`<div class="form-container">`:** A `div` with the `form-container` class that styles and contains the registration form.
@@ -413,7 +413,7 @@ This project structure organizes the code and resources in a clear manner, facil
 - **`<link rel="stylesheet" href="/resources/static/css/stylesSignupSpecificDev.css">`:** Links to an external CSS file (`stylesSignupSpecificDev.css`) in the `/resources/static/css/` directory, which contains styles specific to the registration page for C# Developers.
 - **`</head>`:** Closes the head section of the HTML document.
 - **`<body>`:** Begins the body section of the HTML document, where the visible content is placed.
-- **`<%@ include file="../dynamic/home_icon.jspf" %>`:** Includes the content of the `home_icon.jspf` file from the `../dynamic/` directory, typically providing a home icon or navigation element.
+- **`<%@ include file="../dynamic/home_icon.jspf" %>`:** Includes the content of the `home_icon.jspf` file from the `../dynamic/` directory,  providing a home icon or navigation element.
 - **`<div class="container">`:** A container `div` with the `container` class, used to center and structure the content on the page.
 - **`<h1>Registration Page for C# Developer</h1>`:** Displays the main heading "Registration Page for C# Developer," indicating the purpose of the page.
 - **`<div class="form-container">`:** A `div` with the `form-container` class that styles and contains the registration form.
@@ -467,7 +467,7 @@ This project structure organizes the code and resources in a clear manner, facil
 - **`<link rel="stylesheet" href="/resources/static/css/stylesSignupSpecificDev.css">`:** Links to an external CSS file (`stylesSignupSpecificDev.css`) located in the `/resources/static/css/` directory, which provides styles specific to the Database Analyst registration page.
 - **`</head>`:** Closes the head section of the HTML document.
 - **`<body>`:** Begins the body section where the main content of the page is included.
-- **`<%@ include file="../dynamic/home_icon.jspf" %>`:** Includes the content from the `home_icon.jspf` file located in the `../dynamic/` directory, typically providing a home icon or similar navigation feature.
+- **`<%@ include file="../dynamic/home_icon.jspf" %>`:** Includes the content from the `home_icon.jspf` file located in the `../dynamic/` directory,  providing a home icon or similar navigation feature.
 - **`<div class="container">`:** A `div` with the `container` class that centers and organizes the page content.
 - **`<h1>Registration Page for Database Analyst</h1>`:** Displays the main heading "Registration Page for Database Analyst," indicating the purpose of the page.
 - **`<div class="form-container">`:** A `div` with the `form-container` class that styles and contains the registration form.
@@ -521,7 +521,7 @@ This project structure organizes the code and resources in a clear manner, facil
 - **`<link rel="stylesheet" href="/resources/static/css/stylesSignupSpecificDev.css">`:** Links to an external CSS file (`stylesSignupSpecificDev.css`) located in the `/resources/static/css/` directory. This file contains styles specific to the Front-end Developer registration page.
 - **`</head>`:** Closes the head section of the HTML document.
 - **`<body>`:** Begins the body section where the main content of the page is placed.
-- **`<%@ include file="../dynamic/home_icon.jspf" %>`:** Includes the content from the `home_icon.jspf` file located in the `../dynamic/` directory, which typically provides a home icon or similar navigation feature.
+- **`<%@ include file="../dynamic/home_icon.jspf" %>`:** Includes the content from the `home_icon.jspf` file located in the `../dynamic/` directory, which  provides a home icon or similar navigation feature.
 - **`<div class="container">`:** A `div` element with the `container` class to center and organize the page content.
 - **`<h1>Registration Page for Front-end Developer</h1>`:** Displays the main heading "Registration Page for Front-end Developer," indicating the purpose of the page.
 - **`<div class="form-container">`:** A `div` element with the `form-container` class that styles and contains the registration form.
@@ -587,7 +587,7 @@ This project structure organizes the code and resources in a clear manner, facil
 - **`<link rel="stylesheet" href="/resources/static/css/stylesSignupSpecificDev.css">`:** Links to an external CSS file (`stylesSignupSpecificDev.css`) located in the `/resources/static/css/` directory. This file contains styles specific to the Java Developer registration page.
 - **`</head>`:** Closes the head section of the HTML document.
 - **`<body>`:** Begins the body section where the main content of the page is placed.
-- **`<%@ include file="../dynamic/home_icon.jspf" %>`:** Includes the content from the `home_icon.jspf` file located in the `../dynamic/` directory, which typically provides a home icon or similar navigation feature.
+- **`<%@ include file="../dynamic/home_icon.jspf" %>`:** Includes the content from the `home_icon.jspf` file located in the `../dynamic/` directory, which  provides a home icon or similar navigation feature.
 - **`<div class="container">`:** A `div` element with the `container` class that centers and organizes the page content.
 - **`<h1>Registration Page for Java Developer</h1>`:** Displays the main heading "Registration Page for Java Developer," indicating the specific purpose of the page.
 - **`<div class="form-container">`:** A `div` element with the `form-container` class that styles and contains the registration form.
@@ -652,7 +652,7 @@ This project structure organizes the code and resources in a clear manner, facil
 - **`<link rel="stylesheet" href="/resources/static/css/stylesSignupSpecificDev.css">`:** Links to an external CSS file (`stylesSignupSpecificDev.css`) located in the `/resources/static/css/` directory, which styles the registration page for Python Developers.
 - **`</head>`:** Closes the head section of the HTML document.
 - **`<body>`:** Begins the body section where the main content of the page is placed.
-- **`<%@ include file="../dynamic/home_icon.jspf" %>`:** Includes the content from the `home_icon.jspf` file in the `../dynamic/` directory, typically providing a home icon or related navigation feature.
+- **`<%@ include file="../dynamic/home_icon.jspf" %>`:** Includes the content from the `home_icon.jspf` file in the `../dynamic/` directory,  providing a home icon or related navigation feature.
 - **`<div class="container">`:** A `div` element with the `container` class that centers and organizes the page content.
 - **`<h1>Registration Page for Python Developer</h1>`:** Displays the main heading "Registration Page for Python Developer," indicating the purpose of the page.
 - **`<div class="form-container">`:** A `div` element with the `form-container` class that styles and contains the form.
@@ -702,7 +702,7 @@ This project structure organizes the code and resources in a clear manner, facil
 - **`<link rel="stylesheet" href="/resources/static/css/stylesRegistrationFailure.css">`:** Links to an external CSS file (`stylesRegistrationFailure.css`) located in the `/resources/static/css/` directory, which contains the styling for the registration failure page.
 - **`</head>`:** Closes the head section, which concludes the metadata and resource links.
 - **`<body>`:** Begins the body section, where the main content of the page is displayed.
-- **`<%@ include file="../dynamic/home_icon.jspf" %>`:** Includes the content of the `home_icon.jspf` file from the `../dynamic/` directory, typically adding a home icon or related functionality to the page.
+- **`<%@ include file="../dynamic/home_icon.jspf" %>`:** Includes the content of the `home_icon.jspf` file from the `../dynamic/` directory,  adding a home icon or related functionality to the page.
 - **`<div class="container">`:** A `div` element with the `container` class that centers and structures the content on the page.
 - **`<h1>Registration Failed</h1>`:** Displays the heading "Registration Failed," indicating that the registration attempt was unsuccessful.
 - **`<p>Login already used. Please try again with a different login.</p>`:** Displays a message informing the user that the chosen login is already in use, prompting them to try again with a different login.
@@ -746,7 +746,7 @@ This project structure organizes the code and resources in a clear manner, facil
 - **`<link rel="stylesheet" href="/resources/static/css/stylesRegistrationSuccess.css">`:** Links to an external CSS file (`stylesRegistrationSuccess.css`) located in the `/resources/static/css/` directory, which contains the styling for the registration success page.
 - **`</head>`:** Closes the head section, which concludes the metadata and resource links.
 - **`<body>`:** Begins the body section, where the main content of the page is displayed.
-- **`<%@ include file="../dynamic/home_icon.jspf" %>`:** Includes the content of the `home_icon.jspf` file from the `../dynamic/` directory, typically adding a home icon or related functionality to the page.
+- **`<%@ include file="../dynamic/home_icon.jspf" %>`:** Includes the content of the `home_icon.jspf` file from the `../dynamic/` directory,  adding a home icon or related functionality to the page.
 - **`<div class="container">`:** A `div` element with the `container` class that centers and structures the content on the page.
 - **`<p>Now you can <a href="signin" class="home-link">sign in</a>!</p>`:** Displays a message informing the user that they can now sign in. The text "sign in" is a hyperlink (`<a>` element) that directs the user to the sign-in page, with the `home-link` class applied for styling.
 - **`</div>`:** Closes the `container` div.
@@ -794,7 +794,7 @@ This project structure organizes the code and resources in a clear manner, facil
 - **`<link rel="stylesheet" href="/resources/static/css/stylesSignin.css">`:** Links to an external CSS file (`stylesSignin.css`) located in the `/resources/static/css/` directory, used for styling the sign-in page.
 - **`</head>`:** Closes the head section, concluding the metadata and resource links.
 - **`<body>`:** Begins the body section, which contains the main content of the page.
-- **`<%@ include file="../dynamic/home_icon.jspf" %>`:** Includes the content of the `home_icon.jspf` file from the `../dynamic/` directory. This typically adds a home icon or related functionality to the page.
+- **`<%@ include file="../dynamic/home_icon.jspf" %>`:** Includes the content of the `home_icon.jspf` file from the `../dynamic/` directory. This  adds a home icon or related functionality to the page.
 - **`<div class="container">`:** A `div` element with the `container` class used to center and structure the content on the page.
 - **`<h1>Welcome back!</h1>`:** A heading that welcomes the user back, indicating they are on the sign-in page.
 - **`<div class="form-container">`:** A `div` element with the `form-container` class that wraps the sign-in form, providing structure and styling.
@@ -858,7 +858,7 @@ This project structure organizes the code and resources in a clear manner, facil
 - **`<link rel="stylesheet" href="/resources/static/css/stylesSignup.css">`:** Links to an external CSS file (`stylesSignup.css`) located in the `/resources/static/css/` directory, used for styling the sign-up page.
 - **`</head>`:** Closes the head section, concluding the metadata and resource links.
 - **`<body>`:** Begins the body section, which contains the main content of the page.
-- **`<%@ include file="../dynamic/home_icon.jspf" %>`:** Includes the content of the `home_icon.jspf` file from the `../dynamic/` directory. This typically adds a home icon or related functionality to the page.
+- **`<%@ include file="../dynamic/home_icon.jspf" %>`:** Includes the content of the `home_icon.jspf` file from the `../dynamic/` directory. This  adds a home icon or related functionality to the page.
 - **`<div class="container">`:** A `div` element with the `container` class used to center and structure the content on the page.
 - **`<h1>Welcome to Pay Slip Generator!</h1>`:** A heading that welcomes the user to the Pay Slip Generator platform, indicating they are on the registration page.
 - **`<h1>Choose your position</h1>`:** A secondary heading prompting the user to select their position.
@@ -872,7 +872,7 @@ This project structure organizes the code and resources in a clear manner, facil
     - **`<option value="cpp_developer">C++ Developer</option>`:** An option for users who are C++ Developers.
     - **`<option value="frontend_developer">Front-end Developer</option>`:** An option for users who are Front-end Developers.
     - **`<option value="database_analyst">Database Analyst</option>`:** An option for users who are Database Analysts.
-  - **`<button type="button" onclick="choosePosition()">OK</button>`:** A button that, when clicked, calls the `choosePosition()` JavaScript function. This function typically processes the user's selection and may direct them to the next step in the registration process.
+  - **`<button type="button" onclick="choosePosition()">OK</button>`:** A button that, when clicked, calls the `choosePosition()` JavaScript function. This function  processes the user's selection and may direct them to the next step in the registration process.
 - **`</form>`:** Closes the form element.
 - **`</div>`:** Closes the `form-container` div.
 - **`</div>`:** Closes the main container div.
@@ -999,7 +999,7 @@ body {
   - **`transition: background-color 0.3s;`**: Smoothly transitions the background color when the button is hovered over.
   - **`border: none;`**: Removes the default border around the button.
   - **`cursor: pointer;`**: Changes the cursor to a pointer when hovering over the button, indicating it’s clickable.
-  - **`outline: none;`**: Removes the outline that typically appears when the button is focused.
+  - **`outline: none;`**: Removes the outline that  appears when the button is focused.
 
 - **`.btn:hover { background-color: #45a049; }`**: A hover state style for the `.btn` class.
   - **`background-color: #45a049;`**: Darkens the button’s background color when the user hovers over it, providing visual feedback.
@@ -1091,12 +1091,12 @@ td {
 - **`.container { margin-top: 50px; }`**: A class used to add spacing at the top of the container.
   - **`margin-top: 50px;`**: Adds 50 pixels of space above the container.
 
-- **`h1 { color: #333; margin-bottom: 20px; }`**: Styles applied to `<h1>` elements, typically used for headings.
+- **`h1 { color: #333; margin-bottom: 20px; }`**: Styles applied to `<h1>` elements,  used for headings.
   - **`color: #333;`**: Sets the text color to a dark grey.
   - **`margin-bottom: 20px;`**: Adds 20 pixels of space below the heading.
 
 - **`.error-message { color: red; margin-bottom: 20px; }`**: A class for styling error messages.
-  - **`color: red;`**: Sets the text color to red, typically used for error messages.
+  - **`color: red;`**: Sets the text color to red,  used for error messages.
   - **`margin-bottom: 20px;`**: Adds 20 pixels of space below the error message.
 
 - **`table { margin: auto; border-collapse: collapse; width: 50%; border: 2px solid #000; border-radius: 10px; }`**: Styles applied to tables.
@@ -1213,13 +1213,13 @@ p {
 - **`.container { width: 50%; }`**: A class used to define the width of the container.
   - **`width: 50%;`**: Sets the container’s width to 50% of its parent element (the body).
 
-- **`h1 { color: #333; text-align: center; margin-bottom: 20px; }`**: Styles applied to `<h1>` elements, typically used for headings.
+- **`h1 { color: #333; text-align: center; margin-bottom: 20px; }`**: Styles applied to `<h1>` elements,  used for headings.
   - **`color: #333;`**: Sets the text color to a dark grey.
   - **`text-align: center;`**: Centers the heading text.
   - **`margin-bottom: 20px;`**: Adds 20 pixels of space below the heading.
 
-- **`p { color: red; margin-bottom: 20px; }`**: Styles applied to `<p>` elements, typically used for displaying error messages.
-  - **`color: red;`**: Sets the text color to red, typically used for error messages.
+- **`p { color: red; margin-bottom: 20px; }`**: Styles applied to `<p>` elements,  used for displaying error messages.
+  - **`color: red;`**: Sets the text color to red,  used for error messages.
   - **`margin-bottom: 20px;`**: Adds 20 pixels of space below the paragraph.
 
 - **`.try-again-btn { padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; text-decoration: none; font-size: 1.2rem; }`**: A class for styling the "Try Again" button.
@@ -1316,12 +1316,12 @@ p {
 - **`.container { width: 50%; }`**: A class used to define the width of the container.
   - **`width: 50%;`**: Sets the container’s width to 50% of its parent element (the body), making it responsive to different screen sizes.
 
-- **`h1 { color: #333; text-align: center; margin-bottom: 20px; }`**: Styles applied to `<h1>` elements, typically used for headings.
+- **`h1 { color: #333; text-align: center; margin-bottom: 20px; }`**: Styles applied to `<h1>` elements,  used for headings.
   - **`color: #333;`**: Sets the text color to a dark grey, ensuring good contrast with the background.
   - **`text-align: center;`**: Centers the heading text horizontally within the container.
   - **`margin-bottom: 20px;`**: Adds 20 pixels of space below the heading, separating it from subsequent content.
 
-- **`p { color: red; margin-bottom: 20px; }`**: Styles applied to `<p>` elements, typically used for displaying error messages.
+- **`p { color: red; margin-bottom: 20px; }`**: Styles applied to `<p>` elements,  used for displaying error messages.
   - **`color: red;`**: Sets the text color to red, commonly used to indicate errors or important alerts.
   - **`margin-bottom: 20px;`**: Adds 20 pixels of space below the paragraph, separating it from other elements.
 
@@ -1338,7 +1338,7 @@ p {
 - **`.try-again-btn:hover { background-color: #45a049; }`**: Hover state for the `.try-again-btn` class.
   - **`background-color: #45a049;`**: Changes the background color to a darker shade of green when the button is hovered over, providing visual feedback.
 
-- **`.home-icon { position: absolute; top: 10px; right: 10px; font-size: 40px; color: #333; text-decoration: none; }`**: A class for styling the home icon, typically used for navigation.
+- **`.home-icon { position: absolute; top: 10px; right: 10px; font-size: 40px; color: #333; text-decoration: none; }`**: A class for styling the home icon,  used for navigation.
   - **`position: absolute;`**: Positions the icon absolutely within its container, allowing it to be placed anywhere on the page.
   - **`top: 10px; right: 10px;`**: Places the icon 10 pixels from the top and right edges of the container.
   - **`font-size: 40px;`**: Sets the font size to 40 pixels, making the icon large and noticeable.
@@ -1409,7 +1409,7 @@ p {
 - **`.container { width: 50%; }`**: A class used to define the width of the container.
   - **`width: 50%;`**: Sets the container’s width to 50% of its parent element (the body), making it responsive to different screen sizes.
 
-- **`p { color: #333; margin-bottom: 20px; }`**: Styles applied to `<p>` elements, typically used for displaying general text content.
+- **`p { color: #333; margin-bottom: 20px; }`**: Styles applied to `<p>` elements,  used for displaying general text content.
   - **`color: #333;`**: Sets the text color to dark grey, ensuring readability against the background.
   - **`margin-bottom: 20px;`**: Adds 20 pixels of space below the paragraph, separating it from other elements.
 
@@ -1426,7 +1426,7 @@ p {
 - **`.home-link:hover { background-color: #45a049; }`**: Hover state for the `.home-link` class.
   - **`background-color: #45a049;`**: Changes the background color to a darker shade of green when the link is hovered over, providing visual feedback.
 
-- **`.home-icon { position: absolute; top: 10px; right: 10px; font-size: 40px; color: #333; text-decoration: none; }`**: A class for styling the home icon, typically used for navigation.
+- **`.home-icon { position: absolute; top: 10px; right: 10px; font-size: 40px; color: #333; text-decoration: none; }`**: A class for styling the home icon,  used for navigation.
   - **`position: absolute;`**: Positions the icon absolutely within its container, allowing it to be placed anywhere on the page.
   - **`top: 10px; right: 10px;`**: Places the icon 10 pixels from the top and right edges of the container.
   - **`font-size: 40px;`**: Sets the font size to 40 pixels, making the icon large and noticeable.
@@ -1518,7 +1518,7 @@ This section provides detailed descriptions of the CSS styles used to design the
 - **`.container { width: 50%; }`**: Defines the width of the main container.
   - **`width: 50%;`**: Sets the container's width to 50% of the body’s width, making it responsive to different screen sizes.
 
-- **`h1 { color: #333; text-align: center; }`**: Styles the `<h1>` element, typically used for the page title.
+- **`h1 { color: #333; text-align: center; }`**: Styles the `<h1>` element,  used for the page title.
   - **`color: #333;`**: Colors the text dark grey for readability against the background.
   - **`text-align: center;`**: Centers the text within its container.
 
@@ -1550,7 +1550,7 @@ This section provides detailed descriptions of the CSS styles used to design the
 - **`input[type="submit"]:hover { background-color: #45a049; }`**: Hover state for the submit button.
   - **`background-color: #45a049;`**: Darkens the background color of the button when hovered over, providing visual feedback.
 
-- **`.home-icon { position: absolute; top: 10px; right: 10px; font-size: 40px; color: #333; text-decoration: none; }`**: Styles for the home icon, typically used for navigation.
+- **`.home-icon { position: absolute; top: 10px; right: 10px; font-size: 40px; color: #333; text-decoration: none; }`**: Styles for the home icon,  used for navigation.
   - **`position: absolute;`**: Positions the icon absolutely within its container.
   - **`top: 10px; right: 10px;`**: Places the icon 10 pixels from the top and right edges of the container.
   - **`font-size: 40px;`**: Sets the font size to 40 pixels, making the icon large and noticeable.
@@ -1756,7 +1756,7 @@ input[type="submit"]:hover {
   - The `height` is set to 100vh (viewport height), and `position: relative` is used to allow absolute positioning of child elements.
 
 - **`.container { width: 50%; }`**: 
-  - Defines a container that takes up 50% of the width of its parent element. This is typically used to center content horizontally on the page.
+  - Defines a container that takes up 50% of the width of its parent element. This is  used to center content horizontally on the page.
 
 - **`h1 { color: #333; text-align: center; margin-bottom: 20px; }`**: 
   - Styles the main header (`<h1>`). The text color is dark grey (`#333`), centered on the page, and a margin of 20px is added below to separate it from other content.
@@ -1782,7 +1782,7 @@ input[type="submit"]:hover {
   - Changes the color of the home icon to red (`#f00`) when hovered over, indicating interactivity.
 
 - **`.password-error { border: 1px solid red !important; }`**: 
-  - Applies a red border (`1px solid red`) to elements with the `password-error` class. The `!important` declaration ensures this style overrides other conflicting styles, typically used to highlight fields with errors.
+  - Applies a red border (`1px solid red`) to elements with the `password-error` class. The `!important` declaration ensures this style overrides other conflicting styles,  used to highlight fields with errors.
 
 
 #### 3.1.24 registerSpecificDev.js
@@ -1817,7 +1817,7 @@ function validatePassword() {
     - Checks if the values of the password and confirm password fields are not equal.
 
     - **`confirm_password.classList.add("password-error");`**:
-      - If the values do not match, it adds the class `"password-error"` to the confirm password field. This class typically applies a red border or other styling to indicate an error.
+      - If the values do not match, it adds the class `"password-error"` to the confirm password field. This class  applies a red border or other styling to indicate an error.
 
     - **`return false;`**:
       - Returns `false` to prevent the form from being submitted if the passwords do not match.
