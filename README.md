@@ -1908,7 +1908,7 @@ This project structure organizes the code and resources in a clear manner, facil
 
 #### 3.2.2 `application.properties`
 
-```xml
+```properties
 spring.mvc.view.prefix=/WEB-INF/views/
 spring.mvc.view.suffix=.jsp
 ```
@@ -1918,3 +1918,649 @@ spring.mvc.view.suffix=.jsp
 - `spring.mvc.view.suffix=.jsp`: Sets the suffix for view file names in Spring MVC. In this case, Spring MVC expects view files to have a `.jsp` extension. For example, if a controller returns the name `home`, Spring MVC will automatically add the prefix and suffix to find the `home.jsp` view in the `/WEB-INF/views/` directory.
 
 These descriptions should help in understanding the configuration files and their roles within the application. Let me know if there’s anything more you need!
+
+
+### 3.3 Spring Classes
+
+#### 3.3.1 `RegisterController`
+
+```java
+package com.example.payslipgenerator;
+
+import com.example.payslipgenerator.employees.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import static com.example.payslipgenerator.service.PaySlipGeneratorService.checkLoginDuplicates;
+
+@Controller
+public class RegisterController {
+
+    @PostMapping("/register_python")
+    public String registerPythonDeveloper(@RequestParam String name,
+                                          @RequestParam String surname,
+                                          @RequestParam String login,
+                                          @RequestParam String password,
+                                          @RequestParam String toolname,
+                                          @RequestParam String experience) {
+
+        boolean isValid = checkLoginDuplicates(login);
+        if (!isValid) {
+            return "redirect:/registration_failure";
+        } else {
+            PythonDeveloper pythonDeveloper = new PythonDeveloper();
+            pythonDeveloper.addDataToDb(name, surname, login, password, toolname, experience);
+
+            return "redirect:/registration_success";
+        }
+    }
+
+    @PostMapping("/register_java")
+    public String registerJavaDeveloper(@RequestParam String name,
+                                        @RequestParam String surname,
+                                        @RequestParam String login,
+                                        @RequestParam String password,
+                                        @RequestParam String toolname,
+                                        @RequestParam String experience) {
+
+        boolean isValid = checkLoginDuplicates(login);
+        if (!isValid) {
+            return "redirect:/registration_failure";
+        } else {
+            JavaDeveloper javaDeveloper = new JavaDeveloper();
+            javaDeveloper.addDataToDb(name, surname, login, password, toolname, experience);
+
+            return "redirect:/registration_success";
+        }
+    }
+
+    @PostMapping("/register_frontend")
+    public String registerFrontEndDeveloper(@RequestParam String name,
+                                            @RequestParam String surname,
+                                            @RequestParam String login,
+                                            @RequestParam String password,
+                                            @RequestParam String toolname,
+                                            @RequestParam String experience) {
+
+        boolean isValid = checkLoginDuplicates(login);
+        if (!isValid) {
+            return "redirect:/registration_failure";
+        } else {
+            FrontEndDeveloper frontEndDeveloper = new FrontEndDeveloper();
+            frontEndDeveloper.addDataToDb(name, surname, login, password, toolname, experience);
+
+            return "redirect:/registration_success";
+        }
+    }
+
+    @PostMapping("/register_database")
+    public String registerDatabaseDeveloper(@RequestParam String name,
+                                            @RequestParam String surname,
+                                            @RequestParam String login,
+                                            @RequestParam String password,
+                                            @RequestParam String toolname,
+                                            @RequestParam String experience) {
+
+        boolean isValid = checkLoginDuplicates(login);
+        if (!isValid) {
+            return "redirect:/registration_failure";
+        } else {
+            DatabaseAnalyst databaseAnalyst = new DatabaseAnalyst();
+            databaseAnalyst.addDataToDb(name, surname, login, password, toolname, experience);
+
+            return "redirect:/registration_success";
+        }
+    }
+
+    @PostMapping("/register_csharp")
+    public String registerCsharpDeveloper(@RequestParam String name,
+                                          @RequestParam String surname,
+                                          @RequestParam String login,
+                                          @RequestParam String password,
+                                          @RequestParam String toolname,
+                                          @RequestParam String experience) {
+
+        boolean isValid = checkLoginDuplicates(login);
+        if (!isValid) {
+            return "redirect:/registration_failure";
+        } else {
+            CSharpDeveloper cSharpDeveloper = new CSharpDeveloper();
+            cSharpDeveloper.addDataToDb(name, surname, login, password, toolname, experience);
+
+            return "redirect:/registration_success";
+        }
+    }
+
+    @PostMapping("/register_cpp")
+    public String registerCppDeveloper(@RequestParam String name,
+                                       @RequestParam String surname,
+                                       @RequestParam String login,
+                                       @RequestParam String password,
+                                       @RequestParam String toolname,
+                                       @RequestParam String experience) {
+
+        boolean isValid = checkLoginDuplicates(login);
+        if (!isValid) {
+            return "redirect:/registration_failure";
+        } else {
+            CppDeveloper cppDeveloper = new CppDeveloper();
+            cppDeveloper.addDataToDb(name, surname, login, password, toolname, experience);
+
+            return "redirect:/registration_success";
+        }
+    }
+}
+```
+
+**Description:**
+- `package com.example.payslipgenerator;`: The package where the `RegisterController` class is located.
+- `import com.example.payslipgenerator.employees.*;`: Imports classes from the `employees` package.
+- `import org.springframework.stereotype.Controller;`: Imports the `Controller` class from the Spring framework.
+- `import org.springframework.web.bind.annotation.PostMapping;`: Imports the `PostMapping` annotation from the Spring framework.
+- `import org.springframework.web.bind.annotation.RequestParam;`: Imports the `RequestParam` annotation from the Spring framework.
+- `import static com.example.payslipgenerator.service.PaySlipGeneratorService.checkLoginDuplicates;`: Imports the static method `checkLoginDuplicates` from the `PaySlipGeneratorService` class.
+
+**Class `RegisterController`:**
+- Handles registration requests for different types of employees.
+- Annotated with `@Controller`, indicating it is a Spring MVC controller.
+- Contains multiple methods for handling different types of employees such as Python Developer, Java Developer, etc.
+- Each method handles POST requests submitted from registration forms for the respective type of employee.
+
+**Methods:**
+1. `registerPythonDeveloper`: Handles registration for Python Developers.
+2. `registerJavaDeveloper`: Handles registration for Java Developers.
+3. `registerFrontEndDeveloper`: Handles registration for Front-end Developers.
+4. `registerDatabaseDeveloper`: Handles registration for Database Analysts.
+5. `registerCsharpDeveloper`: Handles registration for C# Developers.
+6. `registerCppDeveloper`: Handles registration for C++ Developers.
+
+**Method Parameters:**
+- `@RequestParam String name`: The first name of the new employee.
+- `@RequestParam String surname`: The last name of the new employee.
+- `@RequestParam String login`: The login username of the new employee.
+- `@RequestParam String password`: The password of the new employee.
+- `@RequestParam String toolname`: Tools used by the employee.
+- `@RequestParam String experience`: Experience of the employee.
+
+**Functions:**
+- Checks for login duplicates using the `checkLoginDuplicates` method.
+- Creates new instances of the appropriate employee classes.
+- Adds employee data to the database.
+- Redirects users to the appropriate pages based on the success or failure of registration.
+
+#### 3.3.2 `PaySlipGeneratorController`
+
+```java
+package com.example.payslipgenerator;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+@Controller
+public class PaySlipGeneratorController {
+
+    @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
+    public String getIndex() {
+        return "index";
+    }
+
+    @RequestMapping(value = "/signin", method = RequestMethod.GET)
+    public String getSignInPage() {
+        return "signin";
+    }
+
+    @RequestMapping(value = "/signup", method = RequestMethod.GET)
+    public String getSignUpPage() {
+        return "signup";
+    }
+
+    @RequestMapping(value = "/register_cpp", method = RequestMethod.GET)
+    public String getCppDeveloperRegistrationPage() {
+        return "register_cpp";
+    }
+
+    @RequestMapping(value = "/register_csharp", method = RequestMethod.GET)
+    public String getCsharpDeveloperRegistrationPage() {
+        return "register_csharp";
+    }
+
+    @RequestMapping(value = "/register_database", method = RequestMethod.GET)
+    public String getDatabaseDeveloperRegistrationPage() {
+        return "register_database";
+    }
+
+    @RequestMapping(value = "/register_frontend", method = RequestMethod.GET)
+    public String getFrontendDeveloperRegistrationPage() {
+        return "register_frontend";
+    }
+
+    @RequestMapping(value = "/register_java", method = RequestMethod.GET)
+    public String getJavaDeveloperRegistrationPage() {
+        return "register_java";
+    }
+
+    @RequestMapping(value = "/register_python", method = RequestMethod.GET)
+    public String getPythonDeveloperRegistrationPage() {
+        return "register_python";
+    }
+
+    @RequestMapping(value = "/notSignedIn", method = RequestMethod.GET)
+    public String getNotSignedIn() {
+        return "notSignedIn";
+    }
+
+    @RequestMapping(value = "/loggedIn", method = RequestMethod.GET)
+    public String getSignedIn() {
+        return "loggedIn";
+    }
+
+    @RequestMapping(value = "/registration_success", method = RequestMethod.GET)
+    public String getRegistrationSuccess() {
+        return "registration_success";
+    }
+
+    @RequestMapping(value = "/registration_failure", method = RequestMethod.GET)
+    public String getRegistrationFailure() {
+        return "registration_failure";
+    }
+}
+```
+
+**Description:**
+- The `PaySlipGeneratorController` class is a controller handling requests related to pay slip generation.
+- Annotated with `@Controller`, indicating it is a Spring MVC controller.
+
+**Methods:**
+1. `getIndex`: Returns the main page of the application.
+2. `getSignInPage`: Returns the login page.
+3. `getSignUpPage`: Returns the registration page.
+4. `getCppDeveloperRegistrationPage`: Returns the registration page for C++ Developers.
+5. `getCsharpDeveloperRegistrationPage`: Returns the registration page for C# Developers.
+6. `getDatabaseDeveloperRegistrationPage`: Returns the registration page for Database Analysts.
+7. `getFrontendDeveloperRegistrationPage`: Returns the registration page for Front-end Developers.
+8. `getJavaDeveloperRegistrationPage`: Returns the registration page for Java Developers.
+9. `getPythonDeveloperRegistrationPage`: Returns the registration page for Python Developers.
+10. `getNotSignedIn`: Returns the page indicating the user is not signed in.
+11. `getSignedIn`: Returns the page indicating successful sign-in.
+12. `getRegistrationSuccess`: Returns the page indicating successful user registration.
+13. `getRegistrationFailure`: Returns the page indicating registration failure.
+
+**Annotations:**
+- `@RequestMapping`: Specifies the URL where the method handles requests.
+- `value`: Specifies the URL where the method is invoked.
+- `method`: Specifies the HTTP method used to handle the request.
+
+**Functions:**
+- Each method handles a GET request for a specific URL and returns the name of the view to be displayed.
+
+#### 3.3.3 `PaySlipGeneratorApplication`
+
+```java
+package com.example.payslipgenerator;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class PaySlipGeneratorApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(PaySlipGeneratorApplication.class, args);
+    }
+
+}
+```
+
+**Description:**
+- The `PaySlipGeneratorApplication` class is the main class of the application.
+- Annotated with `@SpringBootApplication`, which combines multiple annotations including `@Configuration`, `@EnableAutoConfiguration`, and `@ComponentScan`, enabling automatic configuration of the Spring Boot application.
+- The `main` method is the entry point of the application. It starts the Spring Boot application, initializing the application context and running the server.
+
+**Annotations:**
+- `@SpringBootApplication`: Indicates that the class is a Spring Boot configuration class.
+
+**Methods:**
+1. `main`: The main method of the application that starts the Spring Boot application.
+
+**Functions:**
+- The `main` method initializes the Spring Boot application, starting the application context and the server.
+
+#### 3.3.4 `LoginController`
+
+```java
+package com.example.payslipgenerator;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import static com.example.payslipgenerator.service.PaySlipGeneratorService.checkSignIn;
+
+@Controller
+public class LoginController {
+
+    @PostMapping("/login")
+    public String login(@RequestParam("username") String username,
+                        @RequestParam("password") String password,
+                        Model model) {
+        boolean loginSuccessful = checkSignIn(username, password);
+        if (loginSuccessful) {
+            model.addAttribute("username", username);
+            return "redirect:/loggedIn?username=" + username;
+        } else {
+            return "redirect:/notSignedIn";
+        }
+    }
+}
+```
+
+**Description:**
+- The `LoginController` class handles the user login process.
+- Annotated with `@Controller`, indicating it is a Spring component that handles HTTP requests.
+- The `login` method processes the login request submitted from the form.
+
+**Annotations:**
+- `@Controller`: Indicates that the class is a controller that handles HTTP requests.
+
+**Methods:**
+1. `login`: Method handling the login request. It takes the username, password, and a Spring model.
+   - `@PostMapping("/login")`: Indicates that the method handles POST requests at the path "/login".
+   - `@RequestParam("username")`: The value of the "username" parameter from the form is assigned to the method parameter `username`.
+   - `@RequestParam("password")`: The value of the "password" parameter from the form is assigned to the method parameter `password`.
+   - `Model model`: A Spring model parameter used to pass data to the view.
+   - Checks the validity of the login data by calling the `checkSignIn` method from `PaySlipGeneratorService`.
+   - If login is successful, adds the `username` attribute to the model and redirects the user to the `/loggedIn` page.
+   - Otherwise, redirects the user to the `/notSignedIn` page.
+
+### 3.4 Service Classes
+
+#### 3.4.1 `Main`
+
+```java
+package com.example.payslipgenerator.service;
+
+import static com.example.payslipgenerator.service.PaySlipGeneratorService.setDataInDb;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        setDataInDb();
+
+    }
+
+}
+```
+
+**Description:**
+- The `Main` class is the main class of the application.
+- Contains the `main` method, which is the entry point of the application.
+- The `main` method invokes the `setDataInDb` method from the `PaySlipGeneratorService` class to set up data in the database.
+
+**Methods:**
+1. `main`: The entry point of the application.
+   - Annotated with `public static void`, meaning it is accessible from anywhere in the program and does not return any value.
+   - Takes an array of `String[]` arguments, which is not used in this application.
+   - Calls the `setDataInDb()` method from the `PaySlipGeneratorService` class to initialize data in the database.
+
+#### 3.4.2 `PaySlipGeneratorService`
+
+```java
+package com.example.payslipgenerator.service;
+
+import com.example.payslipgenerator.employees.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
+
+import java.util.List;
+import java.util.Optional;
+
+@Data
+@AllArgsConstructor
+public class PaySlipGeneratorService {
+
+    public static void setDataInDb() {
+        SessionFactory sessionFactory = new Configuration()
+                .configure()
+                .buildSessionFactory();
+        try (Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
+
+            JavaDeveloper javaJunior1 = new JavaDeveloper(null, "John", "Doe", "login", "password", "IntelliJ", Experience.JUNIOR);
+            session.save(javaJunior1);
+
+            JavaDeveloper javaJunior2 = new JavaDeveloper(null, "Alice", "Johnson", "login1", "password1", "NetBeans", Experience.JUNIOR);
+            session.save(javaJunior2);
+
+            JavaDeveloper javaMid1 = new JavaDeveloper(null, "Jane", "Smith", "login2", "password2", "Eclipse", Experience.MID);
+            session.save(javaMid1);
+
+            JavaDeveloper javaMid2 = new JavaDeveloper(null, "Bob", "Brown", "login3", "password3", "VS Code", Experience.MID);
+            session.save(javaMid2);
+
+            CSharpDeveloper cSharpJunior1 = new CSharpDeveloper(null, "Mark", "Davis", "login4", "password4", "Visual Studio", Experience.JUNIOR);
+            session.save(cSharpJunior1);
+
+            CSharpDeveloper cSharpMid1 = new CSharpDeveloper(null, "Emma", "Taylor", "login5", "password5", "Visual Studio Code", Experience.MID);
+            session.save(cSharpMid1);
+
+            CppDeveloper cppMid1 = new CppDeveloper(null, "David", "Lee", "login6", "password6", "CLion", Experience.MID);
+            session.save(cppMid1);
+
+            FrontEndDeveloper frontEndMid1 = new FrontEndDeveloper(null, "Olivia", "White", "login7", "password7", "Sublime Text", Experience.MID);
+            session.save(frontEndMid1);
+
+            DatabaseAnalyst dbAnalystMid1 = new DatabaseAnalyst(null, "Liam", "Harris", "login8", "password8", "MySQL Workbench", Experience.MID);
+            session.save(dbAnalystMid1);
+
+            PythonDeveloper pythonDeveloper1 = new PythonDeveloper(null, "James", "Bond", "login9", "password9", "PyCharm", Experience.SENIOR);
+            session.save(pythonDeveloper1);
+
+            transaction.commit();
+            session.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sessionFactory.close();
+        }
+    }
+
+    public static Employee generatePaySlipForEmployee(String login) {
+        SessionFactory sessionFactory = new Configuration()
+                .configure()
+                .buildSessionFactory();
+        try (Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
+            
+            Query<JavaDeveloper> javaQuery = session.createQuery("FROM JavaDeveloper WHERE login = :login", JavaDeveloper.class);
+            javaQuery.setParameter("login", login);
+            JavaDeveloper javaDeveloper = javaQuery.uniqueResult();
+            if (javaDeveloper != null) {
+                return javaDeveloper;
+            }
+            
+            Query<CppDeveloper> cppQuery = session.createQuery("FROM CppDeveloper WHERE login = :login", CppDeveloper.class);
+            cppQuery.setParameter("login", login);
+            CppDeveloper cppDeveloper = cppQuery.uniqueResult();
+            if (cppDeveloper != null) {
+                return cppDeveloper;
+            }
+            
+            Query<CSharpDeveloper> csharpQuery = session.createQuery("FROM CSharpDeveloper WHERE login = :login", CSharpDeveloper.class);
+            csharpQuery.setParameter("login", login);
+            CSharpDeveloper csharpDeveloper = csharpQuery.uniqueResult();
+            if (csharpDeveloper != null) {
+                return csharpDeveloper;
+            }
+            
+            Query<DatabaseAnalyst> dbQuery = session.createQuery("FROM DatabaseAnalyst WHERE login = :login", DatabaseAnalyst.class);
+            dbQuery.setParameter("login", login);
+            DatabaseAnalyst dbAnalyst = dbQuery.uniqueResult();
+            if (dbAnalyst != null) {
+                return dbAnalyst;
+            }
+            
+            Query<FrontEndDeveloper> frontEndQuery = session.createQuery("FROM FrontEndDeveloper WHERE login = :login", FrontEndDeveloper.class);
+            frontEndQuery.setParameter("login", login);
+            FrontEndDeveloper frontEndDeveloper = frontEndQuery.uniqueResult();
+            if (frontEndDeveloper != null) {
+                return frontEndDeveloper;
+            }
+            
+            Query<PythonDeveloper> pythonQuery = session.createQuery("FROM PythonDeveloper WHERE login = :login", PythonDeveloper.class);
+            pythonQuery.setParameter("login", login);
+            PythonDeveloper pythonDeveloper = pythonQuery.uniqueResult();
+            if (pythonDeveloper != null) {
+                return pythonDeveloper;
+            }
+
+            transaction.commit();
+            session.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sessionFactory.close();
+        }
+
+        return null;
+    }
+
+    public static boolean checkSignIn(String username, String password) {
+        SessionFactory sessionFactory = new Configuration()
+                .configure()
+                .buildSessionFactory();
+        try (Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
+
+            Query<Employee> query = session.createQuery("FROM Employee");
+            List<Employee> resultList = query.getResultList();
+            Optional<Employee> user = resultList.stream().filter(e -> e.getLogin().equals(username) && e.getPassword().equals(password)).findFirst();
+            transaction.commit();
+
+            if (user.isEmpty()) {
+                return false;
+            } else {
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            sessionFactory.close();
+        }
+    }
+
+    public static boolean checkLoginDuplicates(String login) {
+        SessionFactory sessionFactory = new Configuration()
+                .configure()
+                .buildSessionFactory();
+        try (Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
+            
+            Query<JavaDeveloper> javaQuery = session.createQuery("FROM JavaDeveloper WHERE login = :login", JavaDeveloper.class);
+            javaQuery.setParameter("login", login);
+            JavaDeveloper javaDeveloper = javaQuery.uniqueResult();
+            if (javaDeveloper != null) {
+                return false;
+            }
+            
+            Query<CppDeveloper> cppQuery = session.createQuery("FROM CppDeveloper WHERE login = :login", CppDeveloper.class);
+            cppQuery.setParameter("login", login);
+            CppDeveloper cppDeveloper = cppQuery.uniqueResult();
+            if (cppDeveloper != null) {
+                return false;
+            }
+            
+            Query<CSharpDeveloper> csharpQuery = session.createQuery("FROM CSharpDeveloper WHERE login = :login", CSharpDeveloper.class);
+            csharpQuery.setParameter("login", login);
+            CSharpDeveloper csharpDeveloper = csharpQuery.uniqueResult();
+            if (csharpDeveloper != null) {
+                return false;
+            }
+            
+            Query<DatabaseAnalyst> dbQuery = session.createQuery("FROM DatabaseAnalyst WHERE login = :login", DatabaseAnalyst.class);
+            dbQuery.setParameter("login", login);
+            DatabaseAnalyst dbAnalyst = dbQuery.uniqueResult();
+            if (dbAnalyst != null) {
+                return false;
+            }
+            
+            Query<FrontEndDeveloper> frontEndQuery = session.createQuery("FROM FrontEndDeveloper WHERE login = :login", FrontEndDeveloper.class);
+            frontEndQuery.setParameter("login", login);
+            FrontEndDeveloper frontEndDeveloper = frontEndQuery.uniqueResult();
+            if (frontEndDeveloper != null) {
+                return false;
+            }
+            
+            Query<PythonDeveloper> pythonQuery = session.createQuery("FROM PythonDeveloper WHERE login = :login", PythonDeveloper.class);
+            pythonQuery.setParameter("login", login);
+            PythonDeveloper pythonDeveloper = pythonQuery.uniqueResult();
+            if (pythonDeveloper != null) {
+                return false;
+            }
+
+            transaction.commit();
+            session.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sessionFactory.close();
+        }
+
+        return true;
+    }
+}
+```
+
+**Description:**
+- The `PaySlipGeneratorService` class handles the business logic related to generating pay slips for employees and managing the database.
+- It includes methods for initializing test data in the database, generating pay slips based on employee data, validating login credentials, and checking the uniqueness of employee logins.
+
+**Methods:**
+1. `setDataInDb()`:
+   - A static method that initializes a connection to the database, sets up test data for various types of employees, and saves it to the database. Test data includes information such as name, surname, login, password, work tool, and professional experience.
+   - Uses objects of employee classes (e.g., `JavaDeveloper`, `CppDeveloper`) to create test data.
+   - After completing the operations, it closes the Hibernate session and session factory.
+
+2. `generatePaySlipForEmployee(String login)`:
+   - A static method that generates a pay slip for an employee based on the provided login. It retrieves the employee data from the database based on the login.
+   - Uses Hibernate queries to fetch the employee data based on the login.
+   - Returns an object of the `Employee` class, which is the superclass for all types of employees.
+
+3. `checkSignIn(String username, String password)`:
+   - A static method that checks if a user can log in with the given username and password. It verifies if the provided login credentials match the data in the database.
+   - Retrieves all users from the database and checks if the provided username and password match any user.
+   - Returns `true` if the login is successful; otherwise, returns `false`.
+
+4. `checkLoginDuplicates(String login)`:
+   - A static method that checks if the given login already exists in the database. It ensures the uniqueness of the login to prevent duplicates.
+   - Uses Hibernate queries to check if there is an existing user with the given login for various types of employees.
+   - Returns `true` if the login is unique; otherwise, returns `false`.
+
+
+
+```java
+
+```
+
+```java
+
+```
+
+```java
+
+```
+
+```java
+
+```
