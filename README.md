@@ -1681,10 +1681,6 @@ input[type="submit"]:hover {
 }
 ```
 
-### CSS Styles Description
-
-This section provides detailed descriptions of the CSS styles used to design the form and layout of the webpage.
-
 **Description:**
 - **`body { font-family: Arial, sans-serif; background-color: #f0f0f0; text-align: center; display: flex; justify-content: center; align-items: center; height: 100vh; }`**: Styles applied to the `<body>` element to set the overall page layout and appearance.
   - **`font-family: Arial, sans-serif;`**: Sets the default font for the page to Arial, with a fallback to a sans-serif font.
