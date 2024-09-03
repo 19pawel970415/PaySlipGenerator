@@ -33,10 +33,10 @@ src
 └── main
     ├── java
     │   └── com.example.payslipgenerator
-    |       ├── controller
-    |            ├── LoginController
-    |            ├── PaySlipGeneratorController
-    |            └── RegisterController
+    │       ├── controller
+    │       │   ├── LoginController
+    │       │   ├── PaySlipGeneratorController
+    │       │   └── RegisterController
     │       ├── model
     │       │   ├── CppDeveloper
     │       │   ├── CSharpDeveloper
@@ -46,31 +46,50 @@ src
     │       │   ├── FrontEndDeveloper
     │       │   ├── JavaDeveloper
     │       │   └── PythonDeveloper
-    |       ├── repository
-    |       |   └── DataToDbHandler
+    │       ├── repository
+    │       │   └── DataToDbHandler
     │       ├── service
     │       │   ├── Main
     │       │   └── PaySlipGeneratorService
-    │       ├── PaySlipGeneratorApplication
+    │       └── PaySlipGeneratorApplication
     ├── resources
     │   ├── application.properties
     │   └── hibernate.cfg.xml
     └── webapp
         └── WEB-INF
             └── views
-                ├── index.jsp
-                ├── loggedIn.jsp
-                ├── notSignedIn.jsp
-                ├── register_cpp.jsp
-                ├── register_csharp.jsp
-                ├── register_database.jsp
-                ├── register_frontend.jsp
-                ├── register_java.jsp
-                ├── register_python.jsp
-                ├── registration_failure.jsp
-                ├── registration_success.jsp
-                ├── signin.jsp
-                └── signup.jsp
+                ├── dynamic
+                │   ├── home_icon.jspf
+                │   └── register_form_content.jspf
+                ├── login
+                │   ├── loggedIn.jsp
+                │   ├── notSignedIn.jsp
+                │   └── signin.jsp
+                ├── register
+                │   ├── register_cpp.jsp
+                │   ├── register_csharp.jsp
+                │   ├── register_database.jsp
+                │   ├── register_frontend.jsp
+                │   ├── register_java.jsp
+                │   ├── register_python.jsp
+                │   ├── registration_failure.jsp
+                │   ├── registration_success.jsp
+                │   └── signup.jsp
+                └── index.jsp
+        └── resources
+            └── static
+                ├── css
+                │   ├── styles.css
+                │   ├── stylesLoggedin.css
+                │   ├── stylesNotSignin.css
+                │   ├── stylesRegistrationFailure.css
+                │   ├── stylesRegistrationSuccess.css
+                │   ├── stylesSignin.css
+                │   ├── stylesSignup.css
+                │   └── stylesSignupSpecificDev.css
+                └── js
+                    ├── registerSpecificDev.js
+                    └── signup.js            
 ```
 
 ### Detailed Structure
