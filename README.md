@@ -53,8 +53,6 @@ src
     │       │   └── PaySlipGeneratorService
     │       ├── PaySlipGeneratorApplication
     ├── resources
-    │   ├── static
-    │   ├── templates
     │   ├── application.properties
     │   └── hibernate.cfg.xml
     └── webapp
