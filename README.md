@@ -122,7 +122,7 @@ This project structure organizes the code and resources in a clear manner, facil
 
 ## 3. Frontend
 
-### 3.1 .jsp and .jspf files
+### 3.1 .jsp, .jspf, .css and .js files
 
 #### 3.1.1 `index.jsp`
 
