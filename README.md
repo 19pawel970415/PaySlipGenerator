@@ -6,13 +6,48 @@ A project of PaySlipGenerator, an app for employees enabling them the access to 
 
 ## 1. Project Objectives
 
+### 1.1 Objectives
+
 The goal of this project is to generate pay slips for various types of employees within a company. The system uses classes to represent different employee types, such as Java developers, C# developers, C++ developers, front-end developers, database analysts, etc. Each of these employee types has specific characteristics, such as tools used (e.g., IntelliJ, Visual Studio), experience level (junior, mid, senior), and base salary.
 
 The project implements functions to generate pay slips based on these specific details, such as name, surname, login, password, tool, and experience. Methods in the employee classes, such as `generatePaySlip()`, create pay slip reports for individual employees. Additionally, there are methods for adding data to the database, making it possible to manage employee data.
 
 In summary, the purpose of this project is to automate the process of generating pay slips for various employee types within a company and to manage employee data in a database.
 
-### 1.1 Requirements
+### 1.2 Technologies
+
+1. **Java**: Java is used as the primary programming language for developing the backend logic of the application. It handles server-side operations, business logic, and interacts with the database to process user requests and responses. The .java files of the project are:
+   - the contollers (e.g. LoginController.java, RegisterController.java)
+   - model classes (e.g. Employee.java, JavaDeveloper.java)
+   - db set up handling file (DataToDbHandler.java)
+   - service classes (e.g. PaySlipGeneratorService.java)
+   - the app class (PaySlipGeneratorApplication.java).
+     
+3. **Spring**: The Spring Framework is utilized for building the backend of the application. It provides features such as dependency injection, transaction management, and web application development through Spring MVC. It helps in organizing code into well-structured components and simplifies the development of enterprise applications. The .java files of the project in which the Spring is used are:
+   - the contollers (e.g. LoginController.java, RegisterController.java)
+   - service classes (e.g. PaySlipGeneratorService.java)
+   - the app class (PaySlipGeneratorApplication.java).
+
+5. **Hibernate and HQL**: Hibernate is used as the Object-Relational Mapping (ORM) tool to manage database interactions. It maps Java objects to database tables, simplifying CRUD operations and database queries. HQL (Hibernate Query Language) is used for querying and manipulating the database. It is employed to define and manage data structures, execute queries, and perform operations. Hibernate handles database transactions and helps in managing the persistence layer of the application efficiently. The .java files of the project in which the Hibernate is used are:
+   - model classes (e.g. Employee.java, JavaDeveloper.java)
+   - db set up handling file (DataToDbHandler.java)
+   - service classes (e.g. PaySlipGeneratorService.java)
+   
+6. **HTML and JSP**: HTML (HyperText Markup Language) is used to create the structure and content of the web pages. It forms the foundation of the frontend by defining elements such as forms, tables, headers, and paragraphs that make up the user interface of the application. The frontend .jsp (JavaServer Pages) files of the project are:
+   - dynamic .jspf files (e.g. home_icon.jspf)
+   - login .jsp files (e.g. loggedIn.jsp)
+   - register .jsp files (e.g. register.jsp)
+   - the main .jsp file (index.jsp)
+   
+7. **CSS**: CSS (Cascading Style Sheets) is used to style and layout the HTML content. It controls the visual presentation of web pages, including colors, fonts, spacing, and positioning of elements. CSS ensures that the application has a consistent and visually appealing design across different devices. The frontend .css files of the project are:
+   - the main .css file (styles.css)
+   - the .css files for specific sites (e.g. stylesLoggedin.css)
+   
+8. **JavaScript**: JavaScript is used to enhance the interactivity and functionality of the web pages. It handles client-side scripting for form validation, dynamic content updates, and user interactions. JavaScript improves the user experience by allowing for real-time feedback and updates without requiring a page reload. The .js files of the project are:
+   - password validation .js file (registerSpecificDev.js)
+   - position choice .js files (signup.js)
+
+### 1.3 Requirements
 
 1. **Automation of Pay Slip Generation**: The client expects the project to enable automatic generation of pay slip reports for each employee based on their login. This will allow the company to process employee payments quickly and efficiently.
 
