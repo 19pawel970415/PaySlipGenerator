@@ -1891,7 +1891,7 @@ This project structure organizes the code and resources in a clear manner, facil
 - `<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/hibernateexs?serverTimezone=Europe/Warsaw</property>`: Specifies the URL to the MySQL database, including the port number and database name. It also sets the server timezone.
 - `<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>`: Specifies the JDBC driver class for MySQL used to connect to the database.
 - `<property name="hibernate.connection.username">root</property>`: Specifies the username for logging into the database. In this case, it is `root`.
-- `<property name="hibernate.connection.password"></property>`: Specifies the password for logging into the database. This field is empty, indicating no password or that the password is set differently.
+- `<property name="hibernate.connection.password"></property>`: Specifies the password for logging into the database. This field is empty for safety reasons. Fill it in with your password to root.
 - `<property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>`: Specifies the MySQL dialect for Hibernate, defining SQL specifics for MySQL 5.
 - `<property name="hibernate.hbm2ddl.auto">update</property>`: Defines the schema update strategy for the database. The `update` setting means Hibernate will automatically update the database schema based on changes in the entity model.
 - `<property name="hibernate.show_sql">true</property>`: Sets a flag indicating whether Hibernate should display generated SQL in the console. `true` allows monitoring of SQL queries.
