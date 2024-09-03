@@ -127,53 +127,15 @@ This project structure organizes the code and resources in a clear manner, facil
 #### 3.1.1 `index.jsp`
 
 ```jsp
+<jsp:useBean id="now" class="java.util.Date"/>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pay Slip Generator</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-        }
-
-        .container {
-            text-align: center;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .title {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            text-decoration: none;
-            font-size: 1.2rem;
-            margin: 0 10px;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-            border: none;
-            cursor: pointer;
-            outline: none;
-        }
-
-        .btn:hover {
-            background-color: #45a049;
-        }
-    </style>
+    <link rel="stylesheet" href="/resources/static/css/styles.css">
 </head>
 <body>
 
@@ -188,113 +150,39 @@ This project structure organizes the code and resources in a clear manner, facil
 ```
 
 **Description:**
-- `<!DOCTYPE html>`: Declaration of HTML document type.
-- `<html lang="en">`: Opening HTML tag with language specification.
-- `<head>`: Section containing metadata and external resource links.
-- `<meta charset="UTF-8">`: Specifies character encoding.
-- `<meta name="viewport" content="width=device-width, initial-scale=1.0">`: Viewport settings for responsive design.
-- `<title>Pay Slip Generator</title>`: Page title.
-- `<style>`: Section containing CSS styles.
-  - `body`: Styling for the body element.
-  - `.container`: Centers the content on the screen.
-  - `.title`: Styling for the page title.
-  - `.btn`: Styling for buttons.
-  - `.btn:hover`: Button styling on hover.
-- `</style>`: End of style section.
-- `</head>`: End of head section.
-- `<body>`: Section containing the page content.
-- `<div class="container">`: Container for the page content.
-- `<h1 class="title">Pay Slip Generator</h1>`: Page title.
-- `<button class="btn" onclick="location.href='signin'">Sign in</button>`: Button to navigate to the sign-in page.
-- `<button class="btn" onclick="location.href='signup'">Sign up</button>`: Button to navigate to the sign-up page.
-- `</body>`: End of body section.
-- `</html>`: End of HTML document.
+- **`<jsp:useBean id="now" class="java.util.Date"/>`:** Instantiates a Java bean named `now` of type `java.util.Date` to be used in the JSP.
+- **`<%@ page contentType="text/html; charset=UTF-8" %>`:** Directive that sets the content type of the page to `text/html` and specifies the character encoding as `UTF-8`. This ensures that the page is rendered as HTML and supports UTF-8 character encoding.
+- **`<!DOCTYPE html>`:** Declaration of HTML document type.
+- **`<html lang="en">`:** Opening HTML tag with language specification set to English.
+- **`<head>`:** Section containing metadata and external resource links.
+- **`<meta charset="UTF-8">`:** Specifies the character encoding as UTF-8.
+- **`<meta name="viewport" content="width=device-width, initial-scale=1.0">`:** Viewport settings for responsive design, ensuring proper rendering on different devices.
+- **`<title>Pay Slip Generator</title>`:** Defines the title of the webpage as "Pay Slip Generator."
+- **`<link rel="stylesheet" href="/resources/static/css/styles.css">`:** Links an external CSS file for styling the webpage. The file is located at `/resources/static/css/styles.css`.
+- **`</head>`:** End of the head section.
+- **`<body>`:** Section containing the main content of the webpage.
+- **`<div class="container">`:** A container div element that wraps the content, helping with layout structure and styling.
+- **`<h1 class="title">Pay Slip Generator</h1>`:** A header element displaying the title "Pay Slip Generator" on the page.
+- **`<button class="btn" onclick="location.href='signin'">Sign in</button>`:** A button element that redirects the user to the "Sign in" page when clicked.
+- **`<button class="btn" onclick="location.href='signup'">Sign up</button>`:** A button element that redirects the user to the "Sign up" page when clicked.
+- **`</body>`:** End of the body section.
+- **`</html>`:** End of the HTML document.
+
 
 #### 3.1.2 `loggedIn.jsp`
 
 ```jsp
+<jsp:useBean id="now" class="java.util.Date"/>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="com.example.payslipgenerator.service.PaySlipGeneratorService" %>
-<%@ page import="com.example.payslipgenerator.employees.Employee" %>
+<%@ page import="com.example.payslipgenerator.model.Employee" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome back</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            text-align: center;
-            position: relative;
-        }
-
-        .container {
-            margin-top: 50px;
-        }
-
-        h1 {
-            color: #333;
-            margin-bottom: 20px;
-        }
-
-        .error-message {
-            color: red;
-            margin-bottom: 20px;
-        }
-
-        table {
-            margin: auto;
-            border-collapse: collapse;
-            width: 50%;
-            border: 2px solid #000;
-            border-radius: 10px;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        th {
-            background-color: #4CAF50;
-            color: white;
-            border-right: 1px solid #fff;
-        }
-
-        td {
-            background-color: #f2f2f2;
-        }
-
-        .try-again-btn {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-            font-size: 1.2rem;
-        }
-
-        .try-again-btn:hover {
-            background-color: #45a049;
-        }
-
-        .logout-icon {
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            font-size: 40px;
-            color: #333;
-            text-decoration: none;
-        }
-
-        .logout-icon:hover {
-            color: #f00;
-        }
-    </style>
+    <link rel="stylesheet" href="/resources/static/css/stylesLoggedin.css">
 </head>
 <body>
 <a href="index" class="logout-icon">&#128274;</a>
@@ -345,87 +233,62 @@ This project structure organizes the code and resources in a clear manner, facil
 ```
 
 **Description:**
-- `<%@ page import="com.example.payslipgenerator.service.PaySlipGeneratorService" %>`: Imports `PaySlipGeneratorService` class.
-- `<%@ page import="com.example.payslipgenerator.employees.Employee" %>`: Imports `Employee` class.
-- `<a href="index" class="logout-icon">&#128274;</a>`: Logout icon redirecting to the homepage.
-- `<h1>Welcome back <%= username %></h1>`: Greets the user by username.
-- `<% ... %>`: Java code within JSP, including methods to generate and display the pay slip.
-- `String username = request.getParameter("username");`: Retrieves the `username` parameter from the HTTP request.
-- `Employee employee = PaySlipGeneratorService.generatePaySlipForEmployee(username);`: Calls service method to get `Employee` object.
-- `String[] paySlipData = employee.generatePaySlip();`: Generates pay slip data.
-- `<%= paySlipData[0] %>`: Displays pay slip data in the table.
-- `<div class="error-message">`: Displays error message if the user is not found.
-- `</body>`: End of body section.
-- `</html>`: End of HTML document.
+- **`<jsp:useBean id="now" class="java.util.Date"/>`:** Instantiates a Java bean named `now` of type `java.util.Date` to be used within the JSP page.
+- **`<%@ page contentType="text/html; charset=UTF-8" %>`:** Directive that sets the content type of the page to `text/html` and specifies the character encoding as `UTF-8`, ensuring the page is rendered correctly in web browsers.
+- **`<%@ page import="com.example.payslipgenerator.service.PaySlipGeneratorService" %>`:** Imports the `PaySlipGeneratorService` class from the `com.example.payslipgenerator.service` package, allowing its methods to be used in the JSP.
+- **`<%@ page import="com.example.payslipgenerator.model.Employee" %>`:** Imports the `Employee` class from the `com.example.payslipgenerator.model` package, enabling the use of `Employee` objects within the JSP.
+- **`<!DOCTYPE html>`:** Declaration of HTML document type, specifying that the document is an HTML5 document.
+- **`<html lang="en">`:** Opening HTML tag with the language attribute set to English (`en`), indicating the language of the content.
+- **`<head>`:** Section containing metadata and links to external resources such as stylesheets.
+- **`<meta charset="UTF-8">`:** Specifies the character encoding as UTF-8, supporting a wide range of characters.
+- **`<meta name="viewport" content="width=device-width, initial-scale=1.0">`:** Ensures proper scaling and rendering on different devices by setting the viewport to match the screen’s width.
+- **`<title>Welcome back</title>`:** Sets the title of the webpage as "Welcome back," which appears in the browser tab.
+- **`<link rel="stylesheet" href="/resources/static/css/stylesLoggedin.css">`:** Links an external CSS file for styling the page, located at `/resources/static/css/stylesLoggedin.css`.
+- **`</head>`:** End of the head section, closing metadata and link references.
+- **`<body>`:** Section containing the main content of the webpage.
+- **`<a href="index" class="logout-icon">&#128274;</a>`:** Creates a link that redirects to the `index` page, with a lock icon (🔒) representing the logout function.
+- **`<h1></h1>`:** Placeholder for the main header, which can be dynamically filled.
+- **`<% String username = request.getParameter("username"); %>`:** Retrieves the `username` parameter from the HTTP request, storing it in the `username` variable.
+- **`<% Employee employee = PaySlipGeneratorService.generatePaySlipForEmployee(username); %>`:** Calls the `generatePaySlipForEmployee` method from `PaySlipGeneratorService` to generate an `Employee` object based on the provided `username`.
+- **`<% if (employee != null) { %>`:** Begins a conditional statement that checks if the `employee` object is not null, meaning the user exists.
+- **`<% String[] paySlipData = employee.generatePaySlip(); %>`:** Generates the payslip data for the employee by calling the `generatePaySlip()` method, storing the result in the `paySlipData` array.
+- **`<h1>Welcome back <%= username %></h1>`:** Displays a welcome message to the user by inserting the `username` dynamically into the header.
+- **`<article>`:** HTML5 element used to encapsulate the main content of the webpage.
+- **`<div class="box">`:** A `div` element styled with the `box` class, used to group content and apply specific styling.
+- **`<h2>Here is your payslip!</h2>`:** Subheader indicating the content of the section, which is the user's payslip.
+- **`<table>`:** HTML table used to present the payslip data in a structured format.
+  - **`<tr>`:** Table row, used to group table cells (`<th>` for headers and `<td>` for data).
+  - **`<th>Name</th>`:** Table header cell containing the label "Name."
+  - **`<td><%= paySlipData[0] %> <%= paySlipData[1] %></td>`:** Table data cell displaying the employee's first and last name, retrieved from `paySlipData`.
+  - **`<th>Position</th>`:** Table header cell containing the label "Position."
+  - **`<td><%= paySlipData[2] %></td>`:** Table data cell displaying the employee's position.
+  - **`<th>Experience</th>`:** Table header cell containing the label "Experience."
+  - **`<td><%= paySlipData[3] %></td>`:** Table data cell displaying the employee's level of experience.
+  - **`<th>Salary</th>`:** Table header cell containing the label "Salary."
+  - **`<td><%= paySlipData[4] %></td>`:** Table data cell displaying the employee's salary.
+- **`</article>`:** End of the article section.
+- **`<% } else { %>`:** Else clause that executes if the `employee` object is null, meaning the user was not found.
+- **`<div class="error-message">`:** A `div` element styled with the `error-message` class, used to display an error message.
+- **`<p>No such user.</p>`:** Paragraph element that contains the error message "No such user."
+- **`</body>`:** End of the body section, closing the main content.
+- **`</html>`:** End of the HTML document.
+
 
 #### 3.1.3 `notSignedIn.jsp`
 
 ```jsp
+<jsp:useBean id="now" class="java.util.Date"/>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Failed</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            position: relative;
-        }
-
-        .container {
-            width: 50%;
-        }
-
-        h1 {
-            color: #333;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        p {
-            color: red;
-            margin-bottom: 20px;
-        }
-
-        .try-again-btn {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-            font-size: 1.2rem;
-        }
-
-        .try-again-btn:hover {
-            background-color: #45a049;
-        }
-
-        .home-icon {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 40px;
-            color: #333;
-            text-decoration: none;
-        }
-
-        .home-icon:hover {
-            color: #f00;
-        }
-
-    </style>
+    <link rel="stylesheet" href="/resources/static/css/stylesNotSignin.css">
 </head>
 <body>
-<a href="index" class="home-icon">&#127968;</a>
+<%@ include file="../dynamic/home_icon.jspf" %>
 <div class="container">
     <h1>Login Failed</h1>
     <p>Incorrect username or password. Please try again.</p>
@@ -436,738 +299,259 @@ This project structure organizes the code and resources in a clear manner, facil
 ```
 
 **Description:**
-- `<!DOCTYPE html>`: Declaration of HTML document type.
-- `<html lang="en">`: Opening HTML tag with language specification.
-- `<head>`: Section containing metadata and external resource links.
-- `<meta charset="UTF-8">`: Specifies character encoding.
-- `<meta name="viewport" content="width=device-width, initial-scale=1.0">`: Viewport settings for responsive design.
-- `<title>Login Failed</title>`: Page title.
-- `<style>`: Section containing CSS styles.
-  - `body`: Styling for the body element.
-  - `.container`: Container styling.
-  - `h1`: Styling for the header.
-  - `p`: Styling for the paragraph.
-  - `.try-again-btn`: Styling for the "Try Again" button.
-  - `.home-icon`: Styling for the home icon.
-- `</style>`: End of style section.
-- `</head>`: End of head section.
-- `<body>`: Section containing the page content.
-- `<a href="index" class="home-icon">&#127968;</a>`: Home icon redirecting to the homepage.
-- `<div class="container">`: Container for page content.
-- `<h1>Login Failed</h1>`: Header for failed login.
-- `<p>Incorrect username or password. Please try again.</p>`: Error message.
-- `<a href="signin" class="try-again-btn">Try Again</a>`: "Try Again" button to navigate back to the sign-in page.
-- `</body>`: End of body section.
-- `</html>`: End of HTML document.
+- **`<jsp:useBean id="now" class="java.util.Date"/>`:** Creates a Java bean named `now` of type `java.util.Date`, which can be utilized within the JSP to represent the current date and time.
+- **`<%@ page contentType="text/html; charset=UTF-8" %>`:** Directive that sets the content type of the page to `text/html` and the character encoding to `UTF-8`, ensuring proper rendering and text encoding in the browser.
+- **`<!DOCTYPE html>`:** Declares the document type, specifying that this is an HTML5 document.
+- **`<html lang="en">`:** Begins the HTML document with the language attribute set to English (`en`), indicating the language used in the document's content.
+- **`<head>`:** Contains metadata about the document and links to external resources like stylesheets.
+- **`<meta charset="UTF-8">`:** Specifies the character encoding as UTF-8, supporting a wide array of characters.
+- **`<meta name="viewport" content="width=device-width, initial-scale=1.0">`:** Configures the viewport to ensure proper scaling on different devices, making the page responsive.
+- **`<title>Login Failed</title>`:** Sets the title of the webpage to "Login Failed," which appears in the browser tab.
+- **`<link rel="stylesheet" href="/resources/static/css/stylesNotSignin.css">`:** Links an external CSS file (`stylesNotSignin.css`) for styling the page, located in the `/resources/static/css/` directory.
+- **`</head>`:** Ends the head section, closing the metadata and resource links.
+- **`<body>`:** Begins the body section, which contains the main content of the page.
+- **`<%@ include file="../dynamic/home_icon.jspf" %>`:** Includes the content of the `home_icon.jspf` file located in the `../dynamic/` directory. This likely adds a home icon or related functionality to the page.
+- **`<div class="container">`:** A `div` element with the `container` class that is used to structure the content on the page and apply specific styling.
+- **`<h1>Login Failed</h1>`:** Header that displays the message "Login Failed," informing the user that their login attempt was unsuccessful.
+- **`<p>Incorrect username or password. Please try again.</p>`:** Paragraph that provides additional context, explaining that the username or password was incorrect and prompting the user to try logging in again.
+- **`<a href="signin" class="try-again-btn">Try Again</a>`:** A link styled as a button with the class `try-again-btn`, redirecting the user back to the sign-in page to attempt logging in again.
+- **`</div>`:** Closes the `div` container.
+- **`</body>`:** Ends the body section, closing the main content of the page.
+- **`</html>`:** Ends the HTML document, marking the end of the content.
 
 #### 3.1.4 `register_cpp.jsp`
 
 ```jsp
+<jsp:useBean id="now" class="java.util.Date"/>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Register as C++ Developer</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f0f0f0;
-      text-align: center;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      position: relative;
-    }
-
-    .container {
-      width: 50%;
-    }
-
-    h1 {
-      color: #333;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .form-container {
-      width: 300px;
-      margin: 0 auto;
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    input[type="text"],
-    input[type="password"],
-    select {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      box-sizing: border-box;
-    }
-
-    input[type="submit"] {
-      width: 100%;
-      padding: 10px;
-      background-color: #4CAF50;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    input[type="submit"]:hover {
-      background-color: #45a049;
-    }
-
-    .home-icon {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      font-size: 40px;
-      color: #333;
-      text-decoration: none;
-    }
-
-    .home-icon:hover {
-      color: #f00;
-    }
-
-    .password-error {
-      border: 1px solid red !important;
-    }
-
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register as C++ Developer</title>
+    <link rel="stylesheet" href="/resources/static/css/stylesSignupSpecificDev.css">
 </head>
 <body>
-<a href="index" class="home-icon">&#127968;</a>
+<%@ include file="../dynamic/home_icon.jspf" %>
 <div class="container">
-  <h1>Registration Page for C++ Developer</h1>
-  <div class="form-container">
-    <form action="register_cpp" method="post" onsubmit="return validatePassword()">
-      <input type="text" name="name" placeholder="Name" required><br>
-      <input type="text" name="surname" placeholder="Surname" required><br>
-      <input type="text" name="login" placeholder="Login" required><br>
-      <input type="password" name="password" id="password" placeholder="Password" required><br>
-      <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required onkeyup="validatePassword()"><br>
-      <input type="text" name="toolname" placeholder="Tool Name" required><br>
-      <select name="experience" required>
-        <option value="" disabled selected>Select Experience</option>
-        <option value="JUNIOR">Junior</option>
-        <option value="MID">Mid</option>
-        <option value="SENIOR">Senior</option>
-      </select><br>
-      <input type="submit" value="Sign up">
-    </form>
-  </div>
+    <h1>Registration Page for C++ Developer</h1>
+    <div class="form-container">
+        <form action="register_cpp" method="post" onsubmit="return validatePassword()">
+            <%@ include file="../dynamic/register_form_content.jspf" %>
+        </form>
+    </div>
 </div>
-
-<script>
-  function validatePassword() {
-    var password = document.getElementById("password");
-    var confirm_password = document.getElementById("confirm_password");
-
-    if (password.value !== confirm_password.value) {
-      confirm_password.classList.add("password-error");
-      return false;
-    } else {
-      confirm_password.classList.remove("password-error");
-      return true;
-    }
-  }
-</script>
-
+<script src="/resources/static/js/registerSpecificDev.js"></script>
 </body>
 </html>
 ```
 
 **Description:**
-- `<!DOCTYPE html>`: Declaration of HTML document type.
-- `<html lang="en">`: Opening HTML tag with language specification.
-- `<head>`: Section containing metadata and external resource links.
-- `<meta charset="UTF-8">`: Specifies character encoding.
-- `<meta name="viewport" content="width=device-width, initial-scale=1.0">`: Viewport settings for responsive design.
-- `<title>Register as C++ Developer</title>`: Page title.
-- `<style>`: Section containing CSS styles.
-  - `body`: Styling for the body element.
-  - `.container`: Container styling.
-  - `h1`: Styling for the header.
-  - `form`: Styling for the form.
-  - `input`, `select`, `button`: Styling for form elements.
-- `</style>`: End of style section.
-- `</head>`: End of head section.
-- `<body>`: Section containing the page content.
-- `<div class="container">`: Container for page content.
-- `<h1>Register as C++ Developer</h1>`: Header for the C++ developer registration form.
-- `<form>`: Registration form for C++ developers.
-  - `<label>` and `<input>`: Input fields for user details.
-  - `<button>`: Submit button.
-- `</form>`: End of form.
-- `</div>`: End of container.
-- `</body>`: End of body section.
-- `</html>`: End of HTML document.
+- **`<jsp:useBean id="now" class="java.util.Date"/>`:** Initializes a Java bean named `now` of type `java.util.Date`, allowing the page to access the current date and time.
+- **`<%@ page contentType="text/html; charset=UTF-8" %>`:** Sets the content type of the page to `text/html` and specifies the character encoding as UTF-8 to support a wide range of characters.
+- **`<!DOCTYPE html>`:** Declares the document type as HTML5, ensuring that the page adheres to HTML5 standards.
+- **`<html lang="en">`:** Opens the HTML document and sets the language attribute to English (`en`).
+- **`<head>`:** Contains metadata, links to stylesheets, and other head elements.
+- **`<meta charset="UTF-8">`:** Defines the character encoding for the page as UTF-8.
+- **`<meta name="viewport" content="width=device-width, initial-scale=1.0">`:** Configures the viewport settings to ensure the page is responsive and scales appropriately on various devices.
+- **`<title>Register as C++ Developer</title>`:** Sets the title of the page to "Register as C++ Developer," which appears in the browser's title bar or tab.
+- **`<link rel="stylesheet" href="/resources/static/css/stylesSignupSpecificDev.css">`:** Links to an external CSS file (`stylesSignupSpecificDev.css`) located in the `/resources/static/css/` directory, which contains styles specific to the registration page for C++ Developers.
+- **`</head>`:** Closes the head section of the HTML document.
+- **`<body>`:** Begins the body section of the HTML document, where the visible content is placed.
+- **`<%@ include file="../dynamic/home_icon.jspf" %>`:** Includes the content of the `home_icon.jspf` file from the `../dynamic/` directory, typically providing a home icon or navigation element.
+- **`<div class="container">`:** A container `div` with the `container` class used to center and structure the content on the page.
+- **`<h1>Registration Page for C++ Developer</h1>`:** Displays the main heading "Registration Page for C++ Developer," indicating the purpose of the page.
+- **`<div class="form-container">`:** A `div` with the `form-container` class that styles and contains the registration form.
+- **`<form action="register_cpp" method="post" onsubmit="return validatePassword()">`:** Defines a form that submits data to the `register_cpp` endpoint. The `onsubmit` attribute calls the `validatePassword()` JavaScript function to ensure that the passwords match before submission.
+  - **`<%@ include file="../dynamic/register_form_content.jspf" %>`:** Includes the content from the `register_form_content.jspf` file located in the `../dynamic/` directory. This file contains the common form fields and inputs used in the registration process.
+- **`</form>`:** Closes the form element.
+- **`</div>`:** Closes the `form-container` div.
+- **`</div>`:** Closes the `container` div.
+- **`<script src="/resources/static/js/registerSpecificDev.js"></script>`:** Links to an external JavaScript file (`registerSpecificDev.js`) located in the `/resources/static/js/` directory, which includes scripts for validating and handling the registration process specific to developer roles.
+- **`</body>`:** Closes the body section of the HTML document.
+- **`</html>`:** Closes the HTML document.
+
 
 #### 3.1.5 `register_csharp.jsp`
 
 ```jsp
+<jsp:useBean id="now" class="java.util.Date"/>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register as C# Developer</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            position: relative;
-        }
-
-        .container {
-            width: 50%;
-        }
-
-        h1 {
-            color: #333;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .form-container {
-            width: 300px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        input[type="text"],
-        input[type="password"],
-        select {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-
-        input[type="submit"] {
-            width: 100%;
-            padding: 10px;
-            background-color: #4CAF50;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #45a049;
-        }
-
-        .home-icon {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 40px;
-            color: #333;
-            text-decoration: none;
-        }
-
-        .home-icon:hover {
-            color: #f00;
-        }
-
-        .password-error {
-            border: 1px solid red !important;
-        }
-
-    </style>
+    <link rel="stylesheet" href="/resources/static/css/stylesSignupSpecificDev.css">
 </head>
 <body>
-<a href="index" class="home-icon">&#127968;</a>
+<%@ include file="../dynamic/home_icon.jspf" %>
 <div class="container">
     <h1>Registration Page for C# Developer</h1>
     <div class="form-container">
         <form action="register_csharp" method="post" onsubmit="return validatePassword()">
-            <input type="text" name="name" placeholder="Name" required><br>
-            <input type="text" name="surname" placeholder="Surname" required><br>
-            <input type="text" name="login" placeholder="Login" required><br>
-            <input type="password" name="password" id="password" placeholder="Password" required><br>
-            <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required onkeyup="validatePassword()"><br>
-            <input type="text" name="toolname" placeholder="Tool Name" required><br>
-            <select name="experience" required>
-                <option value="" disabled selected>Select Experience</option>
-                <option value="JUNIOR">Junior</option>
-                <option value="MID">Mid</option>
-                <option value="SENIOR">Senior</option>
-            </select><br>
-            <input type="submit" value="Sign up">
+            <%@ include file="../dynamic/register_form_content.jspf" %>
         </form>
     </div>
 </div>
-
-<script>
-    function validatePassword() {
-        var password = document.getElementById("password");
-        var confirm_password = document.getElementById("confirm_password");
-
-        if (password.value !== confirm_password.value) {
-            confirm_password.classList.add("password-error");
-            return false;
-        } else {
-            confirm_password.classList.remove("password-error");
-            return true;
-        }
-    }
-</script>
-
+<script src="/resources/static/js/registerSpecificDev.js"></script>
 </body>
 </html>
 ```
 
 **Description:**
-- `<!DOCTYPE html>`: Declaration of HTML document type.
-- `<html lang="en">`: Opening HTML tag with language specification.
-- `<head>`: Section containing metadata and external resource links.
-- `<meta charset="UTF-8">`: Specifies character encoding.
-- `<meta name="viewport" content="width=device-width, initial-scale=1.0">`: Viewport settings for responsive design.
-- `<title>Register as C# Developer</title>`: Page title.
-- `<style>`: Section containing CSS styles.
-  - `body`: Styling for the body element.
-  - `.container`: Container styling.
-  - `h1`: Styling for the header.
-  - `.form-container`: Styling for the form container.
-  - `input[type="text"], input[type="password"], select`: Styling for text and password fields, and select elements.
-  - `input[type="submit"]`: Styling for submit button.
-  - `.home-icon`: Styling for the home icon.
-  - `.password-error`: Styling for the password confirmation error field.
-- `</style>`: End of style section.
-- `</head>`: End of head section.
-- `<body>`: Section containing the page content.
-- `<a href="index" class="home-icon">&#127968;</a>`: Home icon redirecting to the homepage.
-- `<div class="container">`: Container for page content.
-- `<h1>Registration Page for C# Developer</h1>`: Header for the C# developer registration form.
-- `<form>`: Registration form for C# developers.
-  - `onsubmit="return validatePassword()"`: Password validation function on form submission.
-  - `onkeyup="validatePassword()"`: Password validation function on keyup event.
-  - `<script>`: Section containing JavaScript for password validation.
-- `</form>`: End of form.
-- `</div>`: End of container.
-- `</body>`: End of body section.
-- `</html>`: End of HTML document.
+- **`<jsp:useBean id="now" class="java.util.Date"/>`:** Initializes a Java bean named `now` of type `java.util.Date`, allowing the page to access the current date and time.
+- **`<%@ page contentType="text/html; charset=UTF-8" %>`:** Specifies that the content type of the page is `text/html` and sets the character encoding to UTF-8 to support a wide range of characters.
+- **`<!DOCTYPE html>`:** Declares the document type as HTML5, ensuring that the page adheres to HTML5 standards.
+- **`<html lang="en">`:** Opens the HTML document and sets the language attribute to English (`en`).
+- **`<head>`:** Contains metadata, links to stylesheets, and other head elements.
+- **`<meta charset="UTF-8">`:** Sets the character encoding for the page to UTF-8.
+- **`<meta name="viewport" content="width=device-width, initial-scale=1.0">`:** Configures the viewport settings to ensure the page is responsive and scales appropriately on different devices.
+- **`<title>Register as C# Developer</title>`:** Defines the title of the page as "Register as C# Developer," which appears in the browser's title bar or tab.
+- **`<link rel="stylesheet" href="/resources/static/css/stylesSignupSpecificDev.css">`:** Links to an external CSS file (`stylesSignupSpecificDev.css`) in the `/resources/static/css/` directory, which contains styles specific to the registration page for C# Developers.
+- **`</head>`:** Closes the head section of the HTML document.
+- **`<body>`:** Begins the body section of the HTML document, where the visible content is placed.
+- **`<%@ include file="../dynamic/home_icon.jspf" %>`:** Includes the content of the `home_icon.jspf` file from the `../dynamic/` directory, typically providing a home icon or navigation element.
+- **`<div class="container">`:** A container `div` with the `container` class, used to center and structure the content on the page.
+- **`<h1>Registration Page for C# Developer</h1>`:** Displays the main heading "Registration Page for C# Developer," indicating the purpose of the page.
+- **`<div class="form-container">`:** A `div` with the `form-container` class that styles and contains the registration form.
+- **`<form action="register_csharp" method="post" onsubmit="return validatePassword()">`:** Defines a form that submits data to the `register_csharp` endpoint. The `onsubmit` attribute calls the `validatePassword()` JavaScript function to ensure that the passwords match before submission.
+  - **`<%@ include file="../dynamic/register_form_content.jspf" %>`:** Includes the content from the `register_form_content.jspf` file located in the `../dynamic/` directory. This file contains the common form fields and inputs used in the registration process.
+- **`</form>`:** Closes the form element.
+- **`</div>`:** Closes the `form-container` div.
+- **`</div>`:** Closes the `container` div.
+- **`<script src="/resources/static/js/registerSpecificDev.js"></script>`:** Links to an external JavaScript file (`registerSpecificDev.js`) located in the `/resources/static/js/` directory, which includes scripts for validating and handling the registration process specific to developer roles.
+- **`</body>`:** Closes the body section of the HTML document.
+- **`</html>`:** Closes the HTML document.
+
 
 #### 3.1.6 `register_database.jsp`
 
 ```jsp
+<jsp:useBean id="now" class="java.util.Date"/>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Register as Database Analyst</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f0f0f0;
-      text-align: center;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      position: relative;
-    }
-
-    .container {
-      width: 50%;
-    }
-
-    h1 {
-      color: #333;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .form-container {
-      width: 300px;
-      margin: 0 auto;
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    input[type="text"],
-    input[type="password"],
-    select {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      box-sizing: border-box;
-    }
-
-    input[type="submit"] {
-      width: 100%;
-      padding: 10px;
-      background-color: #4CAF50;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    input[type="submit"]:hover {
-      background-color: #45a049;
-    }
-
-    .home-icon {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      font-size: 40px;
-      color: #333;
-      text-decoration: none;
-    }
-
-    .home-icon:hover {
-      color: #f00;
-    }
-
-    .password-error {
-      border: 1px solid red !important;
-    }
-
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register as Database Analyst</title>
+    <link rel="stylesheet" href="/resources/static/css/stylesSignupSpecificDev.css">
 </head>
 <body>
-<a href="index" class="home-icon">&#127968;</a>
+<%@ include file="../dynamic/home_icon.jspf" %>
 <div class="container">
-  <h1>Registration Page for Database Analyst</h1>
-  <div class="form-container">
-    <form action="/register_database" method="post" onsubmit="return validatePassword()">
-      <input type="text" name="name" placeholder="Name" required><br>
-      <input type="text" name="surname" placeholder="Surname" required><br>
-      <input type="text" name="login" placeholder="Login" required><br>
-      <input type="password" name="password" id="password" placeholder="Password" required><br>
-      <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required onkeyup="validatePassword()"><br>
-      <input type="text" name="toolname" placeholder="Tool Name" required><br>
-      <select name="experience" required>
-        <option value="" disabled selected>Select Experience</option>
-        <option value="JUNIOR">Junior</option>
-        <option value="MID">Mid</option>
-        <option value="SENIOR">Senior</option>
-      </select><br>
-      <input type="submit" value="Sign up">
-    </form>
-  </div>
+    <h1>Registration Page for Database Analyst</h1>
+    <div class="form-container">
+        <form action="/register_database" method="post" onsubmit="return validatePassword()">
+            <%@ include file="../dynamic/register_form_content.jspf" %>
+        </form>
+    </div>
 </div>
-
-<script>
-  function validatePassword() {
-    var password = document.getElementById("password");
-    var confirm_password = document.getElementById("confirm_password");
-
-    if (password.value !== confirm_password.value) {
-      confirm_password.classList.add("password-error");
-      return false;
-    } else {
-      confirm_password.classList.remove("password-error");
-      return true;
-    }
-  }
-</script>
-
+<script src="/resources/static/js/registerSpecificDev.js"></script>
 </body>
 </html>
 ```
 
 **Description:**
-- `<!DOCTYPE html>`: Declaration of HTML document type.
-- `<html lang="en">`: Opening HTML tag with language specification.
-- `<head>`: Section containing metadata and external resource links.
-- `<meta charset="UTF-8">`: Specifies character encoding.
-- `<meta name="viewport" content="width=device-width, initial-scale=1.0">`: Viewport settings for responsive design.
-- `<title>Register as Database Analyst</title>`: Page title.
-- `<style>`: Section containing CSS styles.
-  - `body`: Styling for the body element.
-  - `.container`: Container styling.
-  - `h1`: Styling for the header.
-  - `.form-container`: Styling for the form container.
-  - `input[type="text"], input[type="password"], select`: Styling for text and password fields, and select elements.
-  - `input[type="submit"]`: Styling for submit button.
-  - `.home-icon`: Styling for the home icon.
-  - `.password-error`: Styling for the password confirmation error field.
-- `</style>`: End of style section.
-- `</head>`: End of head section.
-- `<body>`: Section containing the page content.
-- `<a href="index" class="home-icon">&#127968;</a>`: Home icon redirecting to the homepage.
-- `<div class="container">`: Container for page content.
-- `<h1>Registration Page for Database Analyst</h1>`: Header for the Database Analyst registration form.
-- `<form>`: Registration form for Database Analysts.
-  - `onsubmit="return validatePassword()"`: Password validation function on form submission.
-  - `onkeyup="validatePassword()"`: Password validation function on keyup event.
-  - `<script>`: Section containing JavaScript for password validation.
-- `</form>`: End of form.
-- `</div>`: End of container.
-- `</body>`: End of body section.
-- `</html>`: End of HTML document.
+- **`<jsp:useBean id="now" class="java.util.Date"/>`:** Initializes a Java bean named `now` of type `java.util.Date`, which allows access to the current date and time within the JSP page.
+- **`<%@ page contentType="text/html; charset=UTF-8" %>`:** Sets the content type of the page to `text/html` and specifies UTF-8 character encoding to ensure proper rendering of text.
+- **`<!DOCTYPE html>`:** Declares the document as HTML5, ensuring compliance with HTML5 standards.
+- **`<html lang="en">`:** Opens the HTML document and specifies that the content is in English (`en`).
+- **`<head>`:** Contains metadata and links to external resources.
+- **`<meta charset="UTF-8">`:** Defines the character encoding for the page as UTF-8.
+- **`<meta name="viewport" content="width=device-width, initial-scale=1.0">`:** Configures the viewport to ensure responsive design, making the page adaptable to different screen sizes.
+- **`<title>Register as Database Analyst</title>`:** Sets the page title to "Register as Database Analyst," which appears in the browser tab or title bar.
+- **`<link rel="stylesheet" href="/resources/static/css/stylesSignupSpecificDev.css">`:** Links to an external CSS file (`stylesSignupSpecificDev.css`) located in the `/resources/static/css/` directory, which provides styles specific to the Database Analyst registration page.
+- **`</head>`:** Closes the head section of the HTML document.
+- **`<body>`:** Begins the body section where the main content of the page is included.
+- **`<%@ include file="../dynamic/home_icon.jspf" %>`:** Includes the content from the `home_icon.jspf` file located in the `../dynamic/` directory, typically providing a home icon or similar navigation feature.
+- **`<div class="container">`:** A `div` with the `container` class that centers and organizes the page content.
+- **`<h1>Registration Page for Database Analyst</h1>`:** Displays the main heading "Registration Page for Database Analyst," indicating the purpose of the page.
+- **`<div class="form-container">`:** A `div` with the `form-container` class that styles and contains the registration form.
+- **`<form action="/register_database" method="post" onsubmit="return validatePassword()">`:** Defines a form that submits data to the `/register_database` endpoint. The `onsubmit` attribute calls the `validatePassword()` JavaScript function to validate the form before submission.
+  - **`<%@ include file="../dynamic/register_form_content.jspf" %>`:** Includes the content from the `register_form_content.jspf` file located in the `../dynamic/` directory, which contains the form fields and inputs common to various registration forms.
+- **`</form>`:** Closes the form element.
+- **`</div>`:** Closes the `form-container` div.
+- **`</div>`:** Closes the `container` div.
+- **`<script src="/resources/static/js/registerSpecificDev.js"></script>`:** Links to an external JavaScript file (`registerSpecificDev.js`) located in the `/resources/static/js/` directory. This file likely contains scripts related to the registration process for specific developer roles, including validation functions.
+- **`</body>`:** Closes the body section of the HTML document.
+- **`</html>`:** Closes the HTML document.
+
 
 #### 3.1.7 `register_frontend.jsp`
 
 ```jsp
+<jsp:useBean id="now" class="java.util.Date"/>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register as Front-end Developer</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            position: relative;
-        }
-
-        .container {
-            width: 50%;
-        }
-
-        h1 {
-            color: #333;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .form-container {
-            width: 300px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        input[type="text"],
-        input[type="password"],
-        select {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-
-        input[type="submit"] {
-            width: 100%;
-            padding: 10px;
-            background-color: #4CAF50;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #45a049;
-        }
-
-        .home-icon {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 40px;
-            color: #333;
-            text-decoration: none;
-        }
-
-        .home-icon:hover {
-            color: #f00;
-        }
-
-        .password-error {
-            border: 1px solid red !important;
-        }
-
-    </style>
+    <link rel="stylesheet" href="/resources/static/css/stylesSignupSpecificDev.css">
 </head>
 <body>
-<a href="index" class="home-icon">&#127968;</a>
+<%@ include file="../dynamic/home_icon.jspf" %>
 <div class="container">
     <h1>Registration Page for Front-end Developer</h1>
     <div class="form-container">
         <form action="/register_frontend" method="post" onsubmit="return validatePassword()">
-            <input type="text" name="name" placeholder="Name" required><br>
-            <input type="text" name="surname" placeholder="Surname" required><br>
-            <input type="text" name="login" placeholder="Login" required><br>
-            <input type="password" name="password" id="password" placeholder="Password" required><br>
-            <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required onkeyup="validatePassword()"><br>
-            <input type="text" name="toolname" placeholder="Tool Name" required><br>
-            <select name="experience" required>
-                <option value="" disabled selected>Select Experience</option>
-                <option value="JUNIOR">Junior</option>
-                <option value="MID">Mid</option>
-                <option value="SENIOR">Senior</option>
-            </select><br>
-            <input type="submit" value="Sign up">
+            <%@ include file="../dynamic/register_form_content.jspf" %>
         </form>
     </div>
 </div>
-
-<script>
-    function validatePassword() {
-        var password = document.getElementById("password");
-        var confirm_password = document.getElementById("confirm_password");
-
-        if (password.value !== confirm_password.value) {
-            confirm_password.classList.add("password-error");
-            return false;
-        } else {
-            confirm_password.classList.remove("password-error");
-            return true;
-        }
-    }
-</script>
-
+<script src="/resources/static/js/registerSpecificDev.js"></script>
 </body>
 </html>
 ```
 
 **Description:**
-- `<!DOCTYPE html>`: Declaration of HTML document type.
-- `<html lang="en">`: Opening HTML tag with language specification.
-- `<head>`: Section containing metadata and external resource links.
-- `<meta charset="UTF-8">`: Specifies character encoding.
-- `<meta name="viewport" content="width=device-width, initial-scale=1.0">`: Viewport settings for responsive design.
-- `<title>Register as Front-end Developer</title>`: Page title.
-- `<style>`: Section containing CSS styles.
-  - `body`: Styling for the body element.
-  - `.container`: Container styling.
-  - `h1`: Styling for the header.
-  - `.form-container`: Styling for the form container.
-  - `input[type="text"], input[type="password"], select`: Styling for text and password fields, and select elements.
-  - `input[type="submit"]`: Styling for submit button.
-  - `.home-icon`: Styling for the home icon.
-  - `.password-error`: Styling for the password confirmation error field.
-- `</style>`: End of style section.
-- `</head>`: End of head section.
-- `<body>`: Section containing the page content.
-- `<a href="index" class="home-icon">&#127968;</a>`: Home icon redirecting to the homepage.
-- `<div class="container">`: Container for page content.
-- `<h1>Registration Page for Front-end Developer</h1>`: Header for the Front-end developer registration form.
-- `<form>`: Registration form for Front-end developers.
-- `</form>`: End of form.
-- `</div>`: End of container.
-- `</body>`: End of body section.
-- `</html>`: End of HTML document.
+- **`<jsp:useBean id="now" class="java.util.Date"/>`:** Initializes a Java bean named `now` of type `java.util.Date`, which provides access to the current date and time within the JSP page.
+- **`<%@ page contentType="text/html; charset=UTF-8" %>`:** Specifies that the page content type is `text/html` and the character encoding is set to UTF-8 to ensure proper text rendering.
+- **`<!DOCTYPE html>`:** Declares the document as HTML5, ensuring it adheres to HTML5 standards.
+- **`<html lang="en">`:** Opens the HTML document and specifies that the language of the content is English (`en`).
+- **`<head>`:** Contains metadata and links to external resources.
+- **`<meta charset="UTF-8">`:** Sets the character encoding of the page to UTF-8 for proper text display.
+- **`<meta name="viewport" content="width=device-width, initial-scale=1.0">`:** Configures the viewport for responsive design, enabling the page to adapt to different screen sizes.
+- **`<title>Register as Front-end Developer</title>`:** Sets the title of the page to "Register as Front-end Developer," which is displayed in the browser’s title bar or tab.
+- **`<link rel="stylesheet" href="/resources/static/css/stylesSignupSpecificDev.css">`:** Links to an external CSS file (`stylesSignupSpecificDev.css`) located in the `/resources/static/css/` directory. This file contains styles specific to the Front-end Developer registration page.
+- **`</head>`:** Closes the head section of the HTML document.
+- **`<body>`:** Begins the body section where the main content of the page is placed.
+- **`<%@ include file="../dynamic/home_icon.jspf" %>`:** Includes the content from the `home_icon.jspf` file located in the `../dynamic/` directory, which typically provides a home icon or similar navigation feature.
+- **`<div class="container">`:** A `div` element with the `container` class to center and organize the page content.
+- **`<h1>Registration Page for Front-end Developer</h1>`:** Displays the main heading "Registration Page for Front-end Developer," indicating the purpose of the page.
+- **`<div class="form-container">`:** A `div` element with the `form-container` class that styles and contains the registration form.
+- **`<form action="/register_frontend" method="post" onsubmit="return validatePassword()">`:** Defines a form that submits data to the `/register_frontend` endpoint when posted. The `onsubmit` attribute calls the `validatePassword()` JavaScript function to validate the form data before submission.
+  - **`<%@ include file="../dynamic/register_form_content.jspf" %>`:** Includes the content from the `register_form_content.jspf` file located in the `../dynamic/` directory, which contains the form fields and inputs common to the registration forms for different roles.
+- **`</form>`:** Closes the form element.
+- **`</div>`:** Closes the `form-container` div.
+- **`</div>`:** Closes the `container` div.
+- **`<script src="/resources/static/js/registerSpecificDev.js"></script>`:** Links to an external JavaScript file (`registerSpecificDev.js`) located in the `/resources/static/js/` directory. This file likely contains scripts related to the registration process for specific developer roles.
+- **`</body>`:** Closes the body section of the HTML document.
+- **`</html>`:** Closes the HTML document.
+
 
 #### 3.1.8 `register_java.jsp`
 
 ```jsp
+<jsp:useBean id="now" class="java.util.Date"/>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Register as Java Developer</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f0f0f0;
-      text-align: center;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      position: relative;
-    }
-
-    .container {
-      width: 50%;
-    }
-
-    h1 {
-      color: #333;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .form-container {
-      width: 300px;
-      margin: 0 auto;
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    input[type="text"],
-    input[type="password"],
-    select {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      box-sizing: border-box;
-    }
-
-    input[type="submit"] {
-      width: 100%;
-      padding: 10px;
-      background-color: #4CAF50;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    input[type="submit"]:hover {
-      background-color: #45a049;
-    }
-
-    .home-icon {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      font-size: 40px;
-      color: #333;
-      text-decoration: none;
-    }
-
-    .home-icon:hover {
-      color: #f00;
-    }
-
-    .password-error {
-      border: 1px solid red !important;
-    }
-
-  </style>
+  <link rel="stylesheet" href="/resources/static/css/stylesSignupSpecificDev.css">
 </head>
 <body>
-<a href="index" class="home-icon">&#127968;</a>
+<%@ include file="../dynamic/home_icon.jspf" %>
 <div class="container">
-  <h1>Registration Page for Python Developer</h1>
+  <h1>Registration Page for Java Developer</h1>
   <div class="form-container">
     <form action="/register_java" method="post" onsubmit="return validatePassword()">
       <input type="text" name="name" placeholder="Name" required><br>
@@ -1186,276 +570,117 @@ This project structure organizes the code and resources in a clear manner, facil
     </form>
   </div>
 </div>
-
-<script>
-  function validatePassword() {
-    var password = document.getElementById("password");
-    var confirm_password = document.getElementById("confirm_password");
-
-    if (password.value !== confirm_password.value) {
-      confirm_password.classList.add("password-error");
-      return false;
-    } else {
-      confirm_password.classList.remove("password-error");
-      return true;
-    }
-  }
-</script>
-
+<script src="/resources/static/js/registerSpecificDev.js"></script>
 </body>
 </html>
 ```
 
 **Description:**
-- `<!DOCTYPE html>`: Declaration of HTML document type.
-- `<html lang="en">`: Opening HTML tag with language specification.
-- `<head>`: Section containing metadata and external resource links.
-- `<meta charset="UTF-8">`: Specifies character encoding.
-- `<meta name="viewport" content="width=device-width, initial-scale=1.0">`: Viewport settings for responsive design.
-- `<title>Register as Java Developer</title>`: Page title.
-- `<style>`: Section containing CSS styles.
-  - `body`: Styling for the body element.
-  - `.container`: Container styling.
-  - `h1`: Styling for the header.
-  - `.form-container`: Styling for the form container.
-  - `input[type="text"], input[type="password"], select`: Styling for text and password fields, and select elements.
-  - `input[type="submit"]`: Styling for submit button.
-  - `.home-icon`: Styling for the home icon.
-  - `.password-error`: Styling for the password confirmation error field.
-- `</style>`: End of style section.
-- `</head>`: End of head section.
-- `<body>`: Section containing the page content.
-- `<a href="index" class="home-icon">&#127968;</a>`: Home icon redirecting to the homepage.
-- `<div class="container">`: Container for page content.
-- `<h1>Registration Page for Java Developer</h1>`: Header for the Java developer registration form.
-- `<form>`: Registration form for Java developers.
-- `</form>`: End of form.
-- `</div>`: End of container.
-- `</body>`: End of body section.
-- `</html>`: End of HTML document.
+- **`<jsp:useBean id="now" class="java.util.Date"/>`:** Initializes a Java bean named `now` of type `java.util.Date`, which allows access to the current date and time within the JSP page.
+- **`<%@ page contentType="text/html; charset=UTF-8" %>`:** Specifies that the content type of the page is `text/html` and sets the character encoding to UTF-8, ensuring proper rendering of text and special characters.
+- **`<!DOCTYPE html>`:** Declares the document as an HTML5 document, ensuring it is parsed and displayed according to HTML5 standards.
+- **`<html lang="en">`:** Opens the HTML document and specifies that the content is in English (`en`).
+- **`<head>`:** Contains metadata and links to external resources for the document.
+- **`<meta charset="UTF-8">`:** Sets the character encoding for the page to UTF-8, ensuring that text is displayed correctly.
+- **`<meta name="viewport" content="width=device-width, initial-scale=1.0">`:** Configures the viewport for responsive design, allowing the page to scale appropriately on different devices.
+- **`<title>Register as Java Developer</title>`:** Sets the title of the page to "Register as Java Developer," which is shown in the browser’s title bar or tab.
+- **`<link rel="stylesheet" href="/resources/static/css/stylesSignupSpecificDev.css">`:** Links to an external CSS file (`stylesSignupSpecificDev.css`) located in the `/resources/static/css/` directory. This file contains styles specific to the Java Developer registration page.
+- **`</head>`:** Closes the head section of the HTML document.
+- **`<body>`:** Begins the body section where the main content of the page is placed.
+- **`<%@ include file="../dynamic/home_icon.jspf" %>`:** Includes the content from the `home_icon.jspf` file located in the `../dynamic/` directory, which typically provides a home icon or similar navigation feature.
+- **`<div class="container">`:** A `div` element with the `container` class that centers and organizes the page content.
+- **`<h1>Registration Page for Java Developer</h1>`:** Displays the main heading "Registration Page for Java Developer," indicating the specific purpose of the page.
+- **`<div class="form-container">`:** A `div` element with the `form-container` class that styles and contains the registration form.
+- **`<form action="/register_java" method="post" onsubmit="return validatePassword()">`:** Defines a form that submits data to the `/register_java` endpoint when the form is posted. The `onsubmit` attribute calls a JavaScript function `validatePassword()` to perform client-side validation before form submission.
+  - **`<input type="text" name="name" placeholder="Name" required>`:** Input field for the user's name, with a placeholder text "Name" and marked as required.
+  - **`<input type="text" name="surname" placeholder="Surname" required>`:** Input field for the user's surname, with a placeholder text "Surname" and marked as required.
+  - **`<input type="text" name="login" placeholder="Login" required>`:** Input field for the user's login, with a placeholder text "Login" and marked as required.
+  - **`<input type="password" name="password" id="password" placeholder="Password" required>`:** Input field for the user's password, with a placeholder text "Password" and marked as required. The `id="password"` attribute is used to reference the field in JavaScript validation.
+  - **`<input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required onkeyup="validatePassword()">`:** Input field for confirming the user's password, with a placeholder text "Confirm Password" and marked as required. The `onkeyup` attribute triggers the `validatePassword()` function on each key press to validate the password match.
+  - **`<input type="text" name="toolname" placeholder="Tool Name" required>`:** Input field for the tool name associated with the Java Developer role, with a placeholder text "Tool Name" and marked as required.
+  - **`<select name="experience" required>`:** Dropdown menu for selecting the user's experience level, with options for "Junior," "Mid," and "Senior," and marked as required.
+    - **`<option value="" disabled selected>Select Experience</option>`:** Placeholder option for the dropdown menu, which is disabled and selected by default.
+    - **`<option value="JUNIOR">Junior</option>`:** Option for "Junior" experience level.
+    - **`<option value="MID">Mid</option>`:** Option for "Mid" experience level.
+    - **`<option value="SENIOR">Senior</option>`:** Option for "Senior" experience level.
+  - **`<input type="submit" value="Sign up">`:** Submit button for the form, with the text "Sign up."
+- **`</form>`:** Closes the form element.
+- **`</div>`:** Closes the `form-container` div.
+- **`</div>`:** Closes the `container` div.
+- **`<script src="/resources/static/js/registerSpecificDev.js"></script>`:** Links to an external JavaScript file (`registerSpecificDev.js`) located in the `/resources/static/js/` directory, which likely contains scripts related to the registration process for Java Developers.
+- **`</body>`:** Closes the body section of the HTML document.
+- **`</html>`:** Closes the HTML document.
+
 
 #### 3.1.9 `register_python.jsp`
 
 ```jsp
+<jsp:useBean id="now" class="java.util.Date"/>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Register as Python Developer</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f0f0f0;
-      text-align: center;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      position: relative;
-    }
-
-    .container {
-      width: 50%;
-    }
-
-    h1 {
-      color: #333;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .form-container {
-      width: 300px;
-      margin: 0 auto;
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    input[type="text"],
-    input[type="password"],
-    select {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      box-sizing: border-box;
-    }
-
-    input[type="submit"] {
-      width: 100%;
-      padding: 10px;
-      background-color: #4CAF50;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    input[type="submit"]:hover {
-      background-color: #45a049;
-    }
-
-    .home-icon {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      font-size: 40px;
-      color: #333;
-      text-decoration: none;
-    }
-
-    .home-icon:hover {
-      color: #f00;
-    }
-
-    .password-error {
-      border: 1px solid red !important;
-    }
-
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register as Python Developer</title>
+    <link rel="stylesheet" href="/resources/static/css/stylesSignupSpecificDev.css">
 </head>
 <body>
-<a href="index" class="home-icon">&#127968;</a>
+<%@ include file="../dynamic/home_icon.jspf" %>
 <div class="container">
-  <h1>Registration Page for Python Developer</h1>
-  <div class="form-container">
-    <form action="/register_python" method="post" onsubmit="return validatePassword()">
-      <input type="text" name="name" placeholder="Name" required><br>
-      <input type="text" name="surname" placeholder="Surname" required><br>
-      <input type="text" name="login" placeholder="Login" required><br>
-      <input type="password" name="password" id="password" placeholder="Password" required><br>
-      <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required onkeyup="validatePassword()"><br>
-      <input type="text" name="toolname" placeholder="Tool Name" required><br>
-      <select name="experience" required>
-        <option value="" disabled selected>Select Experience</option>
-        <option value="JUNIOR">Junior</option>
-        <option value="MID">Mid</option>
-        <option value="SENIOR">Senior</option>
-      </select><br>
-      <input type="submit" value="Sign up">
-    </form>
-  </div>
+    <h1>Registration Page for Python Developer</h1>
+    <div class="form-container">
+        <form action="/register_python" method="post" onsubmit="return validatePassword()">
+            <%@ include file="../dynamic/register_form_content.jspf" %>
+        </form>
+    </div>
 </div>
-
-<script>
-  function validatePassword() {
-    var password = document.getElementById("password");
-    var confirm_password = document.getElementById("confirm_password");
-
-    if (password.value !== confirm_password.value) {
-      confirm_password.classList.add("password-error");
-      return false;
-    } else {
-      confirm_password.classList.remove("password-error");
-      return true;
-    }
-  }
-</script>
-
+<script src="/resources/static/js/registerSpecificDev.js"></script>
 </body>
 </html>
 ```
 
 **Description:**
-- `<!DOCTYPE html>`: Declaration of HTML document type.
-- `<html lang="en">`: Opening HTML tag with language specification.
-- `<head>`: Section containing metadata and external resource links.
-- `<meta charset="UTF-8">`: Specifies character encoding.
-- `<meta name="viewport" content="width=device-width, initial-scale=1.0">`: Viewport settings for responsive design.
-- `<title>Register as Python Developer</title>`: Page title.
-- `<style>`: Section containing CSS styles.
-  - `body`: Styling for the body element.
-  - `.container`: Container styling.
-  - `h1`: Styling for the header.
-  - `.form-container`: Styling for the form container.
-  - `input[type="text"], input[type="password"], select`: Styling for text and password fields, and select elements.
-  - `input[type="submit"]`: Styling for submit button.
-  - `.home-icon`: Styling for the home icon.
-  - `.password-error`: Styling for the password confirmation error field.
-- `</style>`: End of style section.
-- `</head>`: End of head section.
-- `<body>`: Section containing the page content.
-- `<a href="index" class="home-icon">&#127968;</a>`: Home icon redirecting to the homepage.
-- `<div class="container">`: Container for page content.
-- `<h1>Registration Page for Python Developer</h1>`: Header for the Python developer registration form.
-- `<form>`: Registration form for Python developers.
-- `</form>`: End of form.
-- `</div>`: End of container.
-- `</body>`: End of body section.
-- `</html>`: End of HTML document.
+- **`<jsp:useBean id="now" class="java.util.Date"/>`:** Initializes a Java bean named `now` of type `java.util.Date`, which can be used to access the current date and time within the JSP page.
+- **`<%@ page contentType="text/html; charset=UTF-8" %>`:** Sets the content type of the page to `text/html` and specifies UTF-8 as the character encoding, ensuring proper handling of text and special characters.
+- **`<!DOCTYPE html>`:** Declares the document as an HTML5 document, which ensures it is parsed and displayed according to HTML5 standards.
+- **`<html lang="en">`:** Opens the HTML document and specifies that the content is in English (`en`).
+- **`<head>`:** Contains metadata and links to external resources necessary for the document.
+- **`<meta charset="UTF-8">`:** Defines the character encoding for the page as UTF-8, ensuring that all text is displayed correctly.
+- **`<meta name="viewport" content="width=device-width, initial-scale=1.0">`:** Configures the viewport for responsive design, ensuring the page scales appropriately on different devices.
+- **`<title>Register as Python Developer</title>`:** Sets the title of the page to "Register as Python Developer," which appears in the browser's title bar or tab.
+- **`<link rel="stylesheet" href="/resources/static/css/stylesSignupSpecificDev.css">`:** Links to an external CSS file (`stylesSignupSpecificDev.css`) located in the `/resources/static/css/` directory, which styles the registration page for Python Developers.
+- **`</head>`:** Closes the head section of the HTML document.
+- **`<body>`:** Begins the body section where the main content of the page is placed.
+- **`<%@ include file="../dynamic/home_icon.jspf" %>`:** Includes the content from the `home_icon.jspf` file in the `../dynamic/` directory, typically providing a home icon or related navigation feature.
+- **`<div class="container">`:** A `div` element with the `container` class that centers and organizes the page content.
+- **`<h1>Registration Page for Python Developer</h1>`:** Displays the main heading "Registration Page for Python Developer," indicating the purpose of the page.
+- **`<div class="form-container">`:** A `div` element with the `form-container` class that styles and contains the form.
+- **`<form action="/register_python" method="post" onsubmit="return validatePassword()">`:** Defines a form that posts data to the `/register_python` endpoint when submitted. The `onsubmit` attribute calls a JavaScript function `validatePassword()` to perform client-side validation before form submission.
+- **`<%@ include file="../dynamic/register_form_content.jspf" %>`:** Includes the content from the `register_form_content.jspf` file in the `../dynamic/` directory, which contains the specific form fields and elements for registration.
+- **`</form>`:** Closes the form element.
+- **`</div>`:** Closes the `form-container` div.
+- **`</div>`:** Closes the `container` div.
+- **`<script src="/resources/static/js/registerSpecificDev.js"></script>`:** Links to an external JavaScript file (`registerSpecificDev.js`) located in the `/resources/static/js/` directory, which likely contains scripts related to the registration process for Python Developers.
+- **`</body>`:** Closes the body section of the HTML document.
+- **`</html>`:** Closes the HTML document.
+
 
 #### 3.1.10 `registration_failure.jsp`
 
 ```jsp
+<jsp:useBean id="now" class="java.util.Date"/>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Failed</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            position: relative;
-        }
-
-        .container {
-            width: 50%;
-        }
-
-        h1 {
-            color: #333;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        p {
-            color: red;
-            margin-bottom: 20px;
-        }
-
-        .try-again-btn {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-            font-size: 1.2rem;
-        }
-
-        .try-again-btn:hover {
-            background-color: #45a049;
-        }
-
-        .home-icon {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 40px;
-            color: #333;
-            text-decoration: none;
-        }
-
-        .home-icon:hover {
-            color: #f00;
-        }
-
-    </style>
+    <link rel="stylesheet" href="/resources/static/css/stylesRegistrationFailure.css">
 </head>
 <body>
-<a href="index" class="home-icon">&#127968;</a>
+<%@ include file="../dynamic/home_icon.jspf" %>
 <div class="container">
     <h1>Registration Failed</h1>
     <p>Login already used. Please try again with a different login.</p>
@@ -1466,78 +691,42 @@ This project structure organizes the code and resources in a clear manner, facil
 ```
 
 **Description:**
-- `<!DOCTYPE html>`: Declaration of HTML document type.
-- `<html lang="en">`: Opening HTML tag with language specification.
-- `<head>`: Section containing metadata and external resource links.
-- `<meta charset="UTF-8">`: Specifies character encoding.
-- `<meta name="viewport" content="width=device-width, initial-scale=1.0">`: Viewport settings for responsive design.
-- `<title>Registration Failed</title>`: Page title.
-- `<style>`: Section containing CSS styles.
-  - `body`: Styling for the body element.
-  - `.container`: Container styling for the failure message.
-  - `h1`: Styling for the header.
-  - `p`: Styling for the paragraph.
-  - `.try-again-btn`: Styling for the "Try Again" button.
-  - `.home-icon`: Styling for the home icon.
-- `</style>`: End of style section.
-- `</head>`: End of head section.
-- `<body>`: Section containing the page content.
-- `<a href="index" class="home-icon">&#127968;</a>`: Home icon redirecting to the homepage.
-- `<div class="container">`: Container for failure message.
-- `<h1>Registration Failed</h1>`: Header indicating registration failure.
-- `<p>Username already taken. Please try again with a different username.</p>`: Error message.
-- `<a href="signup" class="try-again-btn">Try Again</a>`: "Try Again" button to navigate back to the sign-up page.
-- `</div>`: End of container.
-- `</body>`: End of body section.
-- `</html>`: End of HTML document.
+- **`<jsp:useBean id="now" class="java.util.Date"/>`:** Initializes a Java bean named `now` of type `java.util.Date`, allowing the current date and time to be accessed within the JSP page.
+- **`<%@ page contentType="text/html; charset=UTF-8" %>`:** Sets the content type of the page to `text/html` and specifies UTF-8 as the character encoding, ensuring proper display of content and special characters.
+- **`<!DOCTYPE html>`:** Declares that the document is an HTML5 document.
+- **`<html lang="en">`:** Opens the HTML document and sets the language to English (`en`).
+- **`<head>`:** Contains metadata and links to external resources like stylesheets.
+- **`<meta charset="UTF-8">`:** Specifies UTF-8 as the character encoding, ensuring that all characters are displayed correctly.
+- **`<meta name="viewport" content="width=device-width, initial-scale=1.0">`:** Sets the viewport settings for responsive design, making sure the page displays well on various devices.
+- **`<title>Registration Failed</title>`:** Sets the title of the webpage to "Registration Failed," which appears in the browser's title bar or tab.
+- **`<link rel="stylesheet" href="/resources/static/css/stylesRegistrationFailure.css">`:** Links to an external CSS file (`stylesRegistrationFailure.css`) located in the `/resources/static/css/` directory, which contains the styling for the registration failure page.
+- **`</head>`:** Closes the head section, which concludes the metadata and resource links.
+- **`<body>`:** Begins the body section, where the main content of the page is displayed.
+- **`<%@ include file="../dynamic/home_icon.jspf" %>`:** Includes the content of the `home_icon.jspf` file from the `../dynamic/` directory, typically adding a home icon or related functionality to the page.
+- **`<div class="container">`:** A `div` element with the `container` class that centers and structures the content on the page.
+- **`<h1>Registration Failed</h1>`:** Displays the heading "Registration Failed," indicating that the registration attempt was unsuccessful.
+- **`<p>Login already used. Please try again with a different login.</p>`:** Displays a message informing the user that the chosen login is already in use, prompting them to try again with a different login.
+- **`<a href="signup" class="try-again-btn">Try Again</a>`:** Provides a hyperlink (`<a>` element) labeled "Try Again" that directs the user back to the sign-up page, with the `try-again-btn` class applied for styling.
+- **`</div>`:** Closes the `container` div.
+- **`</body>`:** Closes the body section, marking the end of the main content of the page.
+- **`</html>`:** Closes the HTML document, signaling the end of the content.
+
 
 #### 3.1.11 `registration_success.jsp`
 
 ```jsp
+<jsp:useBean id="now" class="java.util.Date"/>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Success</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .container {
-            width: 50%;
-        }
-
-        p {
-            color: #333;
-            margin-bottom: 20px;
-        }
-
-        .home-link {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-            font-size: 1.2rem;
-        }
-
-        .home-link:hover {
-            background-color: #45a049;
-        }
-
-    </style>
+    <link rel="stylesheet" href="/resources/static/css/stylesRegistrationSuccess.css">
 </head>
 <body>
+<%@ include file="../dynamic/home_icon.jspf" %>
 <div class="container">
     <p>Now you can <a href="signin" class="home-link">sign in</a>!</p>
 </div>
@@ -1546,105 +735,39 @@ This project structure organizes the code and resources in a clear manner, facil
 ```
 
 **Description:**
-- `<!DOCTYPE html>`: Declaration of HTML document type.
-- `<html lang="en">`: Opening HTML tag with language specification.
-- `<head>`: Section containing metadata and external resource links.
-- `<meta charset="UTF-8">`: Specifies character encoding.
-- `<meta name="viewport" content="width=device-width, initial-scale=1.0">`: Viewport settings for responsive design.
-- `<title>Registration Success</title>`: Page title.
-- `<style>`: Section containing CSS styles.
-  - `body`: Styling for the body element.
-  - `.container`: Container styling for the success message.
-  - `p`: Styling for the paragraph.
-  - `.home-link`: Styling for the link to the login page.
-  - `.home-link:hover`: Styling for the link on hover.
-- `</style>`: End of style section.
-- `</head>`: End of head section.
-- `<body>`: Section containing the page content.
-- `<div class="container">`: Container for success message.
-- `<p>You can now <a href="signin" class="home-link">log in</a>!</p>`: Message indicating successful registration and providing a link to log in.
-- `</div>`: End of container.
-- `</body>`: End of body section.
-- `</html>`: End of HTML document.
+- **`<jsp:useBean id="now" class="java.util.Date"/>`:** Initializes a Java bean named `now` of type `java.util.Date`, allowing the current date and time to be accessed within the JSP page.
+- **`<%@ page contentType="text/html; charset=UTF-8" %>`:** Sets the content type of the page to `text/html` and specifies UTF-8 as the character encoding, ensuring proper display of content and special characters.
+- **`<!DOCTYPE html>`:** Declares that the document is an HTML5 document.
+- **`<html lang="en">`:** Opens the HTML document and sets the language to English (`en`).
+- **`<head>`:** Contains metadata and links to external resources like stylesheets.
+- **`<meta charset="UTF-8">`:** Specifies UTF-8 as the character encoding, ensuring that all characters are displayed correctly.
+- **`<meta name="viewport" content="width=device-width, initial-scale=1.0">`:** Sets the viewport settings for responsive design, making sure the page displays well on various devices.
+- **`<title>Registration Success</title>`:** Sets the title of the webpage to "Registration Success," which appears in the browser's title bar or tab.
+- **`<link rel="stylesheet" href="/resources/static/css/stylesRegistrationSuccess.css">`:** Links to an external CSS file (`stylesRegistrationSuccess.css`) located in the `/resources/static/css/` directory, which contains the styling for the registration success page.
+- **`</head>`:** Closes the head section, which concludes the metadata and resource links.
+- **`<body>`:** Begins the body section, where the main content of the page is displayed.
+- **`<%@ include file="../dynamic/home_icon.jspf" %>`:** Includes the content of the `home_icon.jspf` file from the `../dynamic/` directory, typically adding a home icon or related functionality to the page.
+- **`<div class="container">`:** A `div` element with the `container` class that centers and structures the content on the page.
+- **`<p>Now you can <a href="signin" class="home-link">sign in</a>!</p>`:** Displays a message informing the user that they can now sign in. The text "sign in" is a hyperlink (`<a>` element) that directs the user to the sign-in page, with the `home-link` class applied for styling.
+- **`</div>`:** Closes the `container` div.
+- **`</body>`:** Closes the body section, marking the end of the main content of the page.
+- **`</html>`:** Closes the HTML document, signaling the end of the content.
 
 #### 3.1.12 `signin.jsp`
 
 ```jsp
+<jsp:useBean id="now" class="java.util.Date"/>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign in</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .container {
-            width: 50%;
-        }
-
-        h1 {
-            color: #333;
-            text-align: center;
-        }
-
-        .form-container {
-            width: 300px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        input[type="text"],
-        input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-
-        input[type="submit"] {
-            width: 100%;
-            padding: 10px;
-            background-color: #4CAF50;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #45a049;
-        }
-
-        .home-icon {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 40px;
-            color: #333;
-            text-decoration: none;
-        }
-
-        .home-icon:hover {
-            color: #f00;
-        }
-    </style>
+    <link rel="stylesheet" href="/resources/static/css/stylesSignin.css">
 </head>
 <body>
-<a href="index" class="home-icon">&#127968;</a>
+<%@ include file="../dynamic/home_icon.jspf" %>
 <div class="container">
     <h1>Welcome back!</h1>
     <div class="form-container">
@@ -1660,119 +783,46 @@ This project structure organizes the code and resources in a clear manner, facil
 ```
 
 **Description:**
-- `<!DOCTYPE html>`: Declaration of HTML document type.
-- `<html lang="en">`: Opening HTML tag with language specification.
-- `<head>`: Section containing metadata and external resource links.
-- `<meta charset="UTF-8">`: Specifies character encoding.
-- `<meta name="viewport" content="width=device-width, initial-scale=1.0">`: Viewport settings for responsive design.
-- `<title>Sign In</title>`: Page title.
-- `<style>`: Section containing CSS styles.
-  - `body`: Styling for the body element.
-  - `.container`: Styling for the container of the login form.
-  - `h1`: Styling for the header greeting the user.
-  - `.form-container`: Styling for the form container.
-  - `input[type="text"], input[type="password"]`: Styling for text and password fields.
-  - `input[type="submit"]`: Styling for submit button.
-  - `.home-icon`: Styling for the home icon.
-- `</style>`: End of style section.
-- `</head>`: End of head section.
-- `<body>`: Section containing the page content.
-- `<a href="index" class="home-icon">&#127968;</a>`: Home icon redirecting to the homepage.
-- `<div class="container">`: Container for the login form.
-- `<h1>Welcome Back!</h1>`: Header greeting the user.
-- `<form action="/login" method="post">`: Login form.
-  - `<input type="text" name="username" placeholder="Username" required><br>`: Text field for username.
-  - `<input type="password" name="password" placeholder="Password" required><br>`: Password field.
-  - `<input type="submit" value="Log In">`: Submit button.
-- `</form>`: End of form.
-- `</div>`: End of container.
-- `</body>`: End of body section.
-- `</html>`: End of HTML document.
+- **`<jsp:useBean id="now" class="java.util.Date"/>`:** Initializes a Java bean named `now` of type `java.util.Date`, which can be used within the JSP to represent the current date and time.
+- **`<%@ page contentType="text/html; charset=UTF-8" %>`:** Specifies the content type of the page as `text/html` and sets the character encoding to `UTF-8`, ensuring the correct display of characters and symbols.
+- **`<!DOCTYPE html>`:** Declares the document as an HTML5 document.
+- **`<html lang="en">`:** Opens the HTML document and sets the language to English (`en`).
+- **`<head>`:** Contains metadata and links to external resources such as stylesheets.
+- **`<meta charset="UTF-8">`:** Specifies the character encoding as UTF-8, which supports a wide range of characters.
+- **`<meta name="viewport" content="width=device-width, initial-scale=1.0">`:** Configures the viewport settings to ensure the page is responsive and properly scales on different devices.
+- **`<title>Sign in</title>`:** Sets the title of the webpage to "Sign in," which appears in the browser's title bar or tab.
+- **`<link rel="stylesheet" href="/resources/static/css/stylesSignin.css">`:** Links to an external CSS file (`stylesSignin.css`) located in the `/resources/static/css/` directory, used for styling the sign-in page.
+- **`</head>`:** Closes the head section, concluding the metadata and resource links.
+- **`<body>`:** Begins the body section, which contains the main content of the page.
+- **`<%@ include file="../dynamic/home_icon.jspf" %>`:** Includes the content of the `home_icon.jspf` file from the `../dynamic/` directory. This typically adds a home icon or related functionality to the page.
+- **`<div class="container">`:** A `div` element with the `container` class used to center and structure the content on the page.
+- **`<h1>Welcome back!</h1>`:** A heading that welcomes the user back, indicating they are on the sign-in page.
+- **`<div class="form-container">`:** A `div` element with the `form-container` class that wraps the sign-in form, providing structure and styling.
+- **`<form action="/login" method="post">`:** Defines a form that will submit user input to the `/login` endpoint using the POST method. This form is used for user authentication.
+  - **`<input type="text" name="username" placeholder="Username" required>`:** An input field for the user to enter their username, with a placeholder "Username" and a `required` attribute to ensure the field is filled before submission.
+  - **`<input type="password" name="password" placeholder="Password" required>`:** An input field for the user to enter their password, with a placeholder "Password" and a `required` attribute to ensure the field is filled before submission.
+  - **`<input type="submit" value="Sign in">`:** A submit button labeled "Sign in" that sends the form data when clicked.
+- **`</form>`:** Closes the form element.
+- **`</div>`:** Closes the `form-container` div.
+- **`</div>`:** Closes the main container div.
+- **`</body>`:** Ends the body section, concluding the main content of the page.
+- **`</html>`:** Ends the HTML document, marking the end of the content.
 
 #### 3.1.13 `signup.jsp`
 
 ```jsp
+<jsp:useBean id="now" class="java.util.Date"/>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            position: relative;
-        }
-
-        .container {
-            width: 50%;
-        }
-
-        h1 {
-            color: #333;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .form-container {
-            width: 300px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        input[type="text"],
-        input[type="password"],
-        select {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-
-        input[type="submit"],
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #4CAF50;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        input[type="submit"]:hover,
-        button:hover {
-            background-color: #45a049;
-        }
-
-        .home-icon {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 40px;
-            color: #333;
-            text-decoration: none;
-        }
-
-        .home-icon:hover {
-            color: #f00;
-        }
-
-    </style>
+    <link rel="stylesheet" href="/resources/static/css/stylesSignup.css">
 </head>
 <body>
-<a href="index" class="home-icon">&#127968;</a>
+<%@ include file="../dynamic/home_icon.jspf" %>
 <div class="container">
     <h1>Welcome to Pay Slip Generator!</h1>
     <h1>Choose your position</h1>
@@ -1791,82 +841,44 @@ This project structure organizes the code and resources in a clear manner, facil
         </form>
     </div>
 </div>
-
-<script>
-    function choosePosition() {
-        var positionSelect = document.getElementById("position");
-        var selectedValue = positionSelect.value;
-        var redirectUrl;
-
-        switch(selectedValue) {
-            case "java_developer":
-                redirectUrl = "register_java";
-                break;
-            case "python_developer":
-                redirectUrl = "register_python";
-                break;
-            case "csharp_developer":
-                redirectUrl = "register_csharp";
-                break;
-            case "cpp_developer":
-                redirectUrl = "register_cpp";
-                break;
-            case "frontend_developer":
-                redirectUrl = "register_frontend";
-                break;
-            case "database_analyst":
-                redirectUrl = "register_database";
-                break;
-            default:
-                break;
-        }
-
-        if (redirectUrl) {
-            window.location.href = redirectUrl;
-        }
-    }
-</script>
-
+<script src="/resources/static/js/signup.js"></script>
 </body>
 </html>
 ```
 
 **Description:**
-- `<!DOCTYPE html>`: Declaration of HTML document type.
-- `<html lang="en">`: Opening HTML tag with language specification.
-- `<head>`: Section containing metadata and external resource links.
-- `<meta charset="UTF-8">`: Specifies character encoding.
-- `<meta name="viewport" content="width=device-width, initial-scale=1.0">`: Viewport settings for responsive design.
-- `<title>Register</title>`: Page title.
-- `<style>`: Section containing CSS styles.
-  - `body`: Styling for the body element.
-  - `.container`: Styling for the container of the registration form.
-  - `h1`: Styling for the header greeting the user.
-  - `.form-container`: Styling for the form container.
-  - `input[type="text"], input[type="password"]`: Styling for text and password fields.
-  - `input[type="submit"], button`: Styling for submit button and other buttons.
-  - `.home-icon`: Styling for the home icon.
-- `</style>`: End of style section.
-- `</head>`: End of head section.
-- `<body>`: Section containing the page content.
-- `<a href="index" class="home-icon">&#127968;</a>`: Home icon redirecting to the homepage.
-- `<div class="container">`: Container for the registration form.
-- `<h1>Welcome to Pay Slip Generator!</h1>`: Welcome header.
-- `<h1>Choose your position</h1>`: Header for selecting position.
-- `<form id="registrationForm">`: Registration form.
-  - `<select id="position" onchange="redirect()">`: Dropdown menu for selecting position.
-  - `<option value="" disabled selected>Select Position</option>`: Default option.
-  - `<option value="java_developer">Java Developer</option>`: Option for Java Developer.
-  - `<option value="python_developer">Python Developer</option>`: Option for Python Developer.
-  - `<option value="csharp_developer">C# Developer</option>`: Option for C# Developer.
-  - `<option value="cpp_developer">C++ Developer</option>`: Option for C++ Developer.
-  - `<option value="frontend_developer">Front-end Developer</option>`: Option for Front-end Developer.
-  - `<option value="database_analyst">Database Analyst</option>`: Option for Database Analyst.
-  - `<button type="button" onclick="choosePosition()">OK</button>`: Button to confirm selection.
-- `</form>`: End of form.
-- `</div>`: End of container.
-- `</body>`: End of body section.
-- `</html>`: End of HTML document.
+- **`<jsp:useBean id="now" class="java.util.Date"/>`:** Initializes a Java bean named `now` of type `java.util.Date`, which can be used within the JSP to represent the current date and time.
+- **`<%@ page contentType="text/html; charset=UTF-8" %>`:** Specifies the content type of the page as `text/html` and sets the character encoding to `UTF-8`, ensuring the correct display of characters and symbols.
+- **`<!DOCTYPE html>`:** Declares the document as an HTML5 document.
+- **`<html lang="en">`:** Opens the HTML document and sets the language to English (`en`).
+- **`<head>`:** Contains metadata and links to external resources such as stylesheets.
+- **`<meta charset="UTF-8">`:** Specifies the character encoding as UTF-8, which supports a wide range of characters.
+- **`<meta name="viewport" content="width=device-width, initial-scale=1.0">`:** Configures the viewport settings to ensure the page is responsive and properly scales on different devices.
+- **`<title>Register</title>`:** Sets the title of the webpage to "Register," which appears in the browser's title bar or tab.
+- **`<link rel="stylesheet" href="/resources/static/css/stylesSignup.css">`:** Links to an external CSS file (`stylesSignup.css`) located in the `/resources/static/css/` directory, used for styling the sign-up page.
+- **`</head>`:** Closes the head section, concluding the metadata and resource links.
+- **`<body>`:** Begins the body section, which contains the main content of the page.
+- **`<%@ include file="../dynamic/home_icon.jspf" %>`:** Includes the content of the `home_icon.jspf` file from the `../dynamic/` directory. This typically adds a home icon or related functionality to the page.
+- **`<div class="container">`:** A `div` element with the `container` class used to center and structure the content on the page.
+- **`<h1>Welcome to Pay Slip Generator!</h1>`:** A heading that welcomes the user to the Pay Slip Generator platform, indicating they are on the registration page.
+- **`<h1>Choose your position</h1>`:** A secondary heading prompting the user to select their position.
+- **`<div class="form-container">`:** A `div` element with the `form-container` class that wraps the registration form, providing structure and styling.
+- **`<form id="registrationForm">`:** Defines a form element with the ID `registrationForm`, used to capture the user's selected position.
+  - **`<select id="position" onchange="redirect()">`:** A dropdown (`<select>`) element with the ID `position`, allowing the user to choose their position. The `onchange="redirect()"` attribute triggers a JavaScript function `redirect()` when the user selects an option.
+    - **`<option value="" disabled selected>Select Position</option>`:** The default, unselectable option that prompts the user to choose a position.
+    - **`<option value="java_developer">Java Developer</option>`:** An option for users who are Java Developers.
+    - **`<option value="python_developer">Python Developer</option>`:** An option for users who are Python Developers.
+    - **`<option value="csharp_developer">C# Developer</option>`:** An option for users who are C# Developers.
+    - **`<option value="cpp_developer">C++ Developer</option>`:** An option for users who are C++ Developers.
+    - **`<option value="frontend_developer">Front-end Developer</option>`:** An option for users who are Front-end Developers.
+    - **`<option value="database_analyst">Database Analyst</option>`:** An option for users who are Database Analysts.
+  - **`<button type="button" onclick="choosePosition()">OK</button>`:** A button that, when clicked, calls the `choosePosition()` JavaScript function. This function typically processes the user's selection and may direct them to the next step in the registration process.
+- **`</form>`:** Closes the form element.
+- **`</div>`:** Closes the `form-container` div.
+- **`</div>`:** Closes the main container div.
+- **`<script src="/resources/static/js/signup.js"></script>`:** Links to an external JavaScript file (`signup.js`) located in the `/resources/static/js/` directory. This script likely contains the `redirect()` and `choosePosition()` functions and any other logic related to the registration form.
+- **`</body>`:** Ends the body section, concluding the main content of the page.
+- **`</html>`:** Ends the HTML document, marking the end of the content.
 
 ### 3.2 Configuration Files
 
