@@ -2762,7 +2762,7 @@ public class PaySlipGeneratorService {
    - Uses Hibernate queries to check if there is an existing user with the given login for various types of employees.
    - Returns `true` if the login is unique; otherwise, returns `false`.
 
-## 7. Classes / Entities, and Enums
+## 7. Classes / Entities and Enums
 
 ### .java files
 
