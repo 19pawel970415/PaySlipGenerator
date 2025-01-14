@@ -1,4 +1,4 @@
-A project of PaySlipGenerator, an app for employees enabling them the access to their pay slips being a part of the University of Lodz "Web Applications" course.
+The project of PaySlipGenerator, an app for employees enabling them the access to their pay slips being a part of the University of Lodz "Web Applications" course.
 
 # PaySlipGenerator - employees' pay slips management system
 
